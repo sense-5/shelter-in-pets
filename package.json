@@ -1,13 +1,19 @@
 {
+  "name": "shelter-in-pets",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "web": "expo start --web",
+    "test": "jest",
     "start": "react-native start",
-    "test": "jest"
+    "start-dev": "expo start & NODE_ENV=development nodemon server/index.js"
   },
   "dependencies": {
     "expo": "~36.0.0",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "pg": "^7.18.2",
+    "pg-hstore": "^2.3.3",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
     "react-native": "~0.61.4",
@@ -15,7 +21,9 @@
     "react-native-reanimated": "~1.4.0",
     "react-native-screens": "2.0.0-alpha.12",
     "react-native-unimodules": "~0.7.0",
-    "react-native-web": "~0.11.7"
+    "react-native-web": "~0.11.7",
+    "sequelize": "^5.21.5",
+    "volleyball": "^1.5.1"
   },
   "devDependencies": {
     "@babel/core": "~7.6.0",
