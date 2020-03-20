@@ -17,4 +17,4 @@ FavoriteDogs.prototype.remove = function(dogId) {
   });
 };
 
-export default FavoriteDogs;
+module.exports = FavoriteDogs;

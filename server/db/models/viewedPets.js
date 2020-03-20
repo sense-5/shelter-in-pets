@@ -17,4 +17,4 @@ ViewedPets.prototype.remove = function(dogBreed) {
   });
 };
 
-export default ViewedPets;
+module.exports = ViewedPets;

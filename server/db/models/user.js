@@ -44,7 +44,6 @@ const User = db.define('user', {
   },
   zipcode: {
     type: Sequelize.STRING,
-    allowNull: false,
   },
 });
 

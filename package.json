@@ -6,7 +6,8 @@
     "web": "expo start --web",
     "test": "jest",
     "start": "react-native start",
-    "start-dev": "expo start & NODE_ENV=development nodemon server/index.js"
+    "start-dev": "expo start & NODE_ENV=development nodemon server/index.js",
+    "seed": "node script/seed.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
