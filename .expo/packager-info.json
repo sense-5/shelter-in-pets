@@ -3,7 +3,7 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerNgrokUrl": "https://y5-bhq.anonymous.shelter-in-pets.exp.direct",
+  "packagerNgrokUrl": "https://packager.y5-bhq.anonymous.shelter-in-pets.exp.direct",
+  "ngrokPid": 23993
 }
