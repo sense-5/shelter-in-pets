@@ -8,16 +8,32 @@ import {
 } from "react-native";
 
 export default class LoginScreen extends React.Component {
+  state = {
+    email: "",
+    password: ""
+  };
+
+  onChangeHandle(state, value) {
+    this.setState({
+      [state]: value
+    });
+  }
+
+  //???
+
   render() {
+    const { email, password } = this.state;
     return (
       <View style={styles.container}>
         <View style={styles.formWrapper}>
-          <Text style={styles.welcomeText}>Welcome back user</Text>
+          <Text style={styles.welcomeText}>Welcome back!</Text>
           <View style={styles.formRow}>
             <TextInput
               style={styles.textInput}
               placeholder="Enter email address"
               placeholderTextColor="#333"
+              value={email}
+              onChangeText={value => this.onChangeHandle("email", value)}
             />
           </View>
           <View style={styles.formRow}>
@@ -26,9 +42,14 @@ export default class LoginScreen extends React.Component {
               placeholder="Enter password"
               placeholderTextColor="#333"
               secureTextEntry={true}
+              value={password}
+              onChangeText={value => this.onChangeHandle("password", value)}
             />
           </View>
-          <TouchableOpacity style={styles.signinBtn}>
+          <TouchableOpacity
+            style={styles.signinBtn}
+            onPress={() => this.props.navigation.navigate("App")}
+          >
             <Text style={styles.signinText}>Sign In</Text>
           </TouchableOpacity>
         </View>
@@ -47,8 +68,7 @@ const styles = StyleSheet.create({
     width: "80%"
   },
   formRow: {
-    marginBottom: 10,
-    textAlign: "center"
+    marginBottom: 10
   },
   textInput: {
     backgroundColor: "#ddd",
@@ -58,7 +78,7 @@ const styles = StyleSheet.create({
   },
   welcomeText: {
     textAlign: "center",
-    marginBottom: 20,
+    marginBottom: 30,
     fontSize: 24,
     fontWeight: "bold"
   },
