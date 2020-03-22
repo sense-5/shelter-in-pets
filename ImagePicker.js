@@ -22,8 +22,8 @@ class ImagePick extends Component {
   render(){
     return(
       <View style={styles.container}>
-
-        {this.state.pickedUri ? (
+        {
+        this.state.pickedUri ? (
           <View>
           <Text>chosen dog</Text>
           <Image style={styles.image} source={{uri: this.state.pickedUri}}/>

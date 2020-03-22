@@ -1,38 +1,40 @@
-import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View,} from 'react-native';
-import ImagePick from './ImagePicker'
+import 'react-native-gesture-handler'
+import * as React from 'react';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' + 'Shake or press menu button for dev menu',
-});
+import {View, Text} from 'react-native'
 
-export default class App extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <ImagePick />
-      </View>
-    );
-  }
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import ImagePick from './ImagePicker';
+
+const Tab = createBottomTabNavigator();
+
+function Home(){
+  return(
+    <View style={{flex: 1, justifyContent: 'center', alignItems: "center"}}>
+      <Text>home</Text>
+    </View>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+function Profile(){
+  return(
+    <View style={{flex: 1, justifyContent: 'center', alignItems: "center"}}>
+      <Text>Profile</Text>
+    </View>
+  )
+}
+
+export default function App() {
+    return (
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="home" component={Home} />
+        <Tab.Screen name="pick" component={ImagePick} />
+        <Tab.Screen name="profile" component={Profile} />
+      </Tab.Navigator>
+    </NavigationContainer>
+
+    );
+}
+
