@@ -1,18 +1,9 @@
 {
   "devToolsPort": 19002,
-<<<<<<< HEAD
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
-=======
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 54428,
-  "expoServerNgrokUrl": "https://rk-is3.anonymous.shelterinpets.exp.direct",
-  "packagerNgrokUrl": "https://packager.rk-is3.anonymous.shelterinpets.exp.direct",
-  "ngrokPid": 54440
->>>>>>> b6ed4732fce3654eb217bb059b673c837375b0b7
+  "packagerPid": 84621,
+  "expoServerNgrokUrl": "https://ft-3ay.anonymous.shelter-in-pets.exp.direct",
+  "packagerNgrokUrl": "https://packager.ft-3ay.anonymous.shelter-in-pets.exp.direct",
+  "ngrokPid": 84629
 }
