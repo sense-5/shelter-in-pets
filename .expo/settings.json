@@ -3,6 +3,10 @@
   "lanType": "ip",
   "dev": true,
   "minify": false,
+<<<<<<< HEAD
   "urlRandomness": "b7-5sn",
+=======
+  "urlRandomness": "rk-is3",
+>>>>>>> b6ed4732fce3654eb217bb059b673c837375b0b7
   "https": false
 }
