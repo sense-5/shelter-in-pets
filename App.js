@@ -3,32 +3,41 @@ import { Platform, StyleSheet, Text, View } from 'react-native';
 import Signup from './client/screens/signup';
 import { Provider } from 'react-redux';
 import store from './client/store';
+import 'react-native-gesture-handler';
+import * as React from 'react';
 
-export default class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <Signup />
-      </Provider>
-    );
-  }
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import ImagePick from './ImagePicker';
+
+const Tab = createBottomTabNavigator();
+
+function Home() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>home</Text>
+    </View>
+  );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+function Profile() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Profile</Text>
+    </View>
+  );
+}
+
+export default function App() {
+  return (
+    <Provider store={store}>
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen name="home" component={Home} />
+          <Tab.Screen name="pick" component={ImagePick} />
+          <Tab.Screen name="profile" component={Profile} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </Provider>
+  );
+}
