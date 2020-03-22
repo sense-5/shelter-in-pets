@@ -20,10 +20,12 @@ class ImagePick extends Component {
   }
 
   render(){
+    console.log('image picker')
     return(
       <View style={styles.container}>
-
-        {this.state.pickedUri ? (
+        {console.log('in return')}
+        {
+        this.state.pickedUri ? (
           <View>
           <Text>chosen dog</Text>
           <Image style={styles.image} source={{uri: this.state.pickedUri}}/>

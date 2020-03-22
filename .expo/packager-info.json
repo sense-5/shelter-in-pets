@@ -2,8 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 84621,
-  "expoServerNgrokUrl": "https://ft-3ay.anonymous.shelter-in-pets.exp.direct",
-  "packagerNgrokUrl": "https://packager.ft-3ay.anonymous.shelter-in-pets.exp.direct",
-  "ngrokPid": 84629
+  "packagerPid": 61584,
+  "expoServerNgrokUrl": "https://q5-c67.anonymous.shelterinpets.exp.direct",
+  "packagerNgrokUrl": "https://packager.q5-c67.anonymous.shelterinpets.exp.direct",
+  "ngrokPid": 61603,
+  "webpackServerPort": null
 }

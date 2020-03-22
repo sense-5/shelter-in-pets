@@ -1,42 +1,20 @@
-import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler'
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ImagePick from './ImagePicker';
-import Navigator from './client/component/navigator';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+const Tab = createBottomTabNavigator();
 
-export default class App extends Component {
-  render() {
+export default function App() {
     return (
-      <View style={styles.container}>
-        {/* <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <ImagePick /> */}
-        <Navigator />
-      </View>
+    <NavigationContainer>
+      <Tab.Navigator>
+        {console.log('in navigator')}
+        <Tab.Screen name="pick" component={ImagePick} />
+      </Tab.Navigator>
+    </NavigationContainer>
+
     );
-  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
