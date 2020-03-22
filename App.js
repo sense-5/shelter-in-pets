@@ -36,7 +36,7 @@ export default function App() {
             let iconName;
 
             if (route.name === 'home') {
-              iconName = 'ios-home';
+              iconName = 'ios-paw';
             }
             if (route.name === 'upload') {
               iconName = 'md-photos';
