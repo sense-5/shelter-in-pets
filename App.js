@@ -29,7 +29,6 @@ export default function App() {
     return (
     <NavigationContainer>
       <Tab.Navigator>
-        {console.log('in navigator')}
         <Tab.Screen name="home" component={Home} />
         <Tab.Screen name="pick" component={ImagePick} />
         <Tab.Screen name="profile" component={Profile} />
