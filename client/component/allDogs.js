@@ -2,7 +2,9 @@ import React, {Component} from 'react'
 import {View, Text, Stylesheet, StyleSheet, ScrollView, Image} from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
-
+import { NavigationContainer, StackActions } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+const Stack = createStackNavigator();
 
 const dummyData = [
   {id: 1,
