@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Button,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { signupAuth } from '../store/user';
@@ -72,6 +73,10 @@ class SignupScreen extends React.Component {
           >
             <Text style={styles.signupText}>Signup</Text>
           </TouchableOpacity>
+          <Button
+            title="Already a user?"
+            onPress={() => this.props.navigation.navigate('login')}
+          />
         </View>
       </View>
     );

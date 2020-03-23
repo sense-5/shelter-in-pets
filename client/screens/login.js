@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Button,
 } from 'react-native';
 
 export default class LoginScreen extends React.Component {
@@ -50,10 +51,14 @@ export default class LoginScreen extends React.Component {
           </View>
           <TouchableOpacity
             style={styles.loginButton}
-            onPress={() => this.props.navigation.navigate('App')}
+            onPress={() => this.props.navigation.navigate('isLoggedIn')}
           >
             <Text style={styles.loginText}>Login</Text>
           </TouchableOpacity>
+          <Button
+            title="Not a user?"
+            onPress={() => this.props.navigation.navigate('signup')}
+          />
         </View>
       </View>
     );

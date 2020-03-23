@@ -7,9 +7,6 @@ export default class HomeScreen extends React.Component {
       <View style={styles.container}>
         <View style={styles.dashboardWrapper}>
           <Text style={styles.userText}>Hey User</Text>
-          <TouchableOpacity style={styles.logoutButton} onPress={}>
-            <Text style={styles.logoutButtonText}>Logout</Text>
-          </TouchableOpacity>
         </View>
       </View>
     );

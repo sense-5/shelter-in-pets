@@ -12,7 +12,10 @@ const defaultUser = {};
 //login auth thunk
 export const loginAuth = (email, password) => async dispatch => {
   try {
-    const { data } = await axios.post('/auth/login', { email, password });
+    const { data } = await axios.post('/auth/login', {
+      email,
+      password,
+    });
   } catch (authError) {
     return dispatch(getUser({ error: authError }));
   }
