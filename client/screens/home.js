@@ -1,13 +1,16 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
+import AllDogs from '../component/allDogs'
+
 export default class HomeScreen extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.dashboardWrapper}>
-          <Text style={styles.userText}>Hey User</Text>
-        </View>
+      <View >
+        {/* <View style={styles.dashboardWrapper}> */}
+          {/* <Text style={styles.userText}>Hey User</Text> */}
+          <AllDogs />
+        {/* </View> */}
       </View>
     );
   }
@@ -15,9 +18,10 @@ export default class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor:'yellow'
   },
   dashboardWrapper: {
     textAlign: 'center',
