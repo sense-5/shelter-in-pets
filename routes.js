@@ -7,9 +7,15 @@ import { logout } from './client/store/user';
 import { Platform, StyleSheet, Text, View, Button } from 'react-native';
 import ImagePick from './ImagePicker';
 import Signup from './client/screens/signup';
-import Icon from 'react-native-ionicons';
+// import Icon from 'react-native-ionicons';
+import { Ionicons } from '@expo/vector-icons'
+
 import HomeScreen from './client/screens/home';
+
+import SingleDog from './client/component/singleDog'
+
 import Login from './client/screens/login';
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -22,15 +28,37 @@ function Profile() {
   );
 }
 
-function isLoggedIn() {
+function isLoggedIn({navigation}) {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="home" component={HomeScreen} />
-      <Tab.Screen name="pick" component={ImagePick} />
+    <Tab.Navigator
+        screenOptions={({route}) => ({
+          tabBarIcon: ({focused, color}) => {
+            let iconName;
+
+            if (route.name === 'home') {
+              iconName = 'ios-paw';
+            }
+            if (route.name === 'upload') {
+              iconName = 'md-photos';
+            }
+            if (route.name === 'profile'){
+              iconName = 'ios-happy'
+            }
+
+            return <Ionicons name={iconName} size={24} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: 'blue',
+          inactiveTintColor: 'gray',
+        }}>
+      <Tab.Screen name="home" component={HomeScreen} Screen={()=><HomeScreen navigation={navigation}/>} />
+      <Tab.Screen name="upload" component={ImagePick} />
       <Tab.Screen name="profile" component={Profile} />
     </Tab.Navigator>
   );
 }
+
 class Root extends React.Component {
   constructor() {
     super();
@@ -73,10 +101,19 @@ class Root extends React.Component {
             component={Signup}
             options={{ headerShown: false }}
           />
+  <Stack.Screen
+          name="Single Dog"
+          component={SingleDog}
+          options={({navigation}) => ({
+            headerTitle: '',
+          })}
+        />
+
         </Stack.Navigator>
       </NavigationContainer>
     );
   }
+
 }
 
 const mapDispatchToProps = dispatch => {

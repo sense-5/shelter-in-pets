@@ -3,6 +3,8 @@
   "minify": false,
   "hostType": "lan",
   "lanType": "ip",
-  "urlRandomness": "ub-ssk",
+
+  "urlRandomness": "8k-psk",
+
   "https": false
 }
