@@ -1,9 +1,15 @@
 import React, {Component} from 'react'
-import {View, Text, Stylesheet, StyleSheet, ScrollView, Image} from 'react-native'
+import {View, Text, StyleSheet, ScrollView, Image} from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
+
+import {withNavigation} from 'react-navigation';
 
 import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
+import SingleDog from './singleDog';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+
 const Stack = createStackNavigator();
 
 const dummyData = [
@@ -30,6 +36,9 @@ const dummyData = [
 ]
 
 class AllDogs extends Component {
+  constructor(){
+    super()
+  }
 
   like(e){
     console.log('liked')
@@ -45,17 +54,29 @@ class AllDogs extends Component {
     console.log('dog prof')
   }
 
+
+
   render(){
+    const { navigation } = this.props
+
     return(
       <View >
        <ScrollView>
           {dummyData.map(dog => {
             return(
               <View key={dog.id} style={styles.dogContainer}>
-                <View style={styles.dogHeader} onPress={this.dogProfile}>
-                  <Image source={{uri: dog.imageUrl}} style={styles.dogIcon}/>
-                  <Text style={styles.name}>{dog.name}</Text>
-                </View>
+
+                <TouchableWithoutFeedback onPress={()=>{
+                  navigation.navigate('Single Dog')
+                }}>
+
+
+                  <View style={styles.dogHeader} onPress={this.dogProfile}>
+                    <Image source={{uri: dog.imageUrl}} style={styles.dogIcon}/>
+                    <Text style={styles.name}>{dog.name}</Text>
+                  </View>
+                </TouchableWithoutFeedback>
+
                 <Image source={{uri: dog.imageUrl}} style={styles.image} />
                 <View style={styles.dogFooter}>
                   <Ionicons name={'ios-heart-empty'} size={30} onPress={this.like} />
@@ -71,6 +92,29 @@ class AllDogs extends Component {
       </View>
     )
   }
+}
+
+function DogsStackScreen(){
+  <Stack.Navigator headerMode="screen">
+
+    <Stack.Screen name="All Dogs" component={AllDogs} />
+
+    <Stack.Screen
+      name="Single Dog"
+      component={SingleDog}
+      options={({navigation}) => ({
+        headerTitle: 'hey',
+        headerLeft: () => (
+          <Button onPress={()=> {
+            navigation.navigate('All Dogs')
+          }}
+          title="back"
+          />
+        )
+      })}
+      />
+
+ </Stack.Navigator>
 }
 
 const styles = StyleSheet.create({
@@ -106,3 +150,5 @@ const styles = StyleSheet.create({
 })
 
 export default AllDogs
+
+// export default withNavigation(AllDogs);

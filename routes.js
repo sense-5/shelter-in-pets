@@ -10,6 +10,7 @@ import { Ionicons } from '@expo/vector-icons'
 
 import HomeScreen from './client/screens/home';
 import LoginScreen from './client/screens/login';
+import SingleDog from './client/component/singleDog'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -22,7 +23,7 @@ function Profile() {
   );
 }
 
-function isLoggedIn() {
+function isLoggedIn({navigation}) {
   return (
     <Tab.Navigator
         screenOptions={({route}) => ({
@@ -46,7 +47,7 @@ function isLoggedIn() {
           activeTintColor: 'blue',
           inactiveTintColor: 'gray',
         }}>
-      <Tab.Screen name="home" component={HomeScreen} />
+      <Tab.Screen name="home" component={HomeScreen} Screen={()=><HomeScreen navigation={navigation}/>} />
       <Tab.Screen name="upload" component={ImagePick} />
       <Tab.Screen name="profile" component={Profile} />
     </Tab.Navigator>
@@ -82,6 +83,22 @@ function Root() {
           component={Signup}
           options={{ headerShown: false }}
         />
+
+        <Stack.Screen
+          name="Single Dog"
+          component={SingleDog}
+          options={({navigation}) => ({
+            headerTitle: 'hey',
+            headerLeft: () => (
+              <Button onPress={()=> {
+                navigation.navigate('home')
+              }}
+              title="back"
+              />
+            )
+          })}
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

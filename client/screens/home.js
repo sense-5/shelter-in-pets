@@ -4,12 +4,16 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import AllDogs from '../component/allDogs'
 
 export default class HomeScreen extends React.Component {
+  constructor(){
+    super()
+  }
+
   render() {
     return (
       <View >
         {/* <View style={styles.dashboardWrapper}> */}
           {/* <Text style={styles.userText}>Hey User</Text> */}
-          <AllDogs />
+          <AllDogs navigation={this.props.navigation}/>
         {/* </View> */}
       </View>
     );
