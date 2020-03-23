@@ -7,8 +7,10 @@ import {
   TouchableOpacity,
   Button,
 } from 'react-native';
+import { loginAuth } from '../store/user';
+import { connect } from 'react-redux';
 
-export default class LoginScreen extends React.Component {
+class LoginScreen extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -16,12 +18,34 @@ export default class LoginScreen extends React.Component {
       password: '',
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
   handleChange(name, value) {
     this.setState({
       [name]: value,
     });
+  }
+
+  handleLogin() {
+    const { email, password } = this.state;
+
+    if (email === '') {
+      alert('Email is required');
+    } else if (password === '') {
+      alert('Password is required');
+    } else {
+      this.props.loginAuth(email, password);
+      this.setState({
+        email: '',
+        password: '',
+      });
+      if (this.props.error) {
+        alert('Invalid user credentials');
+      } else {
+        this.props.navigation.navigate('isLoggedIn');
+      }
+    }
   }
 
   render() {
@@ -51,7 +75,7 @@ export default class LoginScreen extends React.Component {
           </View>
           <TouchableOpacity
             style={styles.loginButton}
-            onPress={() => this.props.navigation.navigate('isLoggedIn')}
+            onPress={() => this.handleLogin()}
           >
             <Text style={styles.loginText}>Login</Text>
           </TouchableOpacity>
@@ -64,6 +88,23 @@ export default class LoginScreen extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    error: state.user.error,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loginAuth: (email, password) => {
+      dispatch(loginAuth(email, password));
+    },
+  };
+};
+
+const Login = connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
+export default Login;
 
 const styles = StyleSheet.create({
   container: {
