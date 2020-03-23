@@ -2,6 +2,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { logout } from './client/store/user';
 import { Platform, StyleSheet, Text, View, Button } from 'react-native';
 import ImagePick from './ImagePicker';
 import Signup from './client/screens/signup';
@@ -9,8 +11,11 @@ import Signup from './client/screens/signup';
 import { Ionicons } from '@expo/vector-icons'
 
 import HomeScreen from './client/screens/home';
-import LoginScreen from './client/screens/login';
+
 import SingleDog from './client/component/singleDog'
+
+import Login from './client/screens/login';
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -53,38 +58,50 @@ function isLoggedIn({navigation}) {
     </Tab.Navigator>
   );
 }
-function Root() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator headerMode="screen">
-        <Stack.Screen
-          name="login"
-          component={LoginScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="isLoggedIn"
-          component={isLoggedIn}
-          options={({ navigation }) => ({
-            headerTitle: '',
-            headerRight: () => (
-              <Button
-                onPress={() => {
-                  navigation.navigate('login');
-                }}
-                title="Logout"
-                // color="#000000"
-              />
-            ),
-          })}
-        />
-        <Stack.Screen
-          name="signup"
-          component={Signup}
-          options={{ headerShown: false }}
-        />
 
-        <Stack.Screen
+class Root extends React.Component {
+  constructor() {
+    super();
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
+  handleLogout(navigation) {
+    this.props.logout();
+  }
+
+  render() {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator headerMode="screen">
+          <Stack.Screen
+            name="login"
+            component={Login}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="isLoggedIn"
+            component={isLoggedIn}
+            options={({ navigation }) => ({
+              headerTitle: '',
+
+              headerLeft: () => (
+                <Button
+                  onPress={() => {
+                    this.handleLogout();
+                    navigation.navigate('login');
+                  }}
+                  title="Logout"
+                  color="#000000"
+                />
+              ),
+            })}
+          />
+          <Stack.Screen
+            name="signup"
+            component={Signup}
+            options={{ headerShown: false }}
+          />
+  <Stack.Screen
           name="Single Dog"
           component={SingleDog}
           options={({navigation}) => ({
@@ -92,8 +109,19 @@ function Root() {
           })}
         />
 
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
+
 }
-export default Root;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => {
+      dispatch(logout());
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Root);
