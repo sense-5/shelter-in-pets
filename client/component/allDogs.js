@@ -1,12 +1,7 @@
 import React, {Component} from 'react'
 import {View, Text, StyleSheet, ScrollView, Image} from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { createStackNavigator } from '@react-navigation/stack';
-
-import SingleDog from './singleDog';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-
-const Stack = createStackNavigator();
 
 const dummyData = [
   {id: 1,
@@ -40,17 +35,8 @@ class AllDogs extends Component {
     console.log('liked')
     //function to add dog to user's liked dogs
     //if dog is already there remove it (un-like)
-    console.log(e.nativeEvent)
-
-    //ios-heart --> icon name when dog is liked
+    console.log(e)
   }
-
-  dogProfile(){
-    //navigate to dog profile? or just pull it up? tbd
-    console.log('dog prof')
-  }
-
-
 
   render(){
     const { navigation } = this.props
@@ -67,7 +53,7 @@ class AllDogs extends Component {
                 }}>
 
 
-                  <View style={styles.dogHeader} onPress={this.dogProfile}>
+                  <View style={styles.dogHeader}>
                     <Image source={{uri: dog.imageUrl}} style={styles.dogIcon}/>
                     <Text style={styles.name}>{dog.name}</Text>
                   </View>

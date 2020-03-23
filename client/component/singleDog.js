@@ -10,7 +10,7 @@ function SingleDog({route}) {
 
     return(
       <View style={styles.container}>
-        <Text>{name}</Text>
+        <Text style={{fontSize: 34}}>{name}</Text>
         <Image source={{uri: imageUrl}} style={styles.image} />
         <Text>Like button here as well?</Text>
         <Text>breed info</Text>
@@ -25,11 +25,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'yellow'
   },
   image: {
     width: '100%',
-    height: 350
+    height: 400
   }
 })
 
