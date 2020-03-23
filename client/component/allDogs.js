@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {View, Text, Stylesheet, StyleSheet, ScrollView, Image} from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
 
 
 
@@ -27,19 +28,40 @@ const dummyData = [
 ]
 
 class AllDogs extends Component {
+
+  like(e){
+    console.log('liked')
+    //function to add dog to user's liked dogs
+    //if dog is already there remove it (un-like)
+    console.log(e.nativeEvent)
+
+    //ios-heart --> icon name when dog is liked
+  }
+
+  dogProfile(){
+    //navigate to dog profile? or just pull it up? tbd
+    console.log('dog prof')
+  }
+
   render(){
     return(
       <View >
        <ScrollView>
-          {/* <Text>hello all dogs here yes yes hello hello great many dog dog dog</Text> */}
           {dummyData.map(dog => {
             return(
               <View key={dog.id} style={styles.dogContainer}>
-                <View style={{flexDirection:'row'}}>
+                <View style={styles.dogHeader} onPress={this.dogProfile}>
                   <Image source={{uri: dog.imageUrl}} style={styles.dogIcon}/>
                   <Text style={styles.name}>{dog.name}</Text>
                 </View>
                 <Image source={{uri: dog.imageUrl}} style={styles.image} />
+                <View style={styles.dogFooter}>
+                  <Ionicons name={'ios-heart-empty'} size={30} onPress={this.like} />
+                  {/* icon for liked dogs below */}
+                  {/* <Ionicons name={'ios-heart'} size={30} onPress={this.like} color={'#de104a'}/> */}
+                  <Ionicons name={'ios-mail'} size={30} onPress={this.likeSwitch} />
+                </View>
+
               </View>
             )
           })}
@@ -51,7 +73,7 @@ class AllDogs extends Component {
 
 const styles = StyleSheet.create({
   dogContainer: {
-    backgroundColor: 'yellow',
+    // backgroundColor: 'yellow',
     marginBottom: 20
   },
   image: {
@@ -59,7 +81,7 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   name: {
-    fontSize: 20,
+    fontSize: 18,
     padding: 5
   },
   dogIcon: {
@@ -67,6 +89,17 @@ const styles = StyleSheet.create({
     height: 30,
     borderRadius: 50,
     padding: 5
+  },
+  dogHeader: {
+    flexDirection:'row',
+    padding: 5
+  },
+  dogFooter: {
+    flexDirection: 'row',
+    // backgroundColor: 'pink',
+    justifyContent: 'space-around',
+    padding: 8,
+    width: '25%'
   }
 })
 
