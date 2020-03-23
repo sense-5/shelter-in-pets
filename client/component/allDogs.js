@@ -1,10 +1,6 @@
 import React, {Component} from 'react'
 import {View, Text, StyleSheet, ScrollView, Image} from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-
-import {withNavigation} from 'react-navigation';
-
-import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import SingleDog from './singleDog';
@@ -67,7 +63,7 @@ class AllDogs extends Component {
               <View key={dog.id} style={styles.dogContainer}>
 
                 <TouchableWithoutFeedback onPress={()=>{
-                  navigation.navigate('Single Dog')
+                  navigation.navigate('Single Dog', dog)
                 }}>
 
 
@@ -94,28 +90,6 @@ class AllDogs extends Component {
   }
 }
 
-function DogsStackScreen(){
-  <Stack.Navigator headerMode="screen">
-
-    <Stack.Screen name="All Dogs" component={AllDogs} />
-
-    <Stack.Screen
-      name="Single Dog"
-      component={SingleDog}
-      options={({navigation}) => ({
-        headerTitle: 'hey',
-        headerLeft: () => (
-          <Button onPress={()=> {
-            navigation.navigate('All Dogs')
-          }}
-          title="back"
-          />
-        )
-      })}
-      />
-
- </Stack.Navigator>
-}
 
 const styles = StyleSheet.create({
   dogContainer: {
@@ -151,4 +125,3 @@ const styles = StyleSheet.create({
 
 export default AllDogs
 
-// export default withNavigation(AllDogs);

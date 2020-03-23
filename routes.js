@@ -73,7 +73,7 @@ function Root() {
                   navigation.navigate('login');
                 }}
                 title="Logout"
-                color="#000000"
+                // color="#000000"
               />
             ),
           })}
@@ -88,14 +88,7 @@ function Root() {
           name="Single Dog"
           component={SingleDog}
           options={({navigation}) => ({
-            headerTitle: 'hey',
-            headerLeft: () => (
-              <Button onPress={()=> {
-                navigation.navigate('home')
-              }}
-              title="back"
-              />
-            )
+            headerTitle: '',
           })}
         />
 
