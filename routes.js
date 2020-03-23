@@ -5,7 +5,9 @@ import * as React from 'react';
 import { Platform, StyleSheet, Text, View, Button } from 'react-native';
 import ImagePick from './ImagePicker';
 import Signup from './client/screens/signup';
-import Icon from 'react-native-ionicons';
+// import Icon from 'react-native-ionicons';
+import { Ionicons } from '@expo/vector-icons'
+
 import HomeScreen from './client/screens/home';
 import LoginScreen from './client/screens/login';
 
@@ -22,9 +24,30 @@ function Profile() {
 
 function isLoggedIn() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+        screenOptions={({route}) => ({
+          tabBarIcon: ({focused, color}) => {
+            let iconName;
+
+            if (route.name === 'home') {
+              iconName = 'ios-paw';
+            }
+            if (route.name === 'upload') {
+              iconName = 'md-photos';
+            }
+            if (route.name === 'profile'){
+              iconName = 'ios-happy'
+            }
+
+            return <Ionicons name={iconName} size={24} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: 'blue',
+          inactiveTintColor: 'gray',
+        }}>
       <Tab.Screen name="home" component={HomeScreen} />
-      <Tab.Screen name="pick" component={ImagePick} />
+      <Tab.Screen name="upload" component={ImagePick} />
       <Tab.Screen name="profile" component={Profile} />
     </Tab.Navigator>
   );
