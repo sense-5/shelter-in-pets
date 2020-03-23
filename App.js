@@ -1,40 +1,15 @@
-import 'react-native-gesture-handler'
+import { Provider } from 'react-redux';
+import store from './client/store';
+
 import * as React from 'react';
+import Root from './routes';
 
-import {View, Text} from 'react-native'
+const App = () => {
+  return (
+    <Provider store={store}>
+      <Root />
+    </Provider>
+  );
+};
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ImagePick from './ImagePicker';
-
-const Tab = createBottomTabNavigator();
-
-function Home(){
-  return(
-    <View style={{flex: 1, justifyContent: 'center', alignItems: "center"}}>
-      <Text>home</Text>
-    </View>
-  )
-}
-
-function Profile(){
-  return(
-    <View style={{flex: 1, justifyContent: 'center', alignItems: "center"}}>
-      <Text>Profile</Text>
-    </View>
-  )
-}
-
-export default function App() {
-    return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="home" component={Home} />
-        <Tab.Screen name="pick" component={ImagePick} />
-        <Tab.Screen name="profile" component={Profile} />
-      </Tab.Navigator>
-    </NavigationContainer>
-
-    );
-}
-
+export default App;
