@@ -8,49 +8,16 @@ import {
   Button,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import { getAllDogs } from '../store/allDogs';
 
-const dummyData = [
-  {
-    id: 1,
-    name: 'Rover',
-    imageUrl:
-      'https://www.nationalgeographic.com/content/dam/animals/thumbs/rights-exempt/mammals/d/domestic-dog_thumb.jpg',
-  },
-  {
-    id: 2,
-    name: 'Buddy',
-    imageUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Rusty.jpg/1200px-Rusty.jpg',
-  },
-  {
-    id: 3,
-    name: 'Zeke',
-    imageUrl:
-      'https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2019/02/dog-451643.jpg?h=bf654dbc&itok=MQGvBmuo',
-  },
-  {
-    id: 4,
-    name: 'Mango',
-    imageUrl:
-      'https://static.independent.co.uk/s3fs-public/thumbnails/image/2019/09/04/13/istock-1031307988.jpg?w968h681',
-  },
-  {
-    id: 5,
-    name: 'Wiggles',
-    imageUrl:
-      'https://media4.s-nbcnews.com/j/newscms/2019_23/2885811/190606-border-collie-mc-1318_5b1706791f4ae9ddb3029540a98f7e08.fit-760w.JPG',
-  },
-];
-
-const defaultImageUrl =
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS07bU3_0rUVJ9_zj5L78h_3D1aKr4gq1RkZ9YhjEmLLvieGERn';
+const dogImg = require('../../assets/images/dog2.jpg');
 
 class AllDogs extends Component {
   constructor() {
     super();
+    this.like = this.like.bind(this);
   }
 
   componentDidMount() {
@@ -71,49 +38,49 @@ class AllDogs extends Component {
       <View>
         <ScrollView>
           {this.props.allDogs.map(dog => {
+            const regex = new RegExp('[0-9]+');
+            if (regex.test(dog.name)) {
+              dog.name = 'Doggo';
+            }
+
             return (
               <View key={dog.id} style={styles.dogContainer}>
-                <TouchableWithoutFeedback
+                <View style={styles.dogHeader}>
+                  {dog.photos[0] ? (
+                    <Image
+                      source={{ uri: dog.photos[0].full }}
+                      style={styles.dogIcon}
+                    />
+                  ) : (
+                    <Image source={dogImg} style={styles.dogIcon} />
+                  )}
+
+                  <Text style={styles.name}>{dog.name}</Text>
+                </View>
+
+                <TouchableOpacity
                   onPress={() => {
                     navigation.navigate('Single Dog', dog);
                   }}
                 >
-                  <View style={styles.dogHeader}>
-                    {dog.photos[0] ? (
-                      <Image
-                        source={{ uri: dog.photos[0].full }}
-                        style={styles.dogIcon}
-                      />
-                    ) : (
-                      <Image
-                        source={{ uri: defaultImageUrl }}
-                        style={styles.dogIcon}
-                      />
-                    )}
-
-                    <Text style={styles.name}>{dog.name}</Text>
-                  </View>
-                </TouchableWithoutFeedback>
-                {dog.photos[0] ? (
-                  <Image
-                    source={{ uri: dog.photos[0].full }}
-                    style={styles.image}
-                  />
+                  {dog.photos[0] ? (
+                    <Image
+                      source={{ uri: dog.photos[0].full }}
+                      style={styles.image}
+                    />
+                  ) : (
+                    <Image source={dogImg} style={styles.image} />
+                  )}
+                </TouchableOpacity>
+                {dog.name === 'Doggo' ? (
+                  <Text style={styles.name}>Woof! Please give me a name!</Text>
                 ) : (
-                  <Image
-                    source={{ uri: defaultImageUrl }}
-                    style={styles.image}
-                  />
+                  <Text style={styles.name}>Woof! My name is {dog.name}!</Text>
                 )}
 
                 <View style={styles.dogFooter}>
-                  <Ionicons
-                    name={'ios-heart-empty'}
-                    size={30}
-                    onPress={this.like}
-                  />
-                  {/* icon for liked dogs below */}
-                  {/* <Ionicons name={'ios-heart'} size={30} onPress={this.like} color={'#de104a'}/> */}
+                  <Ionicons name={'ios-paw'} size={30} onPress={this.like} />
+
                   <Ionicons
                     name={'ios-mail'}
                     size={30}
@@ -147,7 +114,6 @@ export default Dogs;
 
 const styles = StyleSheet.create({
   dogContainer: {
-    // backgroundColor: 'yellow',
     marginBottom: 20,
   },
   image: {
@@ -170,7 +136,7 @@ const styles = StyleSheet.create({
   },
   dogFooter: {
     flexDirection: 'row',
-    // backgroundColor: 'pink',
+
     justifyContent: 'space-around',
     padding: 8,
     width: '25%',
