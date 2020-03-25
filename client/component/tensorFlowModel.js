@@ -1,36 +1,38 @@
-{/* <div>Teachable Machine Image Model</div>
+{
+  /* <div>Teachable Machine Image Model</div>
 <button type="button" onclick="init()">Start</button>
 <div id="webcam-container"></div>
 <div id="label-container"></div>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
-<script type="text/javascript"> */}
+<script type="text/javascript"> */
+}
 
 // More API functions here:
 // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 // the link to your model provided by Teachable Machine export panel
 const URL = "https://teachablemachine.withgoogle.com/models/0lKSu52Fy/";
-let model, webcam, labelContainer, maxPredictions;
-    // Load the image model and setup the webcam
+let model, labelContainer, maxPredictions;
+// Load the image model and setup the webcam
 async function init() {
-    const modelURL = URL + "model.json";
-    const metadataURL = URL + "metadata.json";
-    // load the model and metadata
-    // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-    // or files from your local hard drive
-    // Note: the pose library adds "tmImage" object to your window (window.tmImage)
-    model = await tmImage.load(modelURL, metadataURL);
-    maxPredictions = model.getTotalClasses();
+  const modelURL = URL + "model.json";
+  const metadataURL = URL + "metadata.json";
+  // load the model and metadata
+  // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+  // or files from your local hard drive
+  // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+  model = await tmImage.load(modelURL, metadataURL);
+  maxPredictions = model.getTotalClasses();
 }
 
 async function predict() {
-    // predict can take in an image, video or canvas html element
-    const prediction = await model.predict(/*something*/);
-    // for (let i = 0; i < maxPredictions; i++) {
-    //     const classPrediction =
-    //         prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-    //     labelContainer.childNodes[i].innerHTML = classPrediction;
-    // }
+  // predict can take in an image, video or canvas html element
+  const prediction = await model.predict(/*something*/);
+  // for (let i = 0; i < maxPredictions; i++) {
+  //     const classPrediction =
+  //         prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+  //     labelContainer.childNodes[i].innerHTML = classPrediction;
+  // }
 }
 // </script>
 
@@ -43,7 +45,6 @@ async function predict() {
 //   });
 //   classifyImage(image);
 // }
-
 
 // classifyImage(File image) async {
 //   List output = await Tflite.runModelOnImage(
