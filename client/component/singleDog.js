@@ -10,11 +10,17 @@ function SingleDog({ route }) {
   const breed = route.params.breeds.primary;
   const description = route.params.description;
   const location = route.params.url;
+  const defaultImageUrl =
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS07bU3_0rUVJ9_zj5L78h_3D1aKr4gq1RkZ9YhjEmLLvieGERn';
 
   return (
     <View style={styles.container}>
       <Text style={{ fontSize: 34 }}>{name}</Text>
-      <Image source={{ uri: imageUrl }} style={styles.image} />
+      {imageUrl ? (
+        <Image source={{ uri: imageUrl }} style={styles.image} />
+      ) : (
+        <Image source={{ uri: defaultImageUrl }} style={styles.image} />
+      )}
       <Text>Like button here as well?</Text>
       <Text>{breed}</Text>
       <Text>{description}</Text>
