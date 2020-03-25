@@ -32,7 +32,7 @@ class ImagePick extends Component {
             <Text style={styles.text}>See more pups like this one?</Text>
             <Button
               title="Yes Please!"
-              onPress={this.SEND_IMAGE_TO_TEACHABLE_MACHINE_MODEL}
+              onPress={this.props.SEND_IMAGE_TO_TEACHABLE_MACHINE_MODEL}
             />
             <Image
               style={styles.image}
