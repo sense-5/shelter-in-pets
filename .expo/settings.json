@@ -3,8 +3,6 @@
   "minify": false,
   "hostType": "lan",
   "lanType": "ip",
-
-  "urlRandomness": "8k-psk",
-
+  "urlRandomness": "vh-wmm",
   "https": false
 }

@@ -1,23 +1,28 @@
-import React, {Component} from 'react'
-import {View, Text, StyleSheet, Image} from 'react-native'
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Image, Linking } from 'react-native';
 
-function SingleDog({route}) {
-  console.log('hit single dog screen')
-  console.log(route.params.name)
+function SingleDog({ route }) {
+  console.log('hit single dog screen');
+  console.log(route.params.name);
 
-  const name = route.params.name
-  const imageUrl = route.params.imageUrl
+  const name = route.params.name;
+  const imageUrl = route.params.photos[0].full;
+  const breed = route.params.breeds.primary;
+  const description = route.params.description;
+  const location = route.params.url;
 
-    return(
-      <View style={styles.container}>
-        <Text style={{fontSize: 34}}>{name}</Text>
-        <Image source={{uri: imageUrl}} style={styles.image} />
-        <Text>Like button here as well?</Text>
-        <Text>breed info</Text>
-        <Text>shelter info</Text>
-        <Text>contact link?</Text>
-      </View>
-    )
+  return (
+    <View style={styles.container}>
+      <Text style={{ fontSize: 34 }}>{name}</Text>
+      <Image source={{ uri: imageUrl }} style={styles.image} />
+      <Text>Like button here as well?</Text>
+      <Text>{breed}</Text>
+      <Text>{description}</Text>
+      <Text style={{ color: 'blue' }} onPress={() => Linking.openURL(location)}>
+        Link to Shelter
+      </Text>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -28,8 +33,8 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: 400
-  }
-})
+    height: 400,
+  },
+});
 
-export default SingleDog
+export default SingleDog;
