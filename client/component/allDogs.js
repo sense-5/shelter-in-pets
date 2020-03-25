@@ -58,10 +58,10 @@ class AllDogs extends Component {
   }
 
   like(e) {
-    console.log('liked');
+    // console.log('liked');
     //function to add dog to user's liked dogs
     //if dog is already there remove it (un-like)
-    console.log(e);
+    // console.log(e);
   }
 
   render() {
@@ -130,7 +130,7 @@ class AllDogs extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state:', state);
+  // console.log('state:', state);
   return { allDogs: state.dogs.allDogs };
 };
 

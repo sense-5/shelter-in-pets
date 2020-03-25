@@ -1,32 +1,37 @@
 import React,  {Component} from 'react'
 import {View, Text, Image, Button, StyleSheet} from 'react-native'
 import * as ImagePicker from 'expo-image-picker';
+import {connect} from 'react-redux';
+import {getPickedImage} from './client/store/imagePicker'
 
 class ImagePick extends Component {
   constructor(){
     super()
-    this.state = {
-      pickedUri: ''
-    }
+    // this.state = {
+    //   pickedUri: ''
+    // }
     this.openImagePicker = this.openImagePicker.bind(this)
   }
 
   async openImagePicker(){
     let pickerResult = await ImagePicker.launchImageLibraryAsync()
 
-    this.setState({
-      pickedUri: pickerResult.uri
-    })
+    // this.setState({
+    //   pickedUri: pickerResult.uri
+    // })
+    this.props.getPickedImage(pickerResult)
   }
 
   render(){
+    console.log('picked image', this.props.pickedImage.pickedImage)
+
     return(
       <View style={styles.container}>
         {
-        this.state.pickedUri ? (
+        this.props.pickedImage.pickedImage ? (
           <View>
           <Text>chosen dog</Text>
-          <Image style={styles.image} source={{uri: this.state.pickedUri}}/>
+          <Image style={styles.image} source={{uri: this.props.pickedImage.pickedImage}}/>
           </View>
         ) : (
           <Text>choose a photo</Text>
@@ -52,5 +57,12 @@ const styles = StyleSheet.create({
   }
 })
 
+const mapState = state => ({
+  pickedImage: state.pickedImage
+})
 
-export default ImagePick
+const mapDispatch = dispatch => ({
+  getPickedImage: (img) => dispatch(getPickedImage(img.uri))
+})
+
+export default connect(mapState,mapDispatch)(ImagePick)
