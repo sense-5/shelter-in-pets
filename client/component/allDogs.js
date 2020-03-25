@@ -45,13 +45,15 @@ const dummyData = [
   },
 ];
 
+const defaultImageUrl =
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS07bU3_0rUVJ9_zj5L78h_3D1aKr4gq1RkZ9YhjEmLLvieGERn';
+
 class AllDogs extends Component {
   constructor() {
     super();
-    this.handleAllDogs = this.handleAllDogs.bind(this);
   }
 
-  handleAllDogs() {
+  componentDidMount() {
     this.props.getAllDogs();
   }
 
@@ -68,8 +70,7 @@ class AllDogs extends Component {
     return (
       <View>
         <ScrollView>
-          <Button title="GET DOGS" onPress={() => this.handleAllDogs()} />
-          {dummyData.map(dog => {
+          {this.props.allDogs.map(dog => {
             return (
               <View key={dog.id} style={styles.dogContainer}>
                 <TouchableWithoutFeedback
@@ -78,15 +79,33 @@ class AllDogs extends Component {
                   }}
                 >
                   <View style={styles.dogHeader}>
-                    <Image
-                      source={{ uri: dog.imageUrl }}
-                      style={styles.dogIcon}
-                    />
+                    {dog.photos[0] ? (
+                      <Image
+                        source={{ uri: dog.photos[0].full }}
+                        style={styles.dogIcon}
+                      />
+                    ) : (
+                      <Image
+                        source={{ uri: defaultImageUrl }}
+                        style={styles.dogIcon}
+                      />
+                    )}
+
                     <Text style={styles.name}>{dog.name}</Text>
                   </View>
                 </TouchableWithoutFeedback>
+                {dog.photos[0] ? (
+                  <Image
+                    source={{ uri: dog.photos[0].full }}
+                    style={styles.image}
+                  />
+                ) : (
+                  <Image
+                    source={{ uri: defaultImageUrl }}
+                    style={styles.image}
+                  />
+                )}
 
-                <Image source={{ uri: dog.imageUrl }} style={styles.image} />
                 <View style={styles.dogFooter}>
                   <Ionicons
                     name={'ios-heart-empty'}
@@ -110,6 +129,11 @@ class AllDogs extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  console.log('state:', state);
+  return { allDogs: state.dogs.allDogs };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     getAllDogs: () => {
@@ -118,7 +142,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const Dogs = connect(null, mapDispatchToProps)(AllDogs);
+const Dogs = connect(mapStateToProps, mapDispatchToProps)(AllDogs);
 export default Dogs;
 
 const styles = StyleSheet.create({

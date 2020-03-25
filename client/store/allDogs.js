@@ -20,7 +20,8 @@ export const getAllDogs = () => {
         // 'https://shelter-in-pets-server.herokuapp.com/api/dogs'
         'http://localhost:3000/api/dogs'
       );
-      dispatch(gotAllDogs(data));
+      console.log('in data:', data);
+      dispatch(gotAllDogs(data.animals));
     } catch (error) {
       console.error(error);
     }
