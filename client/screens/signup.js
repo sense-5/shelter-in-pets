@@ -42,7 +42,7 @@ class SignupScreen extends React.Component {
         password: '',
         zipcode: '',
       });
-      if (!this.props.user.id) {
+      if (this.props.error) {
         alert('User already exists');
       } else {
         this.props.navigation.navigate('isLoggedIn');

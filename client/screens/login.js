@@ -27,7 +27,7 @@ class LoginScreen extends React.Component {
     });
   }
 
-  async handleLogin() {
+  handleLogin() {
     const { email, password } = this.state;
 
     if (email === '') {
@@ -35,12 +35,12 @@ class LoginScreen extends React.Component {
     } else if (password === '') {
       alert('Password is required');
     } else {
-      await this.props.loginAuth(email, password);
+      this.props.loginAuth(email, password);
       this.setState({
         email: '',
         password: '',
       });
-      if (!this.props.user.id) {
+      if (this.props.error) {
         alert('Invalid user credentials');
       } else {
         this.props.navigation.navigate('isLoggedIn');
