@@ -4,17 +4,37 @@ import { Ionicons } from "@expo/vector-icons";
 
 const dogImg = require("../../assets/images/dog2.jpg");
 
+function titleCase(str) {
+  str = str.toLowerCase().split(" ");
+  for (let i = 0; i < str.length; i++) {
+    str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+  }
+  str = str.join(" ");
+  let resultStr = "";
+  for (let j = 0; j < str.length; j++) {
+    if (str[j - 1] === "/" || str[j - 1] === "-" || str[j - 1] === "(") {
+      let letter = str[j];
+      let newletter = letter.toUpperCase();
+      resultStr += newletter;
+    } else {
+      resultStr += str[j];
+    }
+  }
+  return resultStr;
+}
+
 export default class SingleDog extends Component {
   constructor() {
     super();
     this.like = this.like.bind(this);
   }
 
-  like(e) {
+  like(event) {
+    event.preventDefault();
     console.log("liked");
     //function to add dog to user's liked dogs
     //if dog is already there remove it (un-like)
-    console.log(e);
+    //console.log(event);
   }
 
   render() {
@@ -41,7 +61,12 @@ export default class SingleDog extends Component {
         )}
 
         <View style={styles.dogFooter}>
-          <Ionicons name={"ios-paw"} size={30} onPress={this.like} />
+          <Ionicons
+            name={"ios-paw"}
+            size={30}
+            color={"grey"} //#fb1d1d good red color for eventual toggle
+            onPress={this.like}
+          />
 
           <Ionicons
             name={"ios-mail"}
@@ -50,7 +75,7 @@ export default class SingleDog extends Component {
           />
         </View>
         <View style={styles.bodyContainer}>
-          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.name}>{titleCase(name)}</Text>
           <Text style={styles.bodyText}>Breed: {breed}</Text>
           <Text style={styles.bodyText}>Age: {dog.age}</Text>
           <Text style={styles.bodyText}>Size: {dog.size}</Text>
@@ -58,68 +83,116 @@ export default class SingleDog extends Component {
           <Text style={styles.bodyText}>Coat: {coat}</Text>
           {houseTrained ? (
             <Text style={styles.bodyText}>
-              <Ionicons name={"ios-checkmark-circle-outline"} size={20} />{" "}
+              <Ionicons
+                name={"ios-checkmark-circle-outline"}
+                color={"green"}
+                size={20}
+              />{" "}
               Housetrained
             </Text>
           ) : (
             <Text style={styles.bodyText}>
-              <Ionicons name={"ios-close-circle-outline"} size={20} />{" "}
+              <Ionicons
+                name={"ios-close-circle-outline"}
+                color={"red"}
+                size={20}
+              />{" "}
               Housetrained
             </Text>
           )}
           {spayedNeutered ? (
             <Text style={styles.bodyText}>
-              <Ionicons name={"ios-checkmark-circle-outline"} size={20} />{" "}
+              <Ionicons
+                name={"ios-checkmark-circle-outline"}
+                color={"green"}
+                size={20}
+              />{" "}
               Spayed or Neutered
             </Text>
           ) : (
             <Text style={styles.bodyText}>
-              <Ionicons name={"ios-close-circle-outline"} size={20} /> Spayed or
-              Neutered
+              <Ionicons
+                name={"ios-close-circle-outline"}
+                color={"red"}
+                size={20}
+              />{" "}
+              Spayed or Neutered
             </Text>
           )}
           {currentShots ? (
             <Text style={styles.bodyText}>
-              <Ionicons name={"ios-checkmark-circle-outline"} size={20} />{" "}
+              <Ionicons
+                name={"ios-checkmark-circle-outline"}
+                color={"green"}
+                size={20}
+              />{" "}
               Vaccinations
             </Text>
           ) : (
             <Text style={styles.bodyText}>
-              <Ionicons name={"ios-close-circle-outline"} size={20} />{" "}
+              <Ionicons
+                name={"ios-close-circle-outline"}
+                color={"red"}
+                size={20}
+              />{" "}
               Vaccinations
             </Text>
           )}
           {childrenFriendly ? (
             <Text style={styles.bodyText}>
-              <Ionicons name={"ios-checkmark-circle-outline"} size={20} />{" "}
+              <Ionicons
+                name={"ios-checkmark-circle-outline"}
+                color={"green"}
+                size={20}
+              />{" "}
               Child-friendly
             </Text>
           ) : (
             <Text style={styles.bodyText}>
-              <Ionicons name={"ios-close-circle-outline"} size={20} />{" "}
+              <Ionicons
+                name={"ios-close-circle-outline"}
+                color={"red"}
+                size={20}
+              />{" "}
               Child-friendly
             </Text>
           )}
           {catFriendly ? (
             <Text style={styles.bodyText}>
-              <Ionicons name={"ios-checkmark-circle-outline"} size={20} /> Good
-              with cats
+              <Ionicons
+                name={"ios-checkmark-circle-outline"}
+                color={"green"}
+                size={20}
+              />{" "}
+              Good with cats
             </Text>
           ) : (
             <Text style={styles.bodyText}>
-              <Ionicons name={"ios-close-circle-outline"} size={20} /> Good with
-              cats
+              <Ionicons
+                name={"ios-close-circle-outline"}
+                color={"red"}
+                size={20}
+              />{" "}
+              Good with cats
             </Text>
           )}
           {goodWithOtherDogs ? (
             <Text style={styles.bodyText}>
-              <Ionicons name={"ios-checkmark-circle-outline"} size={20} /> Good
-              with other dogs
+              <Ionicons
+                name={"ios-checkmark-circle-outline"}
+                color={"green"}
+                size={20}
+              />{" "}
+              Good with other dogs
             </Text>
           ) : (
             <Text style={styles.bodyText}>
-              <Ionicons name={"ios-close-circle-outline"} size={20} /> Good with
-              other dogs
+              <Ionicons
+                name={"ios-close-circle-outline"}
+                color={"red"}
+                size={20}
+              />{" "}
+              Good with other dogs
             </Text>
           )}
 

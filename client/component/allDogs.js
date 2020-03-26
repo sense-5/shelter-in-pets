@@ -22,7 +22,7 @@ function titleCase(str) {
   str = str.join(" ");
   let resultStr = "";
   for (let j = 0; j < str.length; j++) {
-    if (str[j - 1] === "/" || str[j - 1] === "-") {
+    if (str[j - 1] === "/" || str[j - 1] === "-" || str[j - 1] === "(") {
       let letter = str[j];
       let newletter = letter.toUpperCase();
       resultStr += newletter;
@@ -101,7 +101,12 @@ class AllDogs extends Component {
                 )}
 
                 <View style={styles.dogFooter}>
-                  <Ionicons name={"ios-paw"} size={30} onPress={this.like} />
+                  <Ionicons
+                    name={"ios-paw"}
+                    color={"grey"} //#fb1d1d good red color for eventual toggle
+                    size={30}
+                    onPress={this.like}
+                  />
 
                   <Ionicons
                     name={"ios-mail"}
