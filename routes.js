@@ -16,17 +16,14 @@ import SingleDog from './client/component/singleDog';
 
 import Login from './client/screens/login';
 
-import TFtest from './client/component/tfjs'
-
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 function Profile() {
   return (
-    // <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    //   <Text>Profile</Text>
-    // </View>
-    <TFtest />
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Profile</Text>
+    </View>
   );
 }
 
