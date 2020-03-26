@@ -120,7 +120,11 @@ class Root extends React.Component {
     );
   }
 }
-
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+  };
+};
 const mapDispatchToProps = dispatch => {
   return {
     logout: () => {
@@ -129,4 +133,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Root);
+export default connect(mapStateToProps, mapDispatchToProps)(Root);

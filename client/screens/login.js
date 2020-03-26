@@ -27,7 +27,7 @@ class LoginScreen extends React.Component {
     });
   }
 
-  handleLogin() {
+  async handleLogin() {
     const { email, password } = this.state;
 
     if (email === '') {
@@ -35,12 +35,12 @@ class LoginScreen extends React.Component {
     } else if (password === '') {
       alert('Password is required');
     } else {
-      this.props.loginAuth(email, password);
+      await this.props.loginAuth(email, password);
       this.setState({
         email: '',
         password: '',
       });
-      if (this.props.error) {
+      if (!this.props.user.id) {
         alert('Invalid user credentials');
       } else {
         this.props.navigation.navigate('isLoggedIn');
@@ -92,6 +92,7 @@ class LoginScreen extends React.Component {
 const mapStateToProps = state => {
   return {
     error: state.user.error,
+    user: state.user,
   };
 };
 
