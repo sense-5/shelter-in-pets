@@ -28,8 +28,8 @@ class ImagePick extends Component {
     return (
       <View style={styles.container}>
         {this.props.pickedImage.pickedImage ? (
-          <View>
-            <Text style={styles.text}>See more pups like this one?</Text>
+          <View style={styles.container1}>
+            <Text style={styles.text1}>See more pups like this one?</Text>
             <Button
               title="Yes Please!"
               onPress={this.props.SEND_IMAGE_TO_TEACHABLE_MACHINE_MODEL}
@@ -45,8 +45,19 @@ class ImagePick extends Component {
           </View>
         ) : (
           <View>
-            <Text style={styles.text}>Show us your dream dog 🐾</Text>
-            <Button title="Choose photo" onPress={this.openImagePicker} />
+            <View style={styles.container2}>
+              <Text style={styles.text1}>Have a dream dog in mind? 🐾</Text>
+              <Text style={styles.text1}>We can match your preferences</Text>
+              <Text style={styles.text1}>when you upload a picture!</Text>
+              <Button title="Choose Picture" onPress={this.openImagePicker} />
+            </View>
+            <View style={styles.container3}>
+              <Text style={styles.text2}>No Picture? No Problem.</Text>
+              <Button
+                title="Use Filtered Search Instead"
+                onPress={this.props.SEND_USER_TO_SEARCH_DOGS_FORM_PAGE}
+              />
+            </View>
           </View>
         )}
       </View>
@@ -64,9 +75,28 @@ const styles = StyleSheet.create({
     height: 250,
     width: 250
   },
-  text: {
+  text1: {
     textAlign: "center",
     fontSize: 18
+  },
+  text2: {
+    textAlign: "center",
+    fontSize: 18
+  },
+  container1: {
+    flex: 1,
+    alignItems: "center",
+    marginTop: 200
+  },
+  container2: {
+    flex: 1,
+    alignItems: "center",
+    marginTop: 320
+  },
+  container3: {
+    flex: 1,
+    alignItems: "center",
+    marginTop: 250
   }
 });
 
