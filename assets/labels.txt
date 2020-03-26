@@ -1,0 +1,30 @@
+0 German Shepherd Dog 
+1 Labrador Retriever
+2 American Staffordshire Terrier
+3 Dachshund
+4 Chihuahua
+5 Boxer
+6 Beagle
+7 Australian Cattle Dog / Blue Heeler
+8 Pit Bull Terrier
+9 American Bulldog
+10 Husky
+11 Greyhound
+12 Jack Russell Terrier
+13 Akita
+14 Australian Shepherd
+15 Basset Hound
+16 Border Collie
+17 Chow Chow
+18 Corgi
+19 Doberman Pinscher
+20 Golden Retriever
+21 Great Dane
+22 Maltese
+23 Mastiff
+24 Pomeranian
+25 Poodle
+26 Pug
+27 Rottweiler
+28 Shih Tzu
+29 Yorkshire Terrier
