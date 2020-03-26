@@ -29,14 +29,14 @@ class SignupScreen extends React.Component {
     });
   }
 
-  async handleSignup() {
+  handleSignup() {
     const { email, password, zipcode } = this.state;
     if (email === '') {
       alert('Email is required');
     } else if (password === '') {
       alert('Password is required');
     } else {
-      await this.props.signupAuth(email, password, zipcode);
+      this.props.signupAuth(email, password, zipcode);
       this.setState({
         email: '',
         password: '',
