@@ -28,7 +28,6 @@ function titleCase(str) {
 class SingleDog extends Component {
   constructor() {
     super();
-    this.state = {};
     this.like = this.like.bind(this);
   }
 
