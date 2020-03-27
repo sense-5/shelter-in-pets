@@ -9,7 +9,6 @@ export const likedDog = dog => async dispatch => {
     await axios.post('http://localhost:3000/api/likedDog', {
       petFinderId: dog.id,
       breed: dog.breeds.primary,
-      liked: true,
     });
     dispatch(uploadedLikedDog(dog));
   } catch (error) {
