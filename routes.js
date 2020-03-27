@@ -16,13 +16,16 @@ import SingleDog from './client/component/singleDog';
 
 import Login from './client/screens/login';
 
+import MobilenetTest from './TestMobilenet';
+
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 function Profile() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Profile</Text>
+      {/* <Text>Profile</Text> */}
+      <MobilenetTest />
     </View>
   );
 }
