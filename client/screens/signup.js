@@ -29,24 +29,20 @@ class SignupScreen extends React.Component {
     });
   }
 
-  handleSignup() {
+  async handleSignup() {
     const { email, password, zipcode } = this.state;
+    const { navigation } = this.props;
     if (email === '') {
       alert('Email is required');
     } else if (password === '') {
       alert('Password is required');
     } else {
-      this.props.signupAuth(email, password, zipcode);
+      await this.props.signupAuth(email, password, zipcode, navigation);
       this.setState({
         email: '',
         password: '',
         zipcode: '',
       });
-      if (this.props.error) {
-        alert('User already exists');
-      } else {
-        this.props.navigation.navigate('isLoggedIn');
-      }
     }
   }
 
@@ -101,15 +97,14 @@ class SignupScreen extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    error: state.user.error,
     user: state.user,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    signupAuth: (email, password, zipcode) => {
-      dispatch(signupAuth(email, password, zipcode));
+    signupAuth: (email, password, zipcode, navigation) => {
+      dispatch(signupAuth(email, password, zipcode, navigation));
     },
   };
 };

@@ -7,7 +7,7 @@ import { logout } from './client/store/user';
 import { Platform, StyleSheet, Text, View, Button } from 'react-native';
 import ImagePick from './ImagePicker';
 import Signup from './client/screens/signup';
-// import Icon from 'react-native-ionicons';
+
 import { Ionicons } from '@expo/vector-icons';
 
 import HomeScreen from './client/screens/home';
@@ -16,17 +16,14 @@ import SingleDog from './client/component/singleDog';
 
 import Login from './client/screens/login';
 
-import TFtest from './client/component/tfjs'
-
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 function Profile() {
   return (
-    // <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    //   <Text>Profile</Text>
-    // </View>
-    <TFtest />
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Profile</Text>
+    </View>
   );
 }
 
