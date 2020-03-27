@@ -14,11 +14,8 @@ class SingleDog extends Component {
   }
 
   async like(dog) {
-    console.log('liked SD:', dog);
-    //function to add dog to user's liked dogs
-    //if dog is already there remove it (un-like)
-    //console.log(event);
     await this.props.likedDog(dog);
+    // TODO: figure out toggle. Need the inital value of liked.
   }
 
   render() {
@@ -191,8 +188,8 @@ class SingleDog extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    likedDog: dogId => {
-      dispatch(likedDog(dogId));
+    likedDog: dog => {
+      dispatch(likedDog(dog));
     },
   };
 };

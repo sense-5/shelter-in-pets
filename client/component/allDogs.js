@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import {
   View,
   Text,
@@ -12,6 +11,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import { getAllDogs } from '../store/allDogs';
+import { likedDog } from '../store/likedDog';
 import { titleCase } from '../../utils';
 
 const dogImg = require('../../assets/images/dog2.jpg');
@@ -26,11 +26,9 @@ class AllDogs extends Component {
     this.props.getAllDogs();
   }
 
-  async like() {
-    console.log('liked for all dogs:');
-    //function to add dog to user's liked dogs
-    //if dog is already there remove it (un-like)
-    // console.log(event);
+  async like(dog) {
+    await this.props.likedDog(dog);
+    // TODO: figure out toggle. Need the inital value of liked.
   }
 
   render() {
@@ -87,7 +85,9 @@ class AllDogs extends Component {
                     name={'ios-paw'}
                     color={'grey'} //#fb1d1d good red color for eventual toggle
                     size={30}
-                    onPress={this.like}
+                    onPress={() => {
+                      this.like(dog);
+                    }}
                   />
 
                   <Ionicons
@@ -113,6 +113,9 @@ const mapDispatchToProps = dispatch => {
   return {
     getAllDogs: () => {
       dispatch(getAllDogs());
+    },
+    likedDog: dog => {
+      dispatch(likedDog(dog));
     },
   };
 };

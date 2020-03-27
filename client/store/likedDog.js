@@ -5,7 +5,6 @@ const UPLOAD_LIKED_DOG = 'UPLOAD_LIKED_DOG';
 const uploadedLikedDog = dog => ({ type: UPLOAD_LIKED_DOG, dog });
 
 export const likedDog = dog => async dispatch => {
-  console.log('in likedDog thunk:', dog);
   try {
     await axios.post('http://localhost:3000/api/likedDog', {
       petFinderId: dog.id,
