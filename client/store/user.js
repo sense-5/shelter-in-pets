@@ -12,36 +12,49 @@ const removeUser = () => ({ type: REMOVE_USER });
 const defaultUser = {};
 
 //login auth thunk
-export const loginAuth = (email, password) => async dispatch => {
+export const loginAuth = (email, password, navigation) => async dispatch => {
   try {
     const { data } = await axios.post(
       'https://shelter-in-pets-server.herokuapp.com/auth/login',
+      // 'http://localhost:3000/auth/login',
       {
         email,
         password,
       }
     );
-    dispatch(getUser(data));
+    if (data.id) {
+      dispatch(getUser(data));
+      navigation.navigate('isLoggedIn');
+    }
   } catch (authError) {
-    return dispatch(getUser({ error: authError }));
+    alert('Invalid user credentials!');
   }
 };
 
 //signup auth thunk
 
-export const signupAuth = (email, password, zipcode) => async dispatch => {
+export const signupAuth = (
+  email,
+  password,
+  zipcode,
+  navigation
+) => async dispatch => {
   try {
     const { data } = await axios.post(
       'https://shelter-in-pets-server.herokuapp.com/auth/signup',
+      // 'http://localhost:3000/auth/signup',
       {
         email,
         password,
         zipcode,
       }
     );
-    dispatch(getUser(data));
+    if (data.id) {
+      dispatch(getUser(data));
+      navigation.navigate('isLoggedIn');
+    }
   } catch (authError) {
-    return dispatch(getUser({ error: authError }));
+    alert('Oops. There was an error. Please try again.');
   }
 };
 

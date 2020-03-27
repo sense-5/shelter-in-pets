@@ -7,7 +7,7 @@ import { logout } from './client/store/user';
 import { Platform, StyleSheet, Text, View, Button } from 'react-native';
 import ImagePick from './ImagePicker';
 import Signup from './client/screens/signup';
-// import Icon from 'react-native-ionicons';
+
 import { Ionicons } from '@expo/vector-icons';
 
 import HomeScreen from './client/screens/home';

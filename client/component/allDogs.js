@@ -6,6 +6,10 @@ import {
   ScrollView,
   Image,
   Button,
+<<<<<<< HEAD
+=======
+  ActivityIndicator,
+>>>>>>> 4761122e38b65a134b3c27349b4ff632b4932b50
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -24,8 +28,9 @@ class AllDogs extends Component {
     this.view = this.view.bind(this);
   }
 
-  componentDidMount() {
-    this.props.getAllDogs();
+  async componentDidMount() {
+    await this.props.getAllDogs();
+   
   }
 
   async like(dog) {
