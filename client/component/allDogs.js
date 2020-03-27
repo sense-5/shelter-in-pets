@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { getAllDogs } from '../store/allDogs';
 import { likedDog } from '../store/likedDog';
 import { titleCase } from '../../utils';
+import axios from 'axios';
 
 const dogImg = require('../../assets/images/dog2.jpg');
 
@@ -20,6 +21,7 @@ class AllDogs extends Component {
   constructor() {
     super();
     this.like = this.like.bind(this);
+    this.view = this.view.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +31,14 @@ class AllDogs extends Component {
   async like(dog) {
     await this.props.likedDog(dog);
     // TODO: figure out toggle. Need the inital value of liked.
+  }
+
+  async view(dog) {
+    console.log('in view handler');
+    await axios.post('http://localhost:3000/api/viewedDog', {
+      petFinderId: dog.id,
+      breed: dog.breeds.primary,
+    });
   }
 
   render() {
@@ -61,6 +71,7 @@ class AllDogs extends Component {
                 <TouchableOpacity
                   onPress={() => {
                     navigation.navigate('Single Dog', dog);
+                    this.view(dog);
                   }}
                 >
                   {dog.photos[0] ? (
