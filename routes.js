@@ -12,7 +12,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import HomeScreen from './client/screens/home';
 
-import SingleDog from './client/component/singleDog';
+import Dog from './client/component/singleDog';
 
 import Login from './client/screens/login';
 
@@ -107,7 +107,7 @@ class Root extends React.Component {
           />
           <Stack.Screen
             name="Single Dog"
-            component={SingleDog}
+            component={Dog}
             options={({ navigation }) => ({
               headerTitle: '',
             })}

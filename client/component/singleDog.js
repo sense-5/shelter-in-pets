@@ -1,18 +1,20 @@
-import React, { Component } from "react";
-import { View, Text, StyleSheet, Image, Linking } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Image, Linking } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { likedDog } from '../store/likedDog';
+import { connect } from 'react-redux';
 
-const dogImg = require("../../assets/images/dog2.jpg");
+const dogImg = require('../../assets/images/dog2.jpg');
 
 function titleCase(str) {
-  str = str.toLowerCase().split(" ");
+  str = str.toLowerCase().split(' ');
   for (let i = 0; i < str.length; i++) {
     str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
   }
-  str = str.join(" ");
-  let resultStr = "";
+  str = str.join(' ');
+  let resultStr = '';
   for (let j = 0; j < str.length; j++) {
-    if (str[j - 1] === "/" || str[j - 1] === "-" || str[j - 1] === "(") {
+    if (str[j - 1] === '/' || str[j - 1] === '-' || str[j - 1] === '(') {
       let letter = str[j];
       let newletter = letter.toUpperCase();
       resultStr += newletter;
@@ -23,18 +25,19 @@ function titleCase(str) {
   return resultStr;
 }
 
-export default class SingleDog extends Component {
+class SingleDog extends Component {
   constructor() {
     super();
+    this.state = {};
     this.like = this.like.bind(this);
   }
 
-  like(event) {
-    event.preventDefault();
-    console.log("liked");
+  async like(dog) {
+    console.log('liked SD:', dog);
     //function to add dog to user's liked dogs
     //if dog is already there remove it (un-like)
     //console.log(event);
+    await this.props.likedDog(dog);
   }
 
   render() {
@@ -44,7 +47,7 @@ export default class SingleDog extends Component {
     const location = dog.url;
     let coat = dog.coat;
     if (coat === null) {
-      coat = "not specified";
+      coat = 'not specified';
     }
     const houseTrained = dog.attributes.house_trained;
     const spayedNeutered = dog.attributes.spayed_neutered;
@@ -62,14 +65,14 @@ export default class SingleDog extends Component {
 
         <View style={styles.dogFooter}>
           <Ionicons
-            name={"ios-paw"}
+            name={'ios-paw'}
             size={30}
-            color={"grey"} //#fb1d1d good red color for eventual toggle
-            onPress={this.like}
+            color={'grey'} //#fb1d1d good red color for eventual toggle
+            onPress={() => this.like(dog)}
           />
 
           <Ionicons
-            name={"ios-mail"}
+            name={'ios-mail'}
             size={30}
             onPress={() => Linking.openURL(`mailto:${dog.contact.email}`)}
           />
@@ -84,114 +87,114 @@ export default class SingleDog extends Component {
           {houseTrained ? (
             <Text style={styles.bodyText}>
               <Ionicons
-                name={"ios-checkmark-circle-outline"}
-                color={"green"}
+                name={'ios-checkmark-circle-outline'}
+                color={'green'}
                 size={20}
-              />{" "}
+              />{' '}
               Housetrained
             </Text>
           ) : (
             <Text style={styles.bodyText}>
               <Ionicons
-                name={"ios-close-circle-outline"}
-                color={"red"}
+                name={'ios-close-circle-outline'}
+                color={'red'}
                 size={20}
-              />{" "}
+              />{' '}
               Housetrained
             </Text>
           )}
           {spayedNeutered ? (
             <Text style={styles.bodyText}>
               <Ionicons
-                name={"ios-checkmark-circle-outline"}
-                color={"green"}
+                name={'ios-checkmark-circle-outline'}
+                color={'green'}
                 size={20}
-              />{" "}
+              />{' '}
               Spayed or Neutered
             </Text>
           ) : (
             <Text style={styles.bodyText}>
               <Ionicons
-                name={"ios-close-circle-outline"}
-                color={"red"}
+                name={'ios-close-circle-outline'}
+                color={'red'}
                 size={20}
-              />{" "}
+              />{' '}
               Spayed or Neutered
             </Text>
           )}
           {currentShots ? (
             <Text style={styles.bodyText}>
               <Ionicons
-                name={"ios-checkmark-circle-outline"}
-                color={"green"}
+                name={'ios-checkmark-circle-outline'}
+                color={'green'}
                 size={20}
-              />{" "}
+              />{' '}
               Vaccinations
             </Text>
           ) : (
             <Text style={styles.bodyText}>
               <Ionicons
-                name={"ios-close-circle-outline"}
-                color={"red"}
+                name={'ios-close-circle-outline'}
+                color={'red'}
                 size={20}
-              />{" "}
+              />{' '}
               Vaccinations
             </Text>
           )}
           {childrenFriendly ? (
             <Text style={styles.bodyText}>
               <Ionicons
-                name={"ios-checkmark-circle-outline"}
-                color={"green"}
+                name={'ios-checkmark-circle-outline'}
+                color={'green'}
                 size={20}
-              />{" "}
+              />{' '}
               Child-friendly
             </Text>
           ) : (
             <Text style={styles.bodyText}>
               <Ionicons
-                name={"ios-close-circle-outline"}
-                color={"red"}
+                name={'ios-close-circle-outline'}
+                color={'red'}
                 size={20}
-              />{" "}
+              />{' '}
               Child-friendly
             </Text>
           )}
           {catFriendly ? (
             <Text style={styles.bodyText}>
               <Ionicons
-                name={"ios-checkmark-circle-outline"}
-                color={"green"}
+                name={'ios-checkmark-circle-outline'}
+                color={'green'}
                 size={20}
-              />{" "}
+              />{' '}
               Good with cats
             </Text>
           ) : (
             <Text style={styles.bodyText}>
               <Ionicons
-                name={"ios-close-circle-outline"}
-                color={"red"}
+                name={'ios-close-circle-outline'}
+                color={'red'}
                 size={20}
-              />{" "}
+              />{' '}
               Good with cats
             </Text>
           )}
           {goodWithOtherDogs ? (
             <Text style={styles.bodyText}>
               <Ionicons
-                name={"ios-checkmark-circle-outline"}
-                color={"green"}
+                name={'ios-checkmark-circle-outline'}
+                color={'green'}
                 size={20}
-              />{" "}
+              />{' '}
               Good with other dogs
             </Text>
           ) : (
             <Text style={styles.bodyText}>
               <Ionicons
-                name={"ios-close-circle-outline"}
-                color={"red"}
+                name={'ios-close-circle-outline'}
+                color={'red'}
                 size={20}
-              />{" "}
+              />{' '}
               Good with other dogs
             </Text>
           )}
@@ -205,41 +208,52 @@ export default class SingleDog extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    likedDog: dogId => {
+      dispatch(likedDog(dogId));
+    },
+  };
+};
+
+const Dog = connect(null, mapDispatchToProps)(SingleDog);
+export default Dog;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-start"
+    justifyContent: 'flex-start',
   },
   image: {
-    width: "100%",
-    height: "40%"
+    width: '100%',
+    height: '40%',
   },
   bodyContainer: {
-    flexDirection: "column",
-    alignItems: "flex-start",
+    flexDirection: 'column',
+    alignItems: 'flex-start',
     left: 15,
-    padding: 10
+    padding: 10,
   },
   name: {
     paddingBottom: 5,
     fontSize: 22,
-    fontWeight: "bold"
+    fontWeight: 'bold',
   },
   bodyText: {
     padding: 2,
-    fontSize: 16
+    fontSize: 16,
   },
   link: {
-    color: "blue",
+    color: 'blue',
     padding: 5,
     fontSize: 18,
-    top: 10
+    top: 10,
   },
   dogFooter: {
-    flexDirection: "row",
-    alignItems: "flex-start",
-    justifyContent: "space-around",
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-around',
     padding: 4,
-    width: "25%"
-  }
+    width: '25%',
+  },
 });
