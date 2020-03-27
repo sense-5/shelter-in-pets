@@ -177,9 +177,5 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     width: '25%',
   },
-  activityContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    position: 'absolute',
-  },
+
 });
