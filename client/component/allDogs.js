@@ -38,16 +38,12 @@ class AllDogs extends Component {
   constructor() {
     super();
     this.like = this.like.bind(this);
-    this.state = {
-      loading: true,
-    };
+    
   }
 
   async componentDidMount() {
     await this.props.getAllDogs();
-    this.setState({
-      loading: false,
-    });
+   
   }
 
   like(event) {
