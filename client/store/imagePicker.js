@@ -21,17 +21,6 @@ export const getKey = key => ({
   key,
 });
 
-//get prediction thunk
-
-export const getClarifaiKey = () => async dispatch => {
-  try {
-    const { data } = await Axios.get('http://localhost:3000/auth/clarifai');
-    dispatch(getKey(data));
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 //reducer
 const pickedImage = (state = initialState, action) => {
   switch (action.type) {
