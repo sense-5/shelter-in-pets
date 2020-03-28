@@ -18,6 +18,7 @@ class SingleDog extends Component {
   }
 
   async like(dog) {
+    console.log('in like handler SD');
     await this.props.likedDog(dog);
     this.setState({ likedPaw: !this.state.likedPaw });
   }

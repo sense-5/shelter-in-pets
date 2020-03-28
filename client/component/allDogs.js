@@ -22,9 +22,9 @@ class AllDogs extends Component {
   constructor() {
     super();
     // TODO: need a liked porperty in the dogs that are returned. need to check dogs from petfinder against our database.
-    this.state = {
-      likedPaw: false,
-    };
+    // this.state = {
+    //   likedPaw: false,
+    // };
     this.like = this.like.bind(this);
     this.view = this.view.bind(this);
   }
@@ -34,12 +34,13 @@ class AllDogs extends Component {
   }
 
   async like(dog) {
+    console.log('in like handler AD');
     await this.props.likedDog(dog);
-    this.setState({ likedPaw: !this.state.likedPaw });
+    // this.setState({ likedPaw: !this.state.likedPaw });
   }
 
   async view(dog) {
-    console.log('in view handler');
+    console.log('in view handler AD');
     await axios.post(
       'http://localhost:3000/api/viewedDog',
       // 'https://shelter-in-pets-server.herokuapp.com/api/viewedDogs',
@@ -52,7 +53,7 @@ class AllDogs extends Component {
 
   render() {
     const { navigation } = this.props;
-    const { likedPaw } = this.state;
+    // const { likedPaw } = this.state;
 
     return (
       <View>
@@ -109,7 +110,9 @@ class AllDogs extends Component {
                   >
                     <Ionicons
                       name={'ios-paw'}
-                      color={likedPaw ? 'pink' : 'grey'} //#fb1d1d good red color for eventual toggle
+                      color={'grey'}
+                      // replace after debugging like : likedPaw ? 'pink' :
+                      //#fb1d1d good red color for eventual toggle
                       size={30}
                     />
                   </TouchableOpacity>
