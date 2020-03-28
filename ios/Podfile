@@ -44,4 +44,6 @@ target 'ShelterInPets' do
   # react-native-cli autolinking
   use_native_modules!
 
+  pod 'react-native-image-base64', :path => '../node_modules/react-native-image-base64'
+
 end
