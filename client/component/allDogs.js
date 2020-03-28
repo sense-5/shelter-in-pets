@@ -21,6 +21,10 @@ const dogImg = require('../../assets/images/dog2.jpg');
 class AllDogs extends Component {
   constructor() {
     super();
+    // TODO: need a liked porperty in the dogs that are returned. need to check dogs from petfinder against our database.
+    this.state = {
+      likedPaw: false,
+    };
     this.like = this.like.bind(this);
     this.view = this.view.bind(this);
   }
@@ -31,19 +35,24 @@ class AllDogs extends Component {
 
   async like(dog) {
     await this.props.likedDog(dog);
-    // TODO: figure out toggle. Need the inital value of liked.
+    this.setState({ likedPaw: !this.state.likedPaw });
   }
 
   async view(dog) {
     console.log('in view handler');
-    await axios.post('http://localhost:3000/api/viewedDog', {
-      petFinderId: dog.id,
-      breed: dog.breeds.primary,
-    });
+    await axios.post(
+      'http://localhost:3000/api/viewedDog',
+      // 'https://shelter-in-pets-server.herokuapp.com/api/viewedDogs',
+      {
+        petFinderId: dog.id,
+        breed: dog.breeds.primary,
+      }
+    );
   }
 
   render() {
     const { navigation } = this.props;
+    const { likedPaw } = this.state;
 
     return (
       <View>
@@ -93,14 +102,17 @@ class AllDogs extends Component {
                 )}
 
                 <View style={styles.dogFooter}>
-                  <Ionicons
-                    name={'ios-paw'}
-                    color={'grey'} //#fb1d1d good red color for eventual toggle
-                    size={30}
+                  <TouchableOpacity
                     onPress={() => {
                       this.like(dog);
                     }}
-                  />
+                  >
+                    <Ionicons
+                      name={'ios-paw'}
+                      color={likedPaw ? 'pink' : 'grey'} //#fb1d1d good red color for eventual toggle
+                      size={30}
+                    />
+                  </TouchableOpacity>
 
                   <Ionicons
                     name={'ios-mail'}

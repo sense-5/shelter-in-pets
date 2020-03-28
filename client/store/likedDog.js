@@ -6,10 +6,14 @@ const uploadedLikedDog = dog => ({ type: UPLOAD_LIKED_DOG, dog });
 
 export const likedDog = dog => async dispatch => {
   try {
-    await axios.post('http://localhost:3000/api/likedDog', {
-      petFinderId: dog.id,
-      breed: dog.breeds.primary,
-    });
+    await axios.post(
+      'http://localhost:3000/api/likedDog',
+      //   'https://shelter-in-pets-server.herokuapp.com/api/likedDogs',
+      {
+        petFinderId: dog.id,
+        breed: dog.breeds.primary,
+      }
+    );
     dispatch(uploadedLikedDog(dog));
   } catch (error) {
     console.error(error);

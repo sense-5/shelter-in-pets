@@ -4,21 +4,26 @@ import { Ionicons } from '@expo/vector-icons';
 import { likedDog } from '../store/likedDog';
 import { connect } from 'react-redux';
 import { titleCase } from '../../utils';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const dogImg = require('../../assets/images/dog2.jpg');
 
 class SingleDog extends Component {
   constructor() {
     super();
+    this.state = {
+      likedPaw: false,
+    };
     this.like = this.like.bind(this);
   }
 
   async like(dog) {
     await this.props.likedDog(dog);
-    // TODO: figure out toggle. Need the inital value of liked.
+    this.setState({ likedPaw: !this.state.likedPaw });
   }
 
   render() {
+    const { likedPaw } = this.state;
     const dog = this.props.route.params;
     const name = dog.name;
     const breed = dog.breeds.primary;
@@ -42,12 +47,13 @@ class SingleDog extends Component {
         )}
 
         <View style={styles.dogFooter}>
-          <Ionicons
-            name={'ios-paw'}
-            size={30}
-            color={'grey'} //#fb1d1d good red color for eventual toggle
-            onPress={() => this.like(dog)}
-          />
+          <TouchableOpacity onPress={() => this.like(dog)}>
+            <Ionicons
+              name={'ios-paw'}
+              size={30}
+              color={likedPaw ? 'hotpink' : 'grey'} //#fb1d1d good red color for eventual toggle
+            />
+          </TouchableOpacity>
 
           <Ionicons
             name={'ios-mail'}
