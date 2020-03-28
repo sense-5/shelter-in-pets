@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Image, Button, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { connect } from 'react-redux';
-import { getPickedImage, getClarifaiKey } from './client/store/imagePicker';
+import { getPickedImage } from './client/store/imagePicker';
 import Clarifai from 'clarifai';
 import { TapGestureHandler } from 'react-native-gesture-handler';
 
@@ -177,12 +177,10 @@ const styles = StyleSheet.create({
 
 const mapState = state => ({
   pickedImage: state.pickedImage,
-  key: state.key,
 });
 
 const mapDispatch = dispatch => ({
   getPickedImage: img => dispatch(getPickedImage(img.uri)),
-  getClarifaiKey: () => dispatch(getClarifaiKey()),
 });
 
 export default connect(mapState, mapDispatch)(ImagePick);
