@@ -1,5 +1,6 @@
-secrets.js
+
 .expo
+.env
 # OSX
 #
 .DS_Store

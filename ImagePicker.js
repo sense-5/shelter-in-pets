@@ -3,23 +3,95 @@ import { View, Text, Image, Button, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { connect } from 'react-redux';
 import { getPickedImage } from './client/store/imagePicker';
+import Clarifai from 'clarifai';
+import { TapGestureHandler } from 'react-native-gesture-handler';
+
+import { CLARIFAI_KEY } from 'react-native-dotenv';
+
+const app = new Clarifai.App({
+  apiKey: `${CLARIFAI_KEY}`,
+});
+
+const dogArray = [
+  'german shepherd',
+  'labrador retriever',
+  'american staffordshire terrier',
+  'dachshund',
+  'chihuahua',
+  'boxer',
+  'beagle',
+  'australian cattle dog / blue heeler',
+  'pit bull terrier',
+  'american bulldog',
+  'husky',
+  'greyhound',
+  'jack russell terrier',
+  'akita',
+  'australian shepherd',
+  'basset hound',
+  'border collie',
+  'chow chow',
+  'corgi',
+  'doberman pinscher',
+  'golden retriever',
+  'great dane',
+  'maltese',
+  'mastiff',
+  'pomeranian',
+  'poodle',
+  'pug',
+  'rottweiler',
+  'shih tzu',
+  'yorkshire terrier',
+];
 
 class ImagePick extends Component {
   constructor() {
     super();
-    // this.state = {
-    //   pickedUri: ''
-    // }
+    this.state = {
+      dogBreed: '',
+    };
     this.openImagePicker = this.openImagePicker.bind(this);
   }
 
-  async openImagePicker() {
-    let pickerResult = await ImagePicker.launchImageLibraryAsync();
+  async componentDidMount() {
+    process.nextTick = setImmediate;
+  }
 
-    // this.setState({
-    //   pickedUri: pickerResult.uri
-    // })
-    this.props.getPickedImage(pickerResult);
+  async openImagePicker() {
+    let pickerResult = await ImagePicker.launchImageLibraryAsync({
+      base64: true,
+    });
+
+    await this.props.getPickedImage(pickerResult);
+
+    const generalModel = await app.models.initModel({
+      id: Clarifai.GENERAL_MODEL,
+      version: 'aa7f35c01e0642fda5cf400f543e7c40',
+    });
+
+    try {
+      if (generalModel) {
+        const prediction = await generalModel.predict(pickerResult.base64);
+        const concepts = prediction['outputs'][0]['data']['concepts'];
+        console.log(concepts);
+        const result = concepts.filter(concept => {
+          return dogArray.indexOf(concept.name) !== -1;
+        });
+        if (result.length !== 0) {
+          const dogBreed = result[0].name;
+          this.setState({
+            dogBreed,
+          });
+        } else {
+          this.setState({
+            dogBreed: null,
+          });
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {
@@ -38,6 +110,11 @@ class ImagePick extends Component {
               style={styles.image}
               source={{ uri: this.props.pickedImage.pickedImage }}
             />
+            {this.state.dogBreed ? (
+              <Text style={styles.text1}>{this.state.dogBreed}</Text>
+            ) : (
+              <Text style={styles.text1}>Sorry we're not sure.</Text>
+            )}
             <Button
               title="Wait, I'll pick a different one!"
               onPress={this.openImagePicker}

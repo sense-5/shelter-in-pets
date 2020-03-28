@@ -1,5 +1,6 @@
 rootProject.name = 'ShelterInPets'
 
+
 apply from: '../node_modules/react-native-unimodules/gradle.groovy'
 includeUnimodulesProjects()
 

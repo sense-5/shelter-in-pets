@@ -1,29 +1,31 @@
+import Axios from 'axios';
 
 //initial state
 const initialState = {
-  pickedImage: ''
-}
+  pickedImage: '',
+};
 
 //action type
-const GET_PICKED_IMAGE = 'GET_PICKED_IMAGE'
+const GET_PICKED_IMAGE = 'GET_PICKED_IMAGE';
 
 //action creator
-export const getPickedImage = (pickedImage) => ({
+export const getPickedImage = pickedImage => ({
   type: GET_PICKED_IMAGE,
-  pickedImage
-})
+  pickedImage,
+});
 
 //reducer
 const pickedImage = (state = initialState, action) => {
-  switch (action.type){
+  switch (action.type) {
     case GET_PICKED_IMAGE:
       return {
         ...state,
-        pickedImage: action.pickedImage
-      }
+        pickedImage: action.pickedImage,
+      };
+
     default:
-      return state
+      return state;
   }
-}
+};
 
 export default pickedImage;
