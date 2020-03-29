@@ -11,6 +11,19 @@ const removeUser = () => ({ type: REMOVE_USER });
 //intial state
 const defaultUser = {};
 
+//get user thunk
+export const getMe = () => async dispatch => {
+  try {
+    const { data } = await axios.get(
+      // 'https://shelter-in-pets-server.herokuapp.com/api/users',
+      'http://localhost:3000/api/users'
+    );
+    dispatch(getUser(data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 //login auth thunk
 export const loginAuth = (email, password, navigation) => async dispatch => {
   try {
@@ -62,7 +75,8 @@ export const signupAuth = (
 export const logout = () => async dispatch => {
   try {
     await axios.post(
-      'https://shelter-in-pets-server.herokuapp.com/auth/logout'
+      // 'https://shelter-in-pets-server.herokuapp.com/auth/logout'
+      'http://localhost:3000/auth/logout'
     );
     dispatch(removeUser());
   } catch (err) {
