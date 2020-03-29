@@ -69,8 +69,6 @@ class ImagePick extends Component {
   }
 
   render() {
-    console.log('picked image', this.props.pickedImage.pickedImage);
-
     return (
       <View style={styles.container}>
         {this.props.pickedImage.pickedImage ? (
