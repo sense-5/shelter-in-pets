@@ -8,6 +8,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const dogImg = require('../../assets/images/dog2.jpg');
 
+let count = 1;
+
 class SingleDog extends Component {
   constructor() {
     super();
@@ -18,7 +20,11 @@ class SingleDog extends Component {
   }
 
   async like(dog) {
-    console.log('in like handler SD');
+    if (count > 0) {
+      console.log('in like handler SD', count);
+      count++;
+    }
+
     await this.props.likedDog(dog);
     this.setState({ likedPaw: !this.state.likedPaw });
   }

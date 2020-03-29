@@ -17,7 +17,7 @@ import { titleCase } from '../../utils';
 import axios from 'axios';
 
 const dogImg = require('../../assets/images/dog2.jpg');
-
+let count = 1;
 class AllDogs extends Component {
   constructor() {
     super();
@@ -40,7 +40,11 @@ class AllDogs extends Component {
   }
 
   async view(dog) {
-    console.log('in view handler AD');
+    if (count > 0) {
+      console.log('in view handler AD', count);
+      count++;
+    }
+
     await axios.post(
       'http://localhost:3000/api/viewedDog',
       // 'https://shelter-in-pets-server.herokuapp.com/api/viewedDogs',
