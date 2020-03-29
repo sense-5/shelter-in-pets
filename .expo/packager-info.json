@@ -1,10 +1,10 @@
 {
-  "devToolsPort": 19008,
+  "devToolsPort": 19005,
   "expoServerPort": 19000,
   "packagerPort": 19007,
-  "packagerPid": 23451,
-  "expoServerNgrokUrl": "https://hg-tkv.anonymous.shelter-in-pets.exp.direct",
-  "packagerNgrokUrl": "https://packager.hg-tkv.anonymous.shelter-in-pets.exp.direct",
-  "ngrokPid": 23471,
-  "webpackServerPort": null
+  "packagerPid": 41912,
+  "expoServerNgrokUrl": "https://kb-qzx.anonymous.shelter-in-pets.exp.direct",
+  "packagerNgrokUrl": "https://packager.kb-qzx.anonymous.shelter-in-pets.exp.direct",
+  "ngrokPid": 41987,
+  "webpackServerPort": 19008
 }

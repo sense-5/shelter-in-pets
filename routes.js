@@ -4,8 +4,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { logout } from './client/store/user';
-import { Platform, StyleSheet, Text, View, Button } from 'react-native';
-import ImagePick from './ImagePicker';
+import { Text, View, Button } from 'react-native';
+import ImagePick from './client/component/ImagePicker';
 import Signup from './client/screens/signup';
 
 import { Ionicons } from '@expo/vector-icons';
