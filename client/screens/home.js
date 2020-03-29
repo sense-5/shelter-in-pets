@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native';
-import { connect } from 'react-redux';
 import Dogs from '../component/allDogs';
 
 export default class HomeScreen extends React.Component {
