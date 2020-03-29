@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, Linking } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { likedDog } from '../store/likedDog';
 import { connect } from 'react-redux';
-import { titleCase } from '../../utils';
+import { titleCase } from '../../utility/utils';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const dogImg = require('../../assets/images/dog2.jpg');
