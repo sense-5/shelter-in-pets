@@ -10,6 +10,7 @@ const gotAllDogs = allDogs => ({ type: GET_ALL_DOGS, allDogs });
 const initalState = {
   allDogs: [],
   selectedDog: {},
+  dogsByBreed: [],
 };
 
 // action thunk

@@ -4,8 +4,9 @@ import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import user from './user';
 import dogs from './allDogs';
-import pickedImage from './imagePicker'
-const reducer = combineReducers({ user, dogs, pickedImage});
+import pickedImage from './imagePicker';
+import dog from './likedDog';
+const reducer = combineReducers({ user, dogs, pickedImage, dog });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
@@ -14,4 +15,5 @@ export default store;
 
 export * from './user';
 export * from './allDogs';
-export * from './imagePicker'
+export * from './imagePicker';
+export * from './likedDog';
