@@ -1,6 +1,4 @@
 {
-  "dev": true,
-  "minify": false,
   "hostType": "lan",
   "lanType": "ip",
   "urlRandomness": "kb-qzx",

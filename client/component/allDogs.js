@@ -12,48 +12,52 @@ import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import { getAllDogs } from '../store/allDogs';
+import { likedDog } from '../store/likedDog';
+import { titleCase } from '../../utils';
+import axios from 'axios';
 
 const dogImg = require('../../assets/images/dog2.jpg');
-
-function titleCase(str) {
-  str = str.toLowerCase().split(' ');
-  for (let i = 0; i < str.length; i++) {
-    str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
-  }
-  str = str.join(' ');
-  let resultStr = '';
-  for (let j = 0; j < str.length; j++) {
-    if (str[j - 1] === '/' || str[j - 1] === '-' || str[j - 1] === '(') {
-      let letter = str[j];
-      let newletter = letter.toUpperCase();
-      resultStr += newletter;
-    } else {
-      resultStr += str[j];
-    }
-  }
-  return resultStr;
-}
-
+let count = 1;
 class AllDogs extends Component {
   constructor() {
     super();
+    // TODO: need a liked porperty in the dogs that are returned. need to check dogs from petfinder against our database.
+    // this.state = {
+    //   likedPaw: false,
+    // };
     this.like = this.like.bind(this);
+    this.view = this.view.bind(this);
   }
 
   async componentDidMount() {
     await this.props.getAllDogs();
   }
 
-  like(event) {
-    event.preventDefault();
-    console.log('liked');
-    //function to add dog to user's liked dogs
-    //if dog is already there remove it (un-like)
-    // console.log(event);
+  async like(dog) {
+    console.log('in like handler AD');
+    await this.props.likedDog(dog);
+    // this.setState({ likedPaw: !this.state.likedPaw });
+  }
+
+  async view(dog) {
+    if (count > 0) {
+      console.log('in view handler AD', count);
+      count++;
+    }
+
+    await axios.post(
+      'http://localhost:3000/api/viewedDog',
+      // 'https://shelter-in-pets-server.herokuapp.com/api/viewedDogs',
+      {
+        petFinderId: dog.id,
+        breed: dog.breeds.primary,
+      }
+    );
   }
 
   render() {
     const { navigation } = this.props;
+    // const { likedPaw } = this.state;
 
     return (
       <View>
@@ -82,6 +86,7 @@ class AllDogs extends Component {
                 <TouchableOpacity
                   onPress={() => {
                     navigation.navigate('Single Dog', dog);
+                    this.view(dog);
                   }}
                 >
                   {dog.photos[0] ? (
@@ -102,12 +107,19 @@ class AllDogs extends Component {
                 )}
 
                 <View style={styles.dogFooter}>
-                  <Ionicons
-                    name={'ios-paw'}
-                    color={'grey'} //#fb1d1d good red color for eventual toggle
-                    size={30}
-                    onPress={this.like}
-                  />
+                  <TouchableOpacity
+                    onPress={() => {
+                      this.like(dog);
+                    }}
+                  >
+                    <Ionicons
+                      name={'ios-paw'}
+                      color={'grey'}
+                      // replace after debugging like : likedPaw ? 'pink' :
+                      //#fb1d1d good red color for eventual toggle
+                      size={30}
+                    />
+                  </TouchableOpacity>
 
                   <Ionicons
                     name={'ios-mail'}
@@ -132,6 +144,9 @@ const mapDispatchToProps = dispatch => {
   return {
     getAllDogs: () => {
       dispatch(getAllDogs());
+    },
+    likedDog: dog => {
+      dispatch(likedDog(dog));
     },
   };
 };
