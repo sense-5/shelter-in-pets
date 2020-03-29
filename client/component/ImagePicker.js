@@ -4,7 +4,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { connect } from 'react-redux';
 import { getPickedImage, getAllBreeds } from '../store/imagePicker';
 import Clarifai from 'clarifai';
-import { breedPrediction } from '../../utility/clarifai';
+import { breedPrediction } from '../../utility/prediction';
 // import { TapGestureHandler } from 'react-native-gesture-handler';
 
 import { CLARIFAI_KEY } from 'react-native-dotenv';

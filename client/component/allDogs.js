@@ -13,7 +13,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import { getAllDogs } from '../store/allDogs';
 import { likedDog } from '../store/likedDog';
-import { titleCase } from '../../utils';
+import { titleCase } from '../../utility/utils';
 import axios from 'axios';
 
 const dogImg = require('../../assets/images/dog2.jpg');
