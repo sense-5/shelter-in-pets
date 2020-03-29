@@ -38,12 +38,10 @@ class AllDogs extends Component {
   constructor() {
     super();
     this.like = this.like.bind(this);
-    
   }
 
   async componentDidMount() {
     await this.props.getAllDogs();
-   
   }
 
   like(event) {
@@ -177,5 +175,4 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     width: '25%',
   },
-
 });

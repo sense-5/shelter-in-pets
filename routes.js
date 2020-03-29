@@ -9,7 +9,7 @@ import ImagePick from './client/component/ImagePicker';
 import Signup from './client/screens/signup';
 
 import { Ionicons } from '@expo/vector-icons';
-
+import Profile from './client/component/profile';
 import HomeScreen from './client/screens/home';
 
 import SingleDog from './client/component/singleDog';
@@ -18,14 +18,6 @@ import Login from './client/screens/login';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-
-function Profile() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Profile</Text>
-    </View>
-  );
-}
 
 function isLoggedIn({ navigation }) {
   return (
