@@ -8,29 +8,29 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const dogImg = require('../../assets/images/dog2.jpg');
 
-let count = 1;
+// let count = 1;
 
 class SingleDog extends Component {
   constructor() {
     super();
-    this.state = {
-      likedPaw: false,
-    };
+    // this.state = {
+    //   likedPaw: false,
+    // };
     this.like = this.like.bind(this);
   }
 
   async like(dog) {
-    if (count > 0) {
-      console.log('in like handler SD', count);
-      count++;
-    }
+    // if (count > 0) {
+    //   console.log('in like handler SD', count);
+    //   count++;
+    // }
 
     await this.props.likedDog(dog);
-    this.setState({ likedPaw: !this.state.likedPaw });
+    // this.setState({ likedPaw: !this.state.likedPaw });
   }
 
   render() {
-    const { likedPaw } = this.state;
+    const { status } = this.props;
     const dog = this.props.route.params;
     const name = dog.name;
     const breed = dog.breeds.primary;
@@ -58,7 +58,7 @@ class SingleDog extends Component {
             <Ionicons
               name={'ios-paw'}
               size={30}
-              color={likedPaw ? 'hotpink' : 'grey'} //#fb1d1d good red color for eventual toggle
+              color={status ? 'hotpink' : 'grey'} //#fb1d1d good red color for eventual toggle
             />
           </TouchableOpacity>
 
@@ -199,6 +199,12 @@ class SingleDog extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    status: state.dog.likedStatus,
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     likedDog: dog => {
@@ -207,7 +213,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const Dog = connect(null, mapDispatchToProps)(SingleDog);
+const Dog = connect(mapStateToProps, mapDispatchToProps)(SingleDog);
 export default Dog;
 
 const styles = StyleSheet.create({
