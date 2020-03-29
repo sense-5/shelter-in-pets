@@ -31,7 +31,7 @@ export const getAllBreeds = () => async dispatch => {
     data = data.map(breed => {
       return (breed.name = breed.name.toLowerCase());
     });
-    console.log(data);
+  
     dispatch(getBreeds(data));
   } catch (error) {
     console.log(error);
