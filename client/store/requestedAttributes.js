@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { ActionSheetIOS } from 'react-native'
 
 const initialState = {
   attributes: {},
@@ -7,22 +6,20 @@ const initialState = {
 }
 
 //action constant
-const FETCH_REQUESTED_DOGS = 'FETCH_REQUESTED_DOGS'
 const GOT_REQUESTED_DOGS = 'GOT_REQUESTED_DOGS'
 
 //action creator
 export const gotRequestedDogs = dogs => ({
-  type: GET_REQUESTED_DOGS,
+  type: GOT_REQUESTED_DOGS,
   dogs
 })
 
 //THUNK
   //will accept attributes from state in an obj as param to send
-export const getRequestedDogs = (fakeState = {age: '', size: ['small','medium'], coat: 'long'}) => {
+export const fetchRequestedDogs = (fakeState = {age: '', size: ['small','medium'], coat: 'long'}) => {
   return async dispatch => {
     console.log('hello u hit the GET requested dogs thunk')
     try {
-
       const age = Array.isArray(fakeState.age)
         ? fakeState.age.join(',')
         : fakeState.age
@@ -41,11 +38,8 @@ export const getRequestedDogs = (fakeState = {age: '', size: ['small','medium'],
           coat
         }
       })
-
-
-      // console.log(data)
-      // dispatch(gotRequestedDogs(data))
-        console.log('this is the end thank u check the server console')
+      dispatch(gotRequestedDogs(data))
+      console.log('this is the end thank u check the server console')
     } catch (error) {
       console.error(error)
     }
