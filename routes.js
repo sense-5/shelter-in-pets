@@ -9,7 +9,9 @@ import ImagePick from './client/component/ImagePicker';
 import Signup from './client/screens/signup';
 
 import { Ionicons } from '@expo/vector-icons';
-import Profile from './client/component/profile';
+// import Profile from './client/component/profile';
+import Request from './client/component/requestForm'
+
 import HomeScreen from './client/screens/home';
 
 import Dog from './client/component/singleDog';
@@ -50,7 +52,8 @@ function isLoggedIn({ navigation }) {
         Screen={() => <HomeScreen navigation={navigation} />}
       />
       <Tab.Screen name="upload" component={ImagePick} />
-      <Tab.Screen name="profile" component={Profile} />
+      {/* <Tab.Screen name="profile" component={Profile} /> */}
+      <Tab.Screen name="TEST REQUEST" component={Request} />
     </Tab.Navigator>
   );
 }

@@ -16,19 +16,19 @@ export const gotRequestedDogs = dogs => ({
 
 //THUNK
   //will accept attributes from state in an obj as param to send
-export const fetchRequestedDogs = (fakeState = {age: '', size: ['small','medium'], coat: 'long'}) => {
+export const fetchRequestedDogs = (fakeState = {age: [''], size: ['small','medium'], coat: ['long']}) => {
   return async dispatch => {
     console.log('hello u hit the GET requested dogs thunk')
     try {
-      const age = Array.isArray(fakeState.age)
+      const age = fakeState.age.length > 1
         ? fakeState.age.join(',')
-        : fakeState.age
-      const size = Array.isArray(fakeState.size)
+        : fakeState.age[0]
+      const size = fakeState.size.length > 1
         ? fakeState.size.join(',')
-        : fakeState.size
-      const coat = Array.isArray(fakeState.coat)
+        : fakeState.size[0]
+      const coat = fakeState.coat.length > 1
         ? fakeState.join(',')
-        : fakeState.coat
+        : fakeState.coat[0]
     //if any of these is empty query will still work giving all possibilities for that category
 
       const {data} = await axios.get('http://localhost:3000/api/dogs/request', {

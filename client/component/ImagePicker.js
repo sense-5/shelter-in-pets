@@ -10,7 +10,7 @@ import { breedPrediction } from '../../utility/prediction';
 import { CLARIFAI_KEY } from 'react-native-dotenv';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import { getRequestedDogs } from '../store';
+import { fetchRequestedDogs } from '../store';
 
 const app = new Clarifai.App({
   apiKey: `${CLARIFAI_KEY}`,
@@ -193,7 +193,7 @@ const mapDispatch = dispatch => {
   return {
     getPickedImage: img => dispatch(getPickedImage(img.uri)),
     getAllBreeds: () => dispatch(getAllBreeds()),
-    requestedAttributes: () => dispatch(getRequestedDogs())
+    requestedAttributes: () => dispatch(fetchRequestedDogs())
   };
 };
 
