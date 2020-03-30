@@ -5,12 +5,13 @@ import {
   StyleSheet,
   Image,
   Linking,
+  Platform,
   ScrollView
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { likedDog } from "../store/likedDog";
 import { connect } from "react-redux";
-import { titleCase } from "../../utility/utils";
+import { titleCase, redoPhoneNum, redoCity } from "../../utility/utils";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const dogImg = require("../../assets/images/dog2.jpg");
@@ -39,9 +40,12 @@ class SingleDog extends Component {
   render() {
     const { status } = this.props;
     const dog = this.props.route.params;
-    const name = dog.name;
+    const location = dog.contact.address;
+    const city = redoCity(dog.contact.address.city);
+    const phone = redoPhoneNum(dog.contact.phone);
+    // const name = dog.name;
     const breed = dog.breeds.primary;
-    const location = dog.url;
+    // const url = dog.url;
     let coat = dog.coat;
     if (coat === null) {
       coat = "not specified";
@@ -78,7 +82,7 @@ class SingleDog extends Component {
               <Ionicons
                 name={"ios-paw"}
                 size={30}
-                color={status ? "hotpink" : "grey"} //#fb1d1d good red color for eventual toggle
+                color={status ? "hotpink" : "grey"}
               />
             </TouchableOpacity>
 
@@ -86,11 +90,24 @@ class SingleDog extends Component {
               name={"ios-mail"}
               size={30}
               onPress={() => Linking.openURL(`mailto:${dog.contact.email}`)}
+              color={"grey"}
             />
+            <Ionicons
+              name={"ios-call"}
+              size={30}
+              onPress={() => Linking.openURL(`tel:${phone}`)}
+              color={"grey"}
+            />
+
             <Ionicons
               name={"ios-pin"}
               size={30}
-              onPress={() => Linking.openURL(location)}
+              onPress={() =>
+                Linking.openURL(
+                  `http://www.google.com/maps/place/${location.city},+${location.state}/`
+                )
+              }
+              color={"grey"}
             />
           </View>
           <View style={styles.bodyContainer}>
@@ -286,6 +303,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     padding: 4,
     paddingBottom: 0,
-    width: "30%"
+    width: "40%"
   }
 });

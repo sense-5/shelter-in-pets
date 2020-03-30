@@ -14,7 +14,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import { getAllDogs } from "../store/allDogs";
 import { likedDog } from "../store/likedDog";
-import { titleCase } from "../../utility/utils";
+import { titleCase, redoPhoneNum, redoCity } from "../../utility/utils";
 import axios from "axios";
 
 const dogImg = require("../../assets/images/dog2.jpg");
@@ -99,7 +99,7 @@ class AllDogs extends Component {
                     <Image source={dogImg} style={styles.image} />
                   )}
                 </TouchableOpacity>
-                <View style={styles.dogFooter}>
+                {/* <View style={styles.dogFooter}>
                   <TouchableOpacity
                     onPress={() => {
                       this.like(dog);
@@ -108,8 +108,7 @@ class AllDogs extends Component {
                     <Ionicons
                       name={"ios-paw"}
                       color={"grey"}
-                      // replace after debugging like : likedPaw ? 'pink' :
-                      //#fb1d1d good red color for eventual toggle
+                      // replace after debugging like : likedPaw ? 'hotpink' : 'grey'
                       size={30}
                     />
                   </TouchableOpacity>
@@ -117,15 +116,30 @@ class AllDogs extends Component {
                   <Ionicons
                     name={"ios-mail"}
                     size={30}
-                    onPress={this.likeSwitch}
+                    onPress={() =>
+                      Linking.openURL(`mailto:${dog.contact.email}`)
+                    }
+                    color={"grey"}
+                  />
+
+                  <Ionicons
+                    name={"ios-call"}
+                    size={30}
+                    onPress={() => Linking.openURL(`tel:${phone}`)}
+                    color={"grey"}
                   />
 
                   <Ionicons
                     name={"ios-pin"}
                     size={30}
-                    onPress={() => Linking.openURL(dog.url)}
+                    onPress={() =>
+                      Linking.openURL(
+                        `http://www.google.com/maps/place/${dog.contact.address.city},+${dog.contact.address.state}/`
+                      )
+                    }
+                    color={"grey"}
                   />
-                </View>
+                </View> */}
                 {dog.name === "Doggo" ? (
                   <Text style={styles.name}>Woof! Please give me a name!</Text>
                 ) : (
@@ -170,7 +184,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 18,
-    paddingLeft: 10
+    padding: 10
   },
   nameMain: {
     fontSize: 22,
