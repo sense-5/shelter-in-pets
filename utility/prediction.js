@@ -1,3 +1,5 @@
+import { upperCase } from './utils';
+
 export const breedPrediction = (concepts, breeds) => {
   let result = [];
   let conceptsToIgnore = [
@@ -12,8 +14,22 @@ export const breedPrediction = (concepts, breeds) => {
     'coat',
     'wolf',
     'grey',
+    'snow',
+    'water',
+    'lake',
   ];
-  let breedsToIgnore = ['shepherd', 'retriever', 'sheepdog'];
+  let breedsToIgnore = ['shepherd', 'retriever', 'sheepdog', 'spaniel'];
+  //check if image uploaded has a dog
+  let dogIsPresent = false;
+  for (let i = 0; i < concepts.length; i++) {
+    if (concepts[i].name === 'dog') {
+      dogIsPresent = !dogIsPresent;
+    }
+  }
+  if (dogIsPresent === false) {
+    return (result = []);
+  }
+
   //for each predicted concept/breed, if it is not in the ignored list above, check if it matches a breed from petfinderAPI
   concepts.forEach(concept => {
     if (!conceptsToIgnore.includes(concept.name.toLowerCase())) {
@@ -24,6 +40,7 @@ export const breedPrediction = (concepts, breeds) => {
       });
     }
   });
+
   //get rid of duplicates
   result = result.filter((breed, index) => {
     return result.indexOf(breed) === index;
@@ -47,10 +64,73 @@ export const breedPrediction = (concepts, breeds) => {
       if (result[i] === 'pomeranian') {
         result = ['pomeranian'];
       }
+      //check for boxers
+      if (result[i] === 'boxer') {
+        result = ['boxer'];
+      }
     }
   }
 
   return result;
 };
 
-module.exports = { breedPrediction };
+function getBreedOptions(breeds, dogBreed) {
+  let result = [];
+  if (dogBreed === 'German Shepherd') {
+    dogBreed = 'Shepherd';
+  } else if (dogBreed === 'Siberian Husky') {
+    dogBreed = 'Husky';
+  }
+
+  breeds.forEach(breed => {
+    if (breed.includes(dogBreed.toLowerCase())) {
+      result.push(upperCase(breed));
+    }
+  });
+
+  if (dogBreed === 'Spitz') {
+    result = result.concat([
+      'Akita',
+      'Alaskan Malamute',
+      'American Eskimo Dog',
+      'Chow Chow',
+      'Shiba Inu',
+      'Samoyed',
+    ]);
+  }
+
+  result = result.sort();
+
+  //filter out dogs with / in their names
+
+  result = result.filter(breed => {
+    return !breed.includes('/');
+  });
+
+  result = result.map((breed, idx) => {
+    return {
+      name: breed,
+      key: idx,
+    };
+  });
+
+  return result;
+}
+
+function getDogImages(dogs) {
+  let result = [];
+  //filter out dogs without images
+  dogs = dogs.filter(dog => {
+    return dog.photos.length !== 0;
+  });
+  result = dogs.map((dog, idx) => {
+    return {
+      uri: dog.photos[0].full,
+      dog: dog,
+      key: idx,
+    };
+  });
+  return result;
+}
+
+module.exports = { breedPrediction, getBreedOptions, getDogImages };

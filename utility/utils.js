@@ -17,4 +17,12 @@ function titleCase(str) {
   return resultStr;
 }
 
-module.exports = { titleCase };
+function upperCase(str) {
+  let strArr = str.split(' ');
+  for (let i = 0; i < strArr.length; i++) {
+    strArr[i] = strArr[i][0].toUpperCase() + strArr[i].slice(1);
+  }
+  return strArr.join(' ');
+}
+
+module.exports = { titleCase, upperCase };
