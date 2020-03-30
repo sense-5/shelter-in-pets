@@ -32,17 +32,17 @@ export const fetchRequestedDogs = (req) => {
         ? req.size.join(',')
         : req.size[0]
       const coat = req.coat.length > 1
-        ? req.join(',')
+        ? req.coat.join(',')
         : req.coat[0]
     //if any of these is empty query will still work giving all possibilities for that category
 
-      // const {data} = await axios.get('http://localhost:3000/api/dogs/request', {
-      //   params: {
-      //     age,
-      //     size,
-      //     coat
-      //   }
-      // })
+      const {data} = await axios.get('http://localhost:3000/api/dogs/request', {
+        params: {
+          age,
+          size,
+          coat
+        }
+      })
       // dispatch(gotRequestedDogs(data))
       console.log('this is the end thank u check the server console')
     } catch (error) {

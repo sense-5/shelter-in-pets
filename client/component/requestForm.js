@@ -21,7 +21,13 @@ class Request extends Component{
         large: true,
         xlarge: true
       },
-      coat: {}
+      coat: {
+        short: true,
+        medium: true,
+        long: true,
+        curly: true,
+        wire: true
+      }
     }
     this.requestedAttributes = {
       age: [],
@@ -179,14 +185,93 @@ class Request extends Component{
         <View>
           {/* coat */}
           <Text>Coat:</Text>
+
+          {/* short */}
+          <CheckBox title="short" checked={!coat.short} onPress={()=> {
+            this.setState({
+              coat: {
+                ...coat,
+                short: !coat.short
+              }
+            })//end set state
+
+            if(coat.short) reqCoat.push('short')
+            else {
+              const shortIdx = reqCoat.indexOf('short')
+              reqCoat.splice(shortIdx, 1)
+            }
+          }} />
+
+          {/* medium */}
+          <CheckBox title="medium" checked={!coat.medium} onPress={()=> {
+            this.setState({
+              coat: {
+                ...coat,
+                medium: !coat.medium
+              }
+            })//end set state
+
+            if(coat.medium) reqCoat.push('medium')
+            else {
+              const mediumIdx = reqCoat.indexOf('medium')
+              reqCoat.splice(mediumIdx, 1)
+            }
+          }} />
+
+          {/* long */}
+          <CheckBox title="long" checked={!coat.long} onPress={()=> {
+            this.setState({
+              coat: {
+                ...coat,
+                long: !coat.long
+              }
+            })//end set state
+
+            if(coat.long) reqCoat.push('long')
+            else {
+              const longIdx = reqCoat.indexOf('long')
+              reqCoat.splice(longIdx, 1)
+            }
+          }} />
+
+          {/* curly */}
+          <CheckBox title="curly" checked={!coat.curly} onPress={()=> {
+            this.setState({
+              coat: {
+                ...coat,
+                curly: !coat.curly
+              }
+            })//end set state
+
+            if(coat.curly) reqCoat.push('curly')
+            else {
+              const curlyIdx = reqCoat.indexOf('curly')
+              reqCoat.splice(curlyIdx, 1)
+            }
+          }} />
+
+          {/* wire */}
+          <CheckBox title="wire" checked={!coat.wire} onPress={()=> {
+            this.setState({
+              coat: {
+                ...coat,
+                wire: !coat.wire
+              }
+            })//end set state
+
+            if(coat.wire) reqCoat.push('wire')
+            else {
+              const wireIdx = reqCoat.indexOf('wire')
+              reqCoat.splice(wireIdx, 1)
+            }
+          }} />
+
         </View>
 
           <Button title="Show me the doggos" onPress={()=>{
             this.props.fetchRequestedDogs(this.requestedAttributes)
             }}
           />
-          {/* onPress triggers fetchRequestedDogs and navigates to page?? w those dogs? or renders them here instead??? should prolly  stack navigate to new page so that if they wanna make adjustments they can just press back */}
-          {/* whatever i dispatch has to be an object with age,size and coat keys and  string/array of selected values */}
 
       </View>
       </ScrollView>
