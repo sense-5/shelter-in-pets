@@ -20,12 +20,14 @@ export const breedPrediction = (concepts, breeds) => {
   ];
   let breedsToIgnore = ['shepherd', 'retriever', 'sheepdog', 'spaniel'];
   //check if image uploaded has a dog
+  let dogIsPresent = false;
   for (let i = 0; i < concepts.length; i++) {
     if (concepts[i].name === 'dog') {
-      break;
-    } else {
-      return result;
+      dogIsPresent = !dogIsPresent;
     }
+  }
+  if (dogIsPresent === false) {
+    return (result = []);
   }
 
   //for each predicted concept/breed, if it is not in the ignored list above, check if it matches a breed from petfinderAPI
@@ -38,6 +40,7 @@ export const breedPrediction = (concepts, breeds) => {
       });
     }
   });
+
   //get rid of duplicates
   result = result.filter((breed, index) => {
     return result.indexOf(breed) === index;
