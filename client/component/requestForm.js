@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, Text, StyleSheet, Button} from 'react-native'
+import {View, Text, StyleSheet, Button, ScrollView} from 'react-native'
 import {connect} from 'react-redux'
 import {CheckBox} from 'react-native-elements'
 
@@ -14,156 +14,172 @@ class Request extends Component{
         young: true,
         adult: true,
         senior: true
-      }
+      },
+      size: {
+        small: true,
+        medium: true,
+        large: true,
+        xlarge: true
+      },
+      coat: {}
     }
     this.requestedAttributes = {
       age: [],
-      size: ['medium'],
-      coat: ['short']
+      size: [],
+      coat: []
     }
-  }
-  //when show me the dogs is clicked
-    //get requests func -> loops thru the 3 objects on state, object.keys
+  }//end constructor
 
   componentDidMount(){
     console.log('component mounted')
-    console.log('state is', this.state)
   }
 
   componentDidUpdate(){
-    //this could be where it updates obj to get dispatched
     console.log('hello update happened hi')
+  }
+
+  render(){
     const age = this.state.age
     const size = this.state.size
     const coat = this.state.coat
 
+    const reqAge = this.requestedAttributes.age
+    const reqSize = this.requestedAttributes.size
+    const reqCoat = this.requestedAttributes.coat
 
-
-  }
-
-  render(){
-    const age = this.state.age;
 
     return(
+      <ScrollView>
       <View style={styles.container}>
         <View>
           {/* age */}
           <Text>Age:</Text>
           <CheckBox title="puppy" checked={!age.puppy} onPress={()=>{
-            console.log('puppy pressed')
-            console.log('heres the state before we chang it ', this.state)
-
             this.setState({
               age: {
                 ...age,
-                puppy: !this.state.age.puppy
+                puppy: !age.puppy
               }
             })//end set state
-
-            console.log('heres the state AFTER', this .state)
-            console.log('requested Attrs before i fook around ', this.requestedAttributes)
-
-            if (age.puppy) this.requestedAttributes.age.push('baby')
+            if (age.puppy) reqAge.push('baby')
             else {
-              //puppy is falsey now
-              //remove it from requstedattributes
-              const puppyIdx = this.requestedAttributes.age.indexOf('baby')
-
-              //splice the array starting at idx of item we wanna remove, and remove that one item
-              this.requestedAttributes.age.splice(puppyIdx,1)
+              const puppyIdx = reqAge.indexOf('baby')
+              reqAge.splice(puppyIdx, 1)
             }
-
-            console.log('requested Attrs AFTEFTERRR ', this.requestedAttributes)
-
           }}/>
 
-
           <CheckBox title="young" checked={!age.young} onPress={()=>{
-            console.log('young pressed')
             this.setState({
               age: {
                 ...age,
                 young: !age.young
               }
             })//end set state
-
-            console.log('REQ ATTRS BBEEEEFORE ', this.requestedAttributes)
-            console.log('state AFTER CHANGE pls', this.state)
-            if (age.young) this.requestedAttributes.age.push('YOUNG')
+            if (age.young) reqAge.push('young')
             else {
-              //puppy is falsey now
-              //remove it from requstedattributes
-              const youngIdx = this.requestedAttributes.age.indexOf('YOUNG')
-
-              //splice the array starting at idx of item we wanna remove, and remove that one item
-              this.requestedAttributes.age.splice(youngIdx,1)
+              const youngIdx = reqAge.indexOf('young')
+              reqAge.splice(youngIdx, 1)
             }
-            console.log('REQ ATTRS AFFFTEFRER', this.requestedAttributes)
-
           }}/>
 
           <CheckBox title="adult" checked={!age.adult} onPress={()=>{
-            console.log('ADULT pressed')
             this.setState({
               age: {
                 ...age,
                 adult: !age.adult
               }
             })//end set state
-
-            if (age.adult) this.requestedAttributes.age.push('adult')
+            if (age.adult) reqAge.push('adult')
             else {
-              //puppy is falsey now
-              //remove it from requstedattributes
-              const adultIdx = this.requestedAttributes.age.indexOf('adult')
-
-              //splice the array starting at idx of item we wanna remove, and remove that one item
-              this.requestedAttributes.age.splice(adultIdx,1)
+              const adultIdx = reqAge.indexOf('adult')
+              reqAge.splice(adultIdx, 1)
             }
           }}/>
 
-          <CheckBox title="senior" checked={!age.senior} onPress={()=>{
-            console.log('senior pressed')
+          <CheckBox title="senior" checked={!age.senior} onPress={() => {
             this.setState({
               age: {
                 ...age,
                 senior: !age.senior
               }
             })//end set state
-
-            if (age.senior) this.requestedAttributes.age.push('senior')
+            if (age.senior) reqAge.push('senior')
             else {
-              //puppy is falsey now
-              //remove it from requstedattributes
-              const seniorIdx = this.requestedAttributes.age.indexOf('senior')
-
-              //splice the array starting at idx of item we wanna remove, and remove that one item
-              this.requestedAttributes.age.splice(seniorIdx,1)
+              const seniorIdx = reqAge.indexOf('senior')
+              reqAge.splice(seniorIdx, 1)
             }
-
           }}/>
         </View>
 
         <View>
           {/* size */}
           <Text>Size:</Text>
+
+          <CheckBox title="small" checked={!size.small} onPress={() => {
+            this.setState({
+              size: {
+                ...size,
+                small: !size.small
+              }
+            })//end set state
+
+            if(size.small) reqSize.push('small')
+            else {
+              const smallIdx = reqSize.indexOf('small')
+              reqSize.splice(smallIdx, 1)
+            }
+          }} />
+
+          <CheckBox title="medium" checked={!size.medium} onPress={()=> {
+            this.setState({
+              size: {
+                ...size,
+                medium: !size.medium
+              }
+            })//end set state
+
+            if(size.medium) reqSize.push('medium')
+            else {
+              const mediumIdx = reqSize.indexOf('medium')
+              reqSize.splice(mediumIdx, 1)
+            }
+          }} />
+
+          <CheckBox title="large" checked={!size.large} onPress={()=> {
+            this.setState({
+              size: {
+                ...size,
+                large: !size.large
+              }
+            })//end set state
+
+            if(size.large) reqSize.push('large')
+            else {
+              const largeIdx = reqSize.indexOf('large')
+              reqSize.splice(largeIdx, 1)
+            }
+          }} />
+
+          <CheckBox title="xlarge" checked={!size.xlarge} onPress={()=> {
+            this.setState({
+              size: {
+                ...size,
+                xlarge: !size.xlarge
+              }
+            })//end set state
+
+            if(size.xlarge) reqSize.push('xlarge')
+            else {
+              const xlargeIdx = reqSize.indexOf('xlarge')
+              reqSize.splice(xlargeIdx, 1)
+            }
+          }} />
         </View>
 
         <View>
           {/* coat */}
           <Text>Coat:</Text>
         </View>
-
-        <Text>hey this is the request place</Text>
-        <CheckBox title="test this" checked={this.state.checked} onPress={()=>{
-          console.log('pressed check box')
-          console.log('state is ', this.state)
-
-          this.setState({
-            checked: !this.state.checked
-          })
-        }}
-          />
 
           <Button title="Show me the doggos" onPress={()=>{
             this.props.fetchRequestedDogs(this.requestedAttributes)
@@ -173,6 +189,8 @@ class Request extends Component{
           {/* whatever i dispatch has to be an object with age,size and coat keys and  string/array of selected values */}
 
       </View>
+      </ScrollView>
+      // scrollview for testing purps before formatting is fixed
     )
   }
 }
