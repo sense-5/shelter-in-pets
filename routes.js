@@ -7,7 +7,8 @@ import { logout } from './client/store/user';
 import { Text, View, Button } from 'react-native';
 import ImagePick from './client/component/ImagePicker';
 import Signup from './client/screens/signup';
-
+import BreedOptions from './client/component/breedOptions';
+import DogsByBreed from './client/component/dogsByBreed';
 import { Ionicons } from '@expo/vector-icons';
 import Profile from './client/component/profile';
 import HomeScreen from './client/screens/home';
@@ -100,6 +101,22 @@ class Root extends React.Component {
           <Stack.Screen
             name="Single Dog"
             component={Dog}
+            options={({ navigation }) => ({
+              headerTitle: '',
+            })}
+          />
+
+          <Stack.Screen
+            name="Breed Options"
+            component={BreedOptions}
+            options={({ navigation }) => ({
+              headerTitle: '',
+            })}
+          />
+
+          <Stack.Screen
+            name="Dogs By Breed"
+            component={DogsByBreed}
             options={({ navigation }) => ({
               headerTitle: '',
             })}
