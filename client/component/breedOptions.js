@@ -28,6 +28,7 @@ export default class BreedOptions extends React.Component {
           Are you looking for any of these pups?
         </Text>
         <FlatList
+          keyExtractor={({ item, key }) => key.toString()}
           data={this.state.breedOptions}
           renderItem={({ item }) => (
             <TouchableOpacity

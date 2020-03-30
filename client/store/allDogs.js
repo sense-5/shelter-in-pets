@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getDogImages } from '../../utility/prediction';
 
 // action type
 const GET_ALL_DOGS = 'GET_ALL_DOGS';
@@ -27,7 +28,6 @@ export const getAllDogs = () => {
         // 'https://shelter-in-pets-server.herokuapp.com/api/dogs'
         'http://localhost:3000/api/dogs'
       );
-
       dispatch(gotAllDogs(data.animals));
     } catch (error) {
       console.error(error);
@@ -42,7 +42,9 @@ export const getDogsByBreed = breed => {
         // `https://shelter-in-pets-server.herokuapp.com/api/dogs/type/${breed}`,
         `http://localhost:3000/api/dogs/type/${breed}`
       );
-      dispatch(getByBreed(data.animals));
+
+      let dogImages = getDogImages(data.animals);
+      dispatch(getByBreed(dogImages));
     } catch (error) {
       console.log(error);
     }

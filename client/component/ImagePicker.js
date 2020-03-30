@@ -82,7 +82,7 @@ class ImagePick extends Component {
               style={styles.image}
               source={{ uri: this.props.pickedImage.pickedImage }}
             />
-            {this.state.dogBreed ? (
+            {dogBreed ? (
               <View>
                 <Text style={styles.text1}>
                   Are you looking for a {dogBreed}?
