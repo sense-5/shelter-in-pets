@@ -16,8 +16,7 @@ class Profile extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.user}>User ID: {this.props.user.id}</Text>
-        <Text style={styles.user}>User Email: {this.props.user.email}</Text>
+        <Text>userid: {this.props.user.id}</Text>
       </View>
     );
   }
@@ -28,11 +27,6 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center"
-  },
-  user: {
-    fontSize: 22,
-    textAlign: "center",
-    marginTop: 20
   }
 });
 

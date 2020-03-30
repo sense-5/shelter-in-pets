@@ -57,6 +57,3 @@ buck-out/
 
 # Bundle artifact
 *.jsbundle
-
-client/component/ImagePicker.js
-client/component/profile.js

@@ -78,63 +78,40 @@ class ImagePick extends Component {
               source={{ uri: this.props.pickedImage.pickedImage }}
             />
             {this.state.dogBreed ? (
-              <Text style={styles.text3}>
-                Would you like to see more {this.state.dogBreed}s?
+              <Text style={styles.text1}>
+                Are you looking for a {this.state.dogBreed}?
               </Text>
             ) : (
-              <Text style={styles.text3}>Sorry we're not sure.</Text>
+              <Text style={styles.text1}>Sorry we're not sure.</Text>
             )}
             <View style={styles.buttonContainer}>
               <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>Show me more!</Text>
+                <Text style={styles.buttonText}>Yes! Show me more...</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>I'm not sure...</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.buttonContainer2}>
-              <TouchableOpacity
-                style={styles.button2}
-                onPress={this.openImagePicker}
-              >
-                <Text style={styles.buttonText}>
-                  Wait, I'll pick a different image!
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        ) : (
-          <View style={styles.container2}>
-            <View>
-              <Text style={styles.text1}>Have a dream dog in mind? 🐾</Text>
-              <Text style={styles.text1}>We can match your preferences</Text>
-              <Text style={styles.text1}>when you upload a picture!</Text>
-            </View>
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={this.openImagePicker}
-              >
-                <Text style={styles.buttonText}>Choose Picture</Text>
+                <Text style={styles.buttonText}>I'm not sure...?</Text>
               </TouchableOpacity>
             </View>
 
+            <Button
+              title="Wait, I'll pick a different image!"
+              onPress={this.openImagePicker}
+            />
+          </View>
+        ) : (
+          <View>
+            <View style={styles.container2}>
+              <Text style={styles.text1}>Have a dream dog in mind? 🐾</Text>
+              <Text style={styles.text1}>We can match your preferences</Text>
+              <Text style={styles.text1}>when you upload a picture!</Text>
+              <Button title="Choose Picture" onPress={this.openImagePicker} />
+            </View>
             <View style={styles.container3}>
-              <View>
-                <View>
-                  <Text style={styles.text2}>No Picture? No Problem.</Text>
-                </View>
-                <View style={styles.buttonContainer}>
-                  <TouchableOpacity
-                    style={styles.button2}
-                    onPress={this.props.SEND_USER_TO_SEARCH_DOGS_FORM_PAGE}
-                  >
-                    <Text style={styles.buttonText}>
-                      Use Filtered Search Instead
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
+              <Text style={styles.text2}>No Picture? No Problem.</Text>
+              <Button
+                title="Use Filtered Search Instead"
+                onPress={this.props.SEND_USER_TO_SEARCH_DOGS_FORM_PAGE}
+              />
             </View>
           </View>
         )}
@@ -155,18 +132,12 @@ const styles = StyleSheet.create({
   },
   text1: {
     textAlign: "center",
-    fontSize: 22,
-    padding: 5
+    fontSize: 18,
+    marginTop: 20
   },
   text2: {
     textAlign: "center",
-    fontSize: 22
-  },
-  text3: {
-    textAlign: "center",
-    fontSize: 22,
-    padding: 5,
-    marginTop: 10
+    fontSize: 18
   },
   container1: {
     flex: 1,
@@ -175,36 +146,20 @@ const styles = StyleSheet.create({
   container2: {
     flex: 1,
     alignItems: "center",
-    marginTop: "40%",
-    marginBottom: "10%"
+    marginTop: 250
   },
   container3: {
     flex: 1,
     alignItems: "center",
-    marginTop: "20%",
-    marginBottom: "10%"
-  },
-  buttonContainer2: {
-    justifyContent: "space-between",
-    flexDirection: "row"
+    marginTop: 250
   },
   buttonContainer: {
     justifyContent: "space-between",
-    flexDirection: "row",
-    marginTop: 10
-  },
-  button2: {
-    backgroundColor: "white",
-    borderColor: "#147efb",
-    borderWidth: 2,
-    borderRadius: 10,
-    padding: 10,
-    margin: 20,
-    width: 300
+    flexDirection: "row"
   },
   button: {
-    backgroundColor: "white",
-    borderColor: "#147efb",
+    backgroundColor: "#F4CBF0",
+    borderColor: "#6E13DB",
     borderWidth: 2,
     borderRadius: 10,
     padding: 10,
@@ -212,9 +167,10 @@ const styles = StyleSheet.create({
     width: 150
   },
   buttonText: {
-    color: "#147efb",
+    color: "black",
     textAlign: "center",
-    fontSize: 18
+    fontSize: 18,
+    fontWeight: "bold"
   }
 });
 
