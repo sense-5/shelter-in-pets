@@ -20,5 +20,4 @@ export * from './user';
 export * from './allDogs';
 export * from './imagePicker';
 export * from './likedDog';
-
 export * from './requestedAttributes'
