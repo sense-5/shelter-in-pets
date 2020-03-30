@@ -104,7 +104,8 @@ class SingleDog extends Component {
               size={30}
               onPress={() =>
                 Linking.openURL(
-                  `http://www.google.com/maps/place/${location.city},+${location.state}/`
+                  //`http://www.google.com/maps/place/${location.city},+${location.state}/`
+                  `http://www.google.com/maps/place/${location.postcode}`
                 )
               }
               color={"grey"}
