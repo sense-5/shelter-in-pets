@@ -1,3 +1,5 @@
+import { upperCase } from './utils';
+
 export const breedPrediction = (concepts, breeds) => {
   let result = [];
   let conceptsToIgnore = [
@@ -53,4 +55,41 @@ export const breedPrediction = (concepts, breeds) => {
   return result;
 };
 
-module.exports = { breedPrediction };
+function getBreedOptions(breeds, dogBreed) {
+  let result = [];
+  if (dogBreed === 'German Shepherd') {
+    dogBreed = 'Shepherd';
+  } else if (dogBreed === 'Siberian Husky') {
+    dogBreed = 'Husky';
+  }
+
+  breeds.forEach(breed => {
+    if (breed.includes(dogBreed.toLowerCase())) {
+      result.push(upperCase(breed));
+    }
+  });
+
+  if (dogBreed === 'Spitz') {
+    result = result.concat([
+      'Akita',
+      'Alaskan Malamute',
+      'American Eskimo Dog',
+      'Chow Chow',
+      'Shiba Inu',
+      'Samoyed',
+    ]);
+  }
+
+  result = result.sort();
+
+  result = result.map((breed, idx) => {
+    return {
+      name: breed,
+      key: idx,
+    };
+  });
+
+  return result;
+}
+
+module.exports = { breedPrediction, getBreedOptions };
