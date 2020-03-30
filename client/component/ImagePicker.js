@@ -10,6 +10,8 @@ import { breedPrediction } from '../../utility/prediction';
 import { CLARIFAI_KEY } from 'react-native-dotenv';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+import { getRequestedDogs } from '../store';
+
 const app = new Clarifai.App({
   apiKey: `${CLARIFAI_KEY}`,
 });
@@ -97,6 +99,7 @@ class ImagePick extends Component {
               title="Wait, I'll pick a different image!"
               onPress={this.openImagePicker}
             />
+
           </View>
         ) : (
           <View>
@@ -112,6 +115,13 @@ class ImagePick extends Component {
                 title="Use Filtered Search Instead"
                 onPress={this.props.SEND_USER_TO_SEARCH_DOGS_FORM_PAGE}
               />
+
+            {/* TESTING ATTRIBUTES AXIOS REQ BEFORE MAKING SEPARATE COMPONENT */}
+            <Button
+              title="TEST REQUEST ATTRIBUTES THUNK"
+              onPress={this.props.requestedAttributes}
+            />
+
             </View>
           </View>
         )}
@@ -183,6 +193,7 @@ const mapDispatch = dispatch => {
   return {
     getPickedImage: img => dispatch(getPickedImage(img.uri)),
     getAllBreeds: () => dispatch(getAllBreeds()),
+    requestedAttributes: () => dispatch(getRequestedDogs())
   };
 };
 
