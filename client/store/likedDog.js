@@ -1,10 +1,12 @@
 import axios from 'axios';
 
-const UPLOAD_LIKED_DOG = 'UPLOAD_LIKED_DOG';
+const LIKE_DOG = 'LIKE_DOG';
+const GET_LIKED_DOGS = 'GET_LIKED_DOGS';
 
-const uploadedLikedDog = status => ({ type: UPLOAD_LIKED_DOG, status });
+const LikedDog = status => ({ type: LIKE_DOG, status });
+const gotLikedDogs = dogs => ({ type: GET_LIKED_DOGS, dogs });
 
-export const likedDog = dog => async dispatch => {
+export const likeDog = dog => async dispatch => {
   try {
     const { data } = await axios.post(
       'http://localhost:3000/api/likedDog',
@@ -15,26 +17,41 @@ export const likedDog = dog => async dispatch => {
       }
     );
 
-    dispatch(uploadedLikedDog(data.liked));
+    dispatch(LikedDog(data.liked));
   } catch (error) {
     console.error(error);
   }
 };
 
+export const getLikedDogs = () => {
+  return async dispatch => {
+    try {
+      const { data } = await axios.get('http://localhost:3000/api/likedDog');
+      // console.log('get liked dogs thuck:', data);
+      dispatch(gotLikedDogs(data));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
 const initialState = {
+  allLikedDogs: [],
   likedStatus: null,
 };
 
-const dog = (state = initialState, action) => {
+const likedDogs = (state = initialState, action) => {
   switch (action.type) {
-    case UPLOAD_LIKED_DOG:
+    case LIKE_DOG:
       return {
+        ...state,
         likedStatus: action.status,
       };
-
+    case GET_LIKED_DOGS:
+      return { ...state, allLikedDogs: action.dogs };
     default:
       return state;
   }
 };
 
-export default dog;
+export default likedDogs;

@@ -5,8 +5,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import user from './user';
 import dogs from './allDogs';
 import pickedImage from './imagePicker';
-import dog from './likedDog';
-const reducer = combineReducers({ user, dogs, pickedImage, dog });
+import likedDogs from './likedDog';
+const reducer = combineReducers({ user, dogs, pickedImage, likedDogs });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );

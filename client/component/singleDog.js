@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Linking } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { likedDog } from '../store/likedDog';
+import { likeDog } from '../store/likedDog';
 import { connect } from 'react-redux';
 import { titleCase } from '../../utility/utils';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const dogImg = require('../../assets/images/dog2.jpg');
-
-// let count = 1;
 
 class SingleDog extends Component {
   constructor() {
@@ -20,12 +18,7 @@ class SingleDog extends Component {
   }
 
   async like(dog) {
-    // if (count > 0) {
-    //   console.log('in like handler SD', count);
-    //   count++;
-    // }
-
-    await this.props.likedDog(dog);
+    await this.props.likeDog(dog);
     // this.setState({ likedPaw: !this.state.likedPaw });
   }
 
@@ -201,14 +194,14 @@ class SingleDog extends Component {
 
 const mapStateToProps = state => {
   return {
-    status: state.dog.likedStatus,
+    status: state.likedDogs.likedStatus,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    likedDog: dog => {
-      dispatch(likedDog(dog));
+    likeDog: dog => {
+      dispatch(likeDog(dog));
     },
   };
 };
