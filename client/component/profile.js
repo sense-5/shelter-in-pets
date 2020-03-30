@@ -28,17 +28,16 @@ class Profile extends React.Component {
 
   //user information is loaded in homescreen and can be accessed through this.props.user
   async componentDidMount() {
-    console.log('in componentDidMount');
     await this.props.getLikedDogs();
   }
 
-  async componentDidUpdate() {
-    console.log('in componentDidUpdate');
-    if (this.props.allLikedDogs) {
-      console.log('component did update has dogs');
-      await this.props.getLikedDogs();
-    }
-  }
+  // async componentDidUpdate() {
+  //   console.log('in componentDidUpdate');
+  //   if (this.props.allLikedDogs) {
+  //     console.log('component did update has dogs');
+  //     await this.props.getLikedDogs();
+  //   }
+  // }
 
   render() {
     const { navigation } = this.props;
