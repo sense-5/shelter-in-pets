@@ -10,14 +10,12 @@ import {
   RefreshControl,
   FlatList,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import { titleCase } from '../../utility/utils';
 import { getLikedDogs } from '../store/likedDog';
 import axios from 'axios';
 
-import { getMe } from '../store/user';
 const dogImg = require('../../assets/images/dog2.jpg');
 
 class Profile extends React.Component {
@@ -60,7 +58,7 @@ class Profile extends React.Component {
     return (
       <View>
         <View>
-          <Text style={styles.topHeader}>My Favorites Page</Text>
+          <Text style={styles.topHeader}>Favorited Dogs</Text>
         </View>
         {dogs.length !== 0 ? (
           <FlatList
@@ -99,16 +97,17 @@ class Profile extends React.Component {
           />
         ) : (
           <View style={styles.textContainer}>
-            <Button
-              title="Like Some Dogs"
+            <Text style={styles.buttonText}>
+              You have not favorited any dogs yet
+            </Text>
+            <TouchableOpacity
+              style={styles.button2}
               onPress={() => {
                 navigation.navigate('home');
               }}
-              bounces={false}
-              onEndReached={() => this.handleLoadMore()}
-              onEndReachedThreshold={0.2}
-              ListFooterComponent={this.renderFooter}
-            />
+            >
+              <Text style={styles.buttonText}>Browse All Dogs</Text>
+            </TouchableOpacity>
           </View>
         )}
       </View>
@@ -118,9 +117,9 @@ class Profile extends React.Component {
 
 const styles = StyleSheet.create({
   textContainer: {
-    flex: 1,
+    //flex: 1,
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    //justifyContent: 'flex-start',
     marginTop: 200,
   },
   container: {
@@ -170,6 +169,20 @@ const styles = StyleSheet.create({
     padding: 5,
     marginLeft: 0,
     width: '25%',
+  },
+  button2: {
+    backgroundColor: 'white',
+    borderColor: '#147efb',
+    borderWidth: 2,
+    borderRadius: 10,
+    padding: 10,
+    margin: 20,
+    width: 300,
+  },
+  buttonText: {
+    color: '#147efb',
+    textAlign: 'center',
+    fontSize: 18,
   },
 });
 

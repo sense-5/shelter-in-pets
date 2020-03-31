@@ -10,7 +10,7 @@ import Signup from './client/screens/signup';
 import BreedOptions from './client/component/breedOptions';
 import DogsByBreed from './client/component/dogsByBreed';
 import { Ionicons } from '@expo/vector-icons';
-import Profile from './client/component/profile';
+import LikedDogs from './client/component/profile';
 import Request from './client/component/requestForm';
 
 import HomeScreen from './client/screens/home';
@@ -18,6 +18,8 @@ import HomeScreen from './client/screens/home';
 import Dog from './client/component/singleDog';
 
 import Login from './client/screens/login';
+
+import Profile from './client/component/profile';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -30,13 +32,13 @@ function isLoggedIn({ navigation }) {
           let iconName;
 
           if (route.name === 'home') {
-            iconName = 'ios-paw';
+            iconName = 'ios-home';
           }
           if (route.name === 'upload') {
             iconName = 'md-photos';
           }
           if (route.name === 'favorites') {
-            iconName = 'ios-heart';
+            iconName = 'ios-paw';
           }
 
           return <Ionicons name={iconName} size={24} color={color} />;
