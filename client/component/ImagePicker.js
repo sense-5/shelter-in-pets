@@ -12,8 +12,6 @@ import { CLARIFAI_KEY } from 'react-native-dotenv';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { NavigationContext } from 'react-navigation';
 
-import { fetchRequestedDogs } from '../store';
-
 const app = new Clarifai.App({
   apiKey: `${CLARIFAI_KEY}`,
 });
