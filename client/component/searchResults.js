@@ -7,29 +7,27 @@ import {
   FlatList,
   ActivityIndicator,
   Dimensions,
+  TouchableOpacity
 } from 'react-native';
 import {connect} from 'react-redux'
 // import {gotRequestedDogs} from '../store/requestedAttributes'
-import AllDogs from './allDogs'
+// import AllDogs from './allDogs'
+import { fetchRequestedDogs } from '../store/requestedAttributes';
 
 class SearchResults extends Component {
-  constructor(){
-    super()
-    this.state = {
-      dogs: []
-    }
-  }
+  // constructor(){
+  //   super()
+  //   // this.state = {
+  //   //   dogs: []
+  //   // }
+  // }
 
-  async componentDidMount(){
-    console.log('mounted hi')
-    console.log('reqDogs props are ', this.props.reqDogs)
+  componentDidMount(){
+    console.log('mounted search results hi')
+    // console.log('route params are ', this.props.route.params.attributes)
+    const attributes = this.props.route.params.attributes
 
-    // await this.props.fetchRequestedDogs()
-    await this.setState({
-      dogs: this.props.reqDogs
-    })
-
-    console.log('this STAAATE', this.state)
+    fetchRequestedDogs(attributes)
   }
 
   render(){
@@ -37,15 +35,15 @@ class SearchResults extends Component {
     const dogs = this.props.reqDogs
 
     return(
-      <View>
-        <AllDogs navigation={this.props.navigation} dogs={this.state.dogs}/>
+      <View style={styles.container}>
+        {/* <AllDogs navigation={this.props.navigation} allDogs={this.state.dogs}/> */}
         {/* <Text>hey search results here</Text> */}
 
-        {/* {dogs ? (
+        {dogs ? (
           <FlatList
             style={{ height: '100%' }}
             numColumns={2}
-            keyExtractor={({ item, key }) => key.toString()}
+            // keyExtractor={({ item: dogs,  }) => item.toString()}
             data={dogs}
             renderItem={({ item }) => (
               <TouchableOpacity
@@ -65,18 +63,34 @@ class SearchResults extends Component {
         ) : (
           <Text>Loading Doggos ...</Text>
         )
-        } */}
+        }
       </View>
     )
   }
 }
 
+const styles = StyleSheet.create({
+  image: {
+    height: 205,
+    width: 205,
+  },
+  container: {
+    flex: 1,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "yellow"
+  },
+});
+
+
 const mapState = state => ({
   reqDogs: state.requestedAttributes.requestedDogs
 })
 
-// const mapDispatch = dispatch => ({
-//   fetchRequestedDogs: (req) => dispatch(fetchRequestedDogs(req))
-// })
+const mapDispatch = dispatch => ({
+  fetchRequestedDogs: (req) => dispatch(fetchRequestedDogs(req))
+})
 
-export default connect(mapState, null)(SearchResults)
+export default connect(mapState, mapDispatch)(SearchResults)
+// export default SearchResults

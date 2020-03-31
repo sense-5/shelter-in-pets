@@ -39,9 +39,9 @@ export const fetchRequestedDogs = (req) => {
           coat
         }
       })
-      console.log('______------_-----~~~~~~~here are the dogs RIP~~~~~~~~~~~~~~~~')
-      console.log(data)
+
       dispatch(gotRequestedDogs(data))
+      console.log('no errors in ya thunk')
     } catch (error) {
       console.error(error)
     }
