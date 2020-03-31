@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, Text, StyleSheet, Button, ScrollView} from 'react-native'
+import {View, Text, StyleSheet, Button, ScrollView, TouchableOpacity} from 'react-native'
 import {connect} from 'react-redux'
 import {CheckBox} from 'react-native-elements'
 
@@ -36,14 +36,6 @@ class Request extends Component{
     }
   }//end constructor
 
-  componentDidMount(){
-    console.log('component mounted')
-  }
-
-  componentDidUpdate(){
-    console.log('hello update happened hi')
-  }
-
   render(){
     const age = this.state.age
     const size = this.state.size
@@ -57,11 +49,15 @@ class Request extends Component{
     return(
       <ScrollView>
       <View style={styles.container}>
-        {/* <View style={styles.ageContainer}> */}
+
           {/* age */}
-          <Text>Age:</Text>
-          <View style={styles.boxes}>
-          <CheckBox title="puppy" checked={!age.puppy} onPress={()=>{
+        <Text style={styles.category}>Age</Text>
+        <View style={styles.boxes}>
+          <CheckBox title="puppy" checked={!age.puppy}
+            containerStyle={styles.checkbox}
+            checkedColor={'green'}
+            center={true}
+            onPress={()=>{
             this.setState({
               age: {
                 ...age,
@@ -75,7 +71,11 @@ class Request extends Component{
             }
           }}/>
 
-          <CheckBox title="young" checked={!age.young} onPress={()=>{
+          <CheckBox title="young" checked={!age.young}
+            containerStyle={styles.checkbox}
+            checkedColor={'green'}
+            center={true}
+            onPress={()=>{
             this.setState({
               age: {
                 ...age,
@@ -89,7 +89,11 @@ class Request extends Component{
             }
           }}/>
 
-          <CheckBox title="adult" checked={!age.adult} onPress={()=>{
+          <CheckBox title="adult" checked={!age.adult}
+            containerStyle={styles.checkbox}
+            checkedColor={'green'}
+            center={true}
+            onPress={()=>{
             this.setState({
               age: {
                 ...age,
@@ -103,7 +107,11 @@ class Request extends Component{
             }
           }}/>
 
-          <CheckBox title="senior" checked={!age.senior} onPress={() => {
+          <CheckBox title="senior" checked={!age.senior}
+            containerStyle={styles.checkbox}
+            checkedColor={'green'}
+            center={true}
+            onPress={() => {
             this.setState({
               age: {
                 ...age,
@@ -117,15 +125,13 @@ class Request extends Component{
             }
           }}/>
         </View>
-        {/* </View> */}
 
-        {/* <View> */}
           {/* size */}
-          <Text>Size:</Text>
-
-          <View style={styles.boxes}>
+        <Text style={styles.category}>Size</Text>
+        <View style={styles.boxes}>
           <CheckBox title="small" checked={!size.small}
-            style={styles.option}
+            containerStyle={styles.checkbox}
+            checkedColor={'green'}
             onPress={() => {
               this.setState({
                 size: {
@@ -141,7 +147,10 @@ class Request extends Component{
               }
             }} />
 
-          <CheckBox title="medium" checked={!size.medium} onPress={()=> {
+          <CheckBox title="medium" checked={!size.medium}
+            containerStyle={styles.checkbox}
+            checkedColor={'green'}
+            onPress={()=> {
             this.setState({
               size: {
                 ...size,
@@ -156,7 +165,10 @@ class Request extends Component{
             }
           }} />
 
-          <CheckBox title="large" checked={!size.large} onPress={()=> {
+          <CheckBox title="large" checked={!size.large}
+            containerStyle={styles.checkbox}
+            checkedColor={'green'}
+            onPress={()=> {
             this.setState({
               size: {
                 ...size,
@@ -171,7 +183,10 @@ class Request extends Component{
             }
           }} />
 
-          <CheckBox title="xlarge" checked={!size.xlarge} onPress={()=> {
+          <CheckBox title="xlarge" checked={!size.xlarge}
+            containerStyle={styles.checkbox}
+            checkedColor={'green'}
+            onPress={()=> {
             this.setState({
               size: {
                 ...size,
@@ -186,15 +201,14 @@ class Request extends Component{
             }
           }} />
           </View>
-        {/* </View> */}
 
-        {/* <View> */}
           {/* coat */}
-          <Text>Coat:</Text>
-
-          {/* short */}
-          <View style={styles.boxes}>
-          <CheckBox title="short" checked={!coat.short} onPress={()=> {
+        <Text style={styles.category}>Coat</Text>
+        <View style={styles.boxes}>
+          <CheckBox title="short" checked={!coat.short}
+            containerStyle={styles.checkbox}
+            checkedColor={'green'}
+            onPress={()=> {
             this.setState({
               coat: {
                 ...coat,
@@ -209,8 +223,10 @@ class Request extends Component{
             }
           }} />
 
-          {/* medium */}
-          <CheckBox title="medium" checked={!coat.medium} onPress={()=> {
+          <CheckBox title="medium" checked={!coat.medium}
+            containerStyle={styles.checkbox}
+            checkedColor={'green'}
+            onPress={()=> {
             this.setState({
               coat: {
                 ...coat,
@@ -225,8 +241,10 @@ class Request extends Component{
             }
           }} />
 
-          {/* long */}
-          <CheckBox title="long" checked={!coat.long} onPress={()=> {
+          <CheckBox title="long" checked={!coat.long}
+            containerStyle={styles.checkbox}
+            checkedColor={'green'}
+            onPress={()=> {
             this.setState({
               coat: {
                 ...coat,
@@ -241,8 +259,10 @@ class Request extends Component{
             }
           }} />
 
-          {/* curly */}
-          <CheckBox title="curly" checked={!coat.curly} onPress={()=> {
+          <CheckBox title="curly" checked={!coat.curly}
+            containerStyle={styles.checkbox}
+            checkedColor={'green'}
+            onPress={()=> {
             this.setState({
               coat: {
                 ...coat,
@@ -257,8 +277,10 @@ class Request extends Component{
             }
           }} />
 
-          {/* wire */}
-          <CheckBox title="wire" checked={!coat.wire} onPress={()=> {
+          <CheckBox title="wire" checked={!coat.wire}
+            containerStyle={styles.checkbox}
+            checkedColor={'green'}
+            onPress={()=> {
             this.setState({
               coat: {
                 ...coat,
@@ -274,16 +296,18 @@ class Request extends Component{
           }} />
 
         </View>
-        {/* </View> */}
 
-          <Button title="Show me the doggos" onPress={()=>{
+
+
+          <TouchableOpacity onPress={()=>{
             this.props.fetchRequestedDogs(this.requestedAttributes)
             }}
-          />
+          >
+            <Text style={styles.button}>Show dogs</Text>
+          </TouchableOpacity>
 
       </View>
       </ScrollView>
-      // scrollview for testing purps before formatting is fixed
     )
   }
 }
@@ -292,23 +316,42 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
-  },
-  ageContainer: {
-    backgroundColor: 'yellow'
+    alignItems: 'center',
   },
   boxes: {
-    // backgroundColor: 'yellow',
-    width: '80%',
+    width: '90%',
     justifyContent: 'space-evenly',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    marginBottom: 10,
+  },
+  category: {
+    backgroundColor: '#e0e0e0',
+    textAlign: 'center',
+    fontSize: 24,
+    width: '100%',
+    padding: 15
+  },
+  checkbox: {
+    backgroundColor: '#d5e5f5',
+    width: '110%',
+    padding: 15,
+    alignSelf: 'center',
+    margin: 5,
+  },
+  button: {
+    alignSelf: 'center',
+    padding: 15,
+    borderColor: 'blue',
+    borderWidth: 1,
+    width: '100%',
+    fontSize: 24,
+    marginBottom: '15%',
+    marginTop: 10
   },
 })
 
 const mapDispatch = dispatch => ({
   fetchRequestedDogs: (req) => dispatch(fetchRequestedDogs(req))
 })
-
-// export default Request
 
 export default connect(null, mapDispatch)(Request)

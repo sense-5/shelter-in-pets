@@ -1,9 +1,1 @@
-{
-  "expoServerPort": 19000,
-  "expoServerNgrokUrl": "https://ii-gw8.anonymous.shelter-in-pets.exp.direct",
-  "packagerNgrokUrl": "https://packager.ii-gw8.anonymous.shelter-in-pets.exp.direct",
-  "ngrokPid": 1299,
-  "devToolsPort": 19002,
-  "packagerPort": 19005,
-  "packagerPid": 1266
-}
+{}
