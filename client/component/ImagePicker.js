@@ -148,7 +148,7 @@ class ImagePick extends Component {
                   <Text style={styles.text2}>No Picture? No Problem.</Text>
                   <TouchableOpacity
                     style={styles.button2}
-                    onPress={this.props.SEND_USER_TO_SEARCH_DOGS_FORM_PAGE}
+                    onPress={this.props.navigation.navigate('Filtered Search')}
                   >
                     <Text style={styles.buttonText}>
                       Use Filtered Search Instead
