@@ -17,7 +17,7 @@ import { titleCase } from '../../utility/utils';
 import axios from 'axios';
 
 const dogImg = require('../../assets/images/dog2.jpg');
-let count = 1;
+
 class AllDogs extends Component {
   constructor() {
     super();
@@ -34,17 +34,11 @@ class AllDogs extends Component {
   }
 
   async like(dog) {
-    console.log('in like handler AD');
     await this.props.likedDog(dog);
     // this.setState({ likedPaw: !this.state.likedPaw });
   }
 
   async view(dog) {
-    if (count > 0) {
-      console.log('in view handler AD', count);
-      count++;
-    }
-
     await axios.post(
       'http://localhost:3000/api/viewedDog',
       // 'https://shelter-in-pets-server.herokuapp.com/api/viewedDogs',

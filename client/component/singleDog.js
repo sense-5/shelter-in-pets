@@ -5,21 +5,25 @@ import { likeDog } from '../store/likedDog';
 import { connect } from 'react-redux';
 import { titleCase } from '../../utility/utils';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import axios from 'axios';
 
 const dogImg = require('../../assets/images/dog2.jpg');
 
 class SingleDog extends Component {
   constructor() {
     super();
-    // this.state = {
-    //   likedPaw: false,
-    // };
+    this.state = {
+      likedPaw: false,
+    };
     this.like = this.like.bind(this);
   }
 
   async like(dog) {
+    // console.log('in like');
     await this.props.likeDog(dog);
-    // this.setState({ likedPaw: !this.state.likedPaw });
+    // console.log('dog in like:', dog.id);
+
+    this.setState({ likedPaw: !this.state.likedPaw });
   }
 
   render() {
@@ -51,7 +55,7 @@ class SingleDog extends Component {
             <Ionicons
               name={'ios-paw'}
               size={30}
-              color={status ? 'hotpink' : 'grey'} //#fb1d1d good red color for eventual toggle
+              color={this.state.likedPaw ? 'hotpink' : 'grey'}
             />
           </TouchableOpacity>
 

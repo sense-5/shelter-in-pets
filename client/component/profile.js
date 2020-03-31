@@ -26,7 +26,6 @@ class Profile extends React.Component {
     super(props);
   }
 
-  //user information is loaded in homescreen and can be accessed through this.props.user
   async componentDidMount() {
     await this.props.getLikedDogs();
   }
@@ -108,28 +107,6 @@ class Profile extends React.Component {
                     Woof! My name is {titleCase(dog.name)}!
                   </Text>
                 )}
-
-                <View style={styles.dogFooter}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      this.like(dog);
-                    }}
-                  >
-                    <Ionicons
-                      name={'ios-paw'}
-                      color={'grey'}
-                      // replace after debugging like : likedPaw ? 'pink' :
-                      //#fb1d1d good red color for eventual toggle
-                      size={30}
-                    />
-                  </TouchableOpacity>
-
-                  <Ionicons
-                    name={'ios-mail'}
-                    size={30}
-                    onPress={this.likeSwitch}
-                  />
-                </View>
               </View>
             );
           })}
