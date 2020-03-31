@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const initialState = {
-  attributes: {},
+  // attributes: {},
   requestedDogs: []
 }
 
@@ -17,6 +17,8 @@ export const gotRequestedDogs = dogs => ({
 //THUNK
   //will accept attributes from state in an obj as param to send
 export const fetchRequestedDogs = (req) => {
+
+  console.log('fetching dogs')
   return async dispatch => {
     try {
       const age = req.age.length > 1
@@ -37,6 +39,8 @@ export const fetchRequestedDogs = (req) => {
           coat
         }
       })
+      console.log('______------_-----~~~~~~~here are the dogs RIP~~~~~~~~~~~~~~~~')
+      console.log(data)
       dispatch(gotRequestedDogs(data))
     } catch (error) {
       console.error(error)

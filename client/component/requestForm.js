@@ -301,6 +301,7 @@ class Request extends Component{
 
           <TouchableOpacity onPress={()=>{
             this.props.fetchRequestedDogs(this.requestedAttributes)
+            this.props.navigation.navigate('Search Results')
             }}
           >
             <Text style={styles.button}>Show dogs</Text>
