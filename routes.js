@@ -1,3 +1,4 @@
+
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -16,9 +17,10 @@ import Request from './client/component/requestForm'
 import HomeScreen from './client/screens/home';
 import { getLikedDogs } from './client/store/likedDog';
 
-import Dog from './client/component/singleDog';
 
-import Login from './client/screens/login';
+import Dog from "./client/component/singleDog";
+
+import Login from "./client/screens/login";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -30,22 +32,22 @@ function isLoggedIn({ navigation }) {
         tabBarIcon: ({ focused, color }) => {
           let iconName;
 
-          if (route.name === 'home') {
-            iconName = 'ios-paw';
+          if (route.name === "home") {
+            iconName = "ios-paw";
           }
-          if (route.name === 'upload') {
-            iconName = 'md-photos';
+          if (route.name === "upload") {
+            iconName = "md-photos";
           }
-          if (route.name === 'profile') {
-            iconName = 'ios-happy';
+          if (route.name === "profile") {
+            iconName = "ios-happy";
           }
 
           return <Ionicons name={iconName} size={24} color={color} />;
-        },
+        }
       })}
       tabBarOptions={{
-        activeTintColor: 'blue',
-        inactiveTintColor: 'gray',
+        activeTintColor: "#147efb",
+        inactiveTintColor: "grey"
       }}
     >
       <Tab.Screen
@@ -90,18 +92,18 @@ class Root extends React.Component {
             name="isLoggedIn"
             component={isLoggedIn}
             options={({ navigation }) => ({
-              headerTitle: '',
+              headerTitle: "",
 
               headerLeft: () => (
                 <Button
                   onPress={() => {
                     this.handleLogout();
-                    navigation.navigate('login');
+                    navigation.navigate("login");
                   }}
                   title="Logout"
-                  color="#000000"
+                  color="#147efb"
                 />
-              ),
+              )
             })}
           />
           <Stack.Screen
@@ -113,7 +115,7 @@ class Root extends React.Component {
             name="Single Dog"
             component={Dog}
             options={({ navigation }) => ({
-              headerTitle: '',
+              headerTitle: ""
             })}
           />
 
@@ -139,8 +141,11 @@ class Root extends React.Component {
 }
 const mapStateToProps = state => {
   return {
+
+
     allLikedDogs: state.likedDogs,
     user: state.user,
+
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -149,6 +154,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(logout());
     },
     getLikedDogs: () => dispatch(getLikedDogs()),
+
   };
 };
 

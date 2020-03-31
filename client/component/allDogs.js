@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   View,
   Text,
   StyleSheet,
   ScrollView,
   Image,
+  Linking,
   Button,
   ActivityIndicator,
 } from 'react-native';
@@ -16,7 +17,6 @@ import { likedDog } from '../store/likedDog';
 import { titleCase } from '../../utility/utils';
 import axios from 'axios';
 
-const dogImg = require('../../assets/images/dog2.jpg');
 
 class AllDogs extends Component {
   constructor() {
@@ -34,17 +34,19 @@ class AllDogs extends Component {
   }
 
   async like(dog) {
+
     await this.props.likedDog(dog);
     // this.setState({ likedPaw: !this.state.likedPaw });
   }
 
   async view(dog) {
+
     await axios.post(
-      'http://localhost:3000/api/viewedDog',
+      "http://localhost:3000/api/viewedDog",
       // 'https://shelter-in-pets-server.herokuapp.com/api/viewedDogs',
       {
         petFinderId: dog.id,
-        breed: dog.breeds.primary,
+        breed: dog.breeds.primary
       }
     );
   }
@@ -52,14 +54,14 @@ class AllDogs extends Component {
   render() {
     const { navigation } = this.props;
     // const { likedPaw } = this.state;
-
+    console.log("this is props: ", this.props);
     return (
       <View>
         <ScrollView>
           {this.props.allDogs.map(dog => {
-            const regex = new RegExp('[0-9]+');
+            const regex = new RegExp("[0-9]+");
             if (regex.test(dog.name)) {
-              dog.name = 'Doggo';
+              dog.name = "Doggo";
             }
 
             return (
@@ -79,7 +81,7 @@ class AllDogs extends Component {
 
                 <TouchableOpacity
                   onPress={() => {
-                    navigation.navigate('Single Dog', dog);
+                    navigation.navigate("Single Dog", dog);
                     this.view(dog);
                   }}
                 >
@@ -92,35 +94,54 @@ class AllDogs extends Component {
                     <Image source={dogImg} style={styles.image} />
                   )}
                 </TouchableOpacity>
-                {dog.name === 'Doggo' ? (
-                  <Text style={styles.name}>Woof! Please give me a name!</Text>
-                ) : (
-                  <Text style={styles.name}>
-                    Woof! My name is {titleCase(dog.name)}!
-                  </Text>
-                )}
-
-                <View style={styles.dogFooter}>
+                {/* <View style={styles.dogFooter}>
                   <TouchableOpacity
                     onPress={() => {
                       this.like(dog);
                     }}
                   >
                     <Ionicons
-                      name={'ios-paw'}
-                      color={'grey'}
-                      // replace after debugging like : likedPaw ? 'pink' :
-                      //#fb1d1d good red color for eventual toggle
+                      name={"ios-paw"}
+                      color={"grey"}
+                      // replace after debugging like : likedPaw ? 'hotpink' : 'grey'
                       size={30}
                     />
                   </TouchableOpacity>
 
                   <Ionicons
-                    name={'ios-mail'}
+                    name={"ios-mail"}
                     size={30}
-                    onPress={this.likeSwitch}
+                    onPress={() =>
+                      Linking.openURL(`mailto:${dog.contact.email}`)
+                    }
+                    color={"grey"}
                   />
-                </View>
+
+                  <Ionicons
+                    name={"ios-call"}
+                    size={30}
+                    onPress={() => Linking.openURL(`tel:${phone}`)}
+                    color={"grey"}
+                  />
+
+                  <Ionicons
+                    name={"ios-pin"}
+                    size={30}
+                    onPress={() =>
+                      Linking.openURL(
+                        `http://www.google.com/maps/place/${dog.contact.address.city},+${dog.contact.address.state}/`
+                      )
+                    }
+                    color={"grey"}
+                  />
+                </View> */}
+                {dog.name === "Doggo" ? (
+                  <Text style={styles.name}>Woof! Please give me a name!</Text>
+                ) : (
+                  <Text style={styles.name}>
+                    Woof! My name is {titleCase(dog.name)}!
+                  </Text>
+                )}
               </View>
             );
           })}
@@ -141,7 +162,7 @@ const mapDispatchToProps = dispatch => {
     },
     likedDog: dog => {
       dispatch(likedDog(dog));
-    },
+    }
   };
 };
 
@@ -150,38 +171,38 @@ export default Dogs;
 
 const styles = StyleSheet.create({
   dogContainer: {
-    marginBottom: 20,
+    marginBottom: 20
   },
   image: {
-    height: 350,
-    width: '100%',
+    width: "100%",
+    height: 350
   },
   name: {
     fontSize: 18,
-    paddingTop: 10,
-    paddingLeft: 10,
+    padding: 10
   },
   nameMain: {
     fontSize: 22,
     paddingTop: 3,
     paddingBottom: 3,
     paddingLeft: 10,
+    fontWeight: "bold"
   },
   dogIcon: {
     width: 30,
     height: 30,
     borderRadius: 50,
-    padding: 5,
+    padding: 5
   },
   dogHeader: {
-    flexDirection: 'row',
-    padding: 5,
+    flexDirection: "row",
+    padding: 5
   },
   dogFooter: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
     padding: 5,
     marginLeft: 0,
-    width: '25%',
-  },
+    width: "30%"
+  }
 });
