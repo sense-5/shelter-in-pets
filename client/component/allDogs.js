@@ -6,6 +6,7 @@ import {
   Image,
   FlatList,
   ActivityIndicator,
+  Dimensions,
 } from 'react-native';
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -69,16 +70,20 @@ class AllDogs extends Component {
     const { navigation } = this.props;
 
     this.state.dogs = removeDuplicates(this.state.dogs);
-    console.log('this.state', this.state.dogs);
+    let dogs;
+    if (this.state.dogs.length === 0) {
+      dogs = this.props.allDogs;
+    } else {
+      dogs = this.state.dogs;
+    }
 
     return (
-      <View style={styles.container}>
+      <View>
         <FlatList
+          style={{ height: '100%' }}
           numColumns={2}
           keyExtractor={({ item, key }) => key.toString()}
-          data={
-            this.state.dogs.length !== 0 ? this.state.dogs : this.props.allDogs
-          }
+          data={dogs}
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() => {
@@ -91,12 +96,8 @@ class AllDogs extends Component {
           )}
           bounces={false}
           onEndReached={() => this.handleLoadMore()}
-          onEndReachedThreshold={0.1}
+          onEndReachedThreshold={0.2}
           ListFooterComponent={this.renderFooter}
-          initialNumToRender={8}
-          onMomentumScrollBegin={() => {
-            this.onEndReachedCalledDuringMomentum = false;
-          }}
         />
       </View>
     );
