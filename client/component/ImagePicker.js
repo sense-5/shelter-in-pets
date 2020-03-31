@@ -212,8 +212,7 @@ const styles = StyleSheet.create({
   container3: {
     flex: 1,
     alignItems: 'center',
-    marginTop: '20%',
-    marginBottom: '10%'
+    marginTop: '10%'
   },
   buttonContainer2: {
     justifyContent: 'space-between',
