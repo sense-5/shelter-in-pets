@@ -314,11 +314,6 @@ class Request extends Component{
             <Text style={styles.button}>Show dogs</Text>
           </TouchableOpacity>
 
-              {/* <Button title="Show me the doggos" onPress={()=>{
-                this.props.fetchRequestedDogs(this.requestedAttributes)
-                }}
-              /> */}
-
       </View>
       </ScrollView>
       // scrollview for testing purps before formatting is fixed
