@@ -1,4 +1,3 @@
-
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -12,15 +11,14 @@ import BreedOptions from './client/component/breedOptions';
 import DogsByBreed from './client/component/dogsByBreed';
 import { Ionicons } from '@expo/vector-icons';
 import Profile from './client/component/profile';
-import Request from './client/component/requestForm'
+import Request from './client/component/requestForm';
 
 import HomeScreen from './client/screens/home';
 import { getLikedDogs } from './client/store/likedDog';
 
+import Dog from './client/component/singleDog';
 
-import Dog from "./client/component/singleDog";
-
-import Login from "./client/screens/login";
+import Login from './client/screens/login';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -32,32 +30,32 @@ function isLoggedIn({ navigation }) {
         tabBarIcon: ({ focused, color }) => {
           let iconName;
 
-          if (route.name === "home") {
-            iconName = "ios-paw";
+          if (route.name === 'home') {
+            iconName = 'ios-paw';
           }
-          if (route.name === "upload") {
-            iconName = "md-photos";
+          if (route.name === 'upload') {
+            iconName = 'md-photos';
           }
-          if (route.name === "profile") {
-            iconName = "ios-happy";
+          if (route.name === 'favorites') {
+            iconName = 'ios-heart';
           }
 
           return <Ionicons name={iconName} size={24} color={color} />;
         }
       })}
       tabBarOptions={{
-        activeTintColor: "#147efb",
-        inactiveTintColor: "grey"
+        activeTintColor: '#147efb',
+        inactiveTintColor: 'grey'
       }}
     >
       <Tab.Screen
-        name="home"
+        name='home'
         component={HomeScreen}
         Screen={() => <HomeScreen navigation={navigation} />}
       />
-      <Tab.Screen name="upload" component={ImagePick} />
+      <Tab.Screen name='upload' component={ImagePick} />
       <Tab.Screen
-        name="profile"
+        name='favorites'
         component={Profile}
         onPress={() => {
           {
@@ -82,56 +80,56 @@ class Root extends React.Component {
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator headerMode="screen">
+        <Stack.Navigator headerMode='screen'>
           <Stack.Screen
-            name="login"
+            name='login'
             component={Login}
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name="isLoggedIn"
+            name='isLoggedIn'
             component={isLoggedIn}
             options={({ navigation }) => ({
-              headerTitle: "",
+              headerTitle: '',
 
               headerLeft: () => (
                 <Button
                   onPress={() => {
                     this.handleLogout();
-                    navigation.navigate("login");
+                    navigation.navigate('login');
                   }}
-                  title="Logout"
-                  color="#147efb"
+                  title='Logout'
+                  color='#147efb'
                 />
               )
             })}
           />
           <Stack.Screen
-            name="signup"
+            name='signup'
             component={Signup}
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name="Single Dog"
+            name='Single Dog'
             component={Dog}
             options={({ navigation }) => ({
-              headerTitle: ""
+              headerTitle: ''
             })}
           />
 
           <Stack.Screen
-            name="Breed Options"
+            name='Breed Options'
             component={BreedOptions}
             options={({ navigation }) => ({
-              headerTitle: '',
+              headerTitle: ''
             })}
           />
 
           <Stack.Screen
-            name="Dogs By Breed"
+            name='Dogs By Breed'
             component={DogsByBreed}
             options={({ navigation }) => ({
-              headerTitle: '',
+              headerTitle: ''
             })}
           />
         </Stack.Navigator>
@@ -141,11 +139,8 @@ class Root extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-
-
     allLikedDogs: state.likedDogs,
-    user: state.user,
-
+    user: state.user
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -153,8 +148,7 @@ const mapDispatchToProps = dispatch => {
     logout: () => {
       dispatch(logout());
     },
-    getLikedDogs: () => dispatch(getLikedDogs()),
-
+    getLikedDogs: () => dispatch(getLikedDogs())
   };
 };
 
