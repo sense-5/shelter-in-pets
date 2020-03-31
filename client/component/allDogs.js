@@ -3,40 +3,37 @@ import {
   View,
   Text,
   StyleSheet,
-  ScrollView,
   Image,
-  Linking,
-  Button,
-  ActivityIndicator
+  FlatList,
+  ActivityIndicator,
+  Dimensions,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import { getAllDogs } from '../store/allDogs';
 import { likedDog } from '../store/likedDog';
-import { titleCase } from '../../utility/utils';
+import { removeDuplicates } from '../../utility/utils';
 import axios from 'axios';
-
-const dogImg = require('../../assets/images/dog2.jpg');
 
 class AllDogs extends Component {
   constructor() {
     super();
-    // TODO: need a liked porperty in the dogs that are returned. need to check dogs from petfinder against our database.
-    // this.state = {
-    //   likedPaw: false,
-    // };
-    this.like = this.like.bind(this);
+    this.state = {
+      isLoading: true,
+      page: 1,
+      dogs: [],
+    };
+
     this.view = this.view.bind(this);
+    this.handleLoadMore = this.handleLoadMore.bind(this);
   }
 
   async componentDidMount() {
-    await this.props.getAllDogs();
-  }
-
-  async like(dog) {
-    await this.props.likedDog(dog);
-    // this.setState({ likedPaw: !this.state.likedPaw });
+    await this.props.getAllDogs(this.state.page);
+    this.setState({
+      dogs: this.props.allDogs,
+    });
   }
 
   async view(dog) {
@@ -45,109 +42,63 @@ class AllDogs extends Component {
       // 'https://shelter-in-pets-server.herokuapp.com/api/viewedDogs',
       {
         petFinderId: dog.id,
-        breed: dog.breeds.primary
+        breed: dog.breeds.primary,
       }
     );
   }
 
-  render() {
-    const { navigation } = this.props;
-    // const { likedPaw } = this.state;
-    console.log('this is props: ', this.props);
+  async handleLoadMore() {
+    this.setState({
+      page: this.state.page + 1,
+    });
+    await this.props.getAllDogs(this.state.page);
+    this.setState({
+      isLoading: false,
+      dogs: [...this.state.dogs, ...this.props.allDogs],
+    });
+  }
+
+  renderFooter = () => {
     return (
       <View>
-        <View>
-          <Text style={styles.topHeader}>Shelter-In-Pets</Text>
-        </View>
-        <ScrollView>
-          {this.props.allDogs.map(dog => {
-            const regex = new RegExp('[0-9]+');
-            if (regex.test(dog.name)) {
-              dog.name = 'Doggo';
-            }
+        <ActivityIndicator animating size="large" />
+      </View>
+    );
+  };
 
-            return (
-              <View key={dog.id} style={styles.dogContainer}>
-                <View style={styles.dogHeader}>
-                  {dog.photos[0] ? (
-                    <Image
-                      source={{ uri: dog.photos[0].full }}
-                      style={styles.dogIcon}
-                    />
-                  ) : (
-                    <Image source={dogImg} style={styles.dogIcon} />
-                  )}
+  render() {
+    const { navigation } = this.props;
 
-                  <Text style={styles.nameMain}>{titleCase(dog.name)}</Text>
-                </View>
+    this.state.dogs = removeDuplicates(this.state.dogs);
+    let dogs;
+    if (this.state.dogs.length === 0) {
+      dogs = this.props.allDogs;
+    } else {
+      dogs = this.state.dogs;
+    }
 
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate('Single Dog', dog);
-                    this.view(dog);
-                  }}
-                >
-                  {dog.photos[0] ? (
-                    <Image
-                      source={{ uri: dog.photos[0].full }}
-                      style={styles.image}
-                    />
-                  ) : (
-                    <Image source={dogImg} style={styles.image} />
-                  )}
-                </TouchableOpacity>
-                {/* <View style={styles.dogFooter}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      this.like(dog);
-                    }}
-                  >
-                    <Ionicons
-                      name={"ios-paw"}
-                      color={"grey"}
-                      // replace after debugging like : likedPaw ? 'hotpink' : 'grey'
-                      size={30}
-                    />
-                  </TouchableOpacity>
-
-                  <Ionicons
-                    name={"ios-mail"}
-                    size={30}
-                    onPress={() =>
-                      Linking.openURL(`mailto:${dog.contact.email}`)
-                    }
-                    color={"grey"}
-                  />
-
-                  <Ionicons
-                    name={"ios-call"}
-                    size={30}
-                    onPress={() => Linking.openURL(`tel:${phone}`)}
-                    color={"grey"}
-                  />
-
-                  <Ionicons
-                    name={"ios-pin"}
-                    size={30}
-                    onPress={() =>
-                      Linking.openURL(
-                        `http://www.google.com/maps/place/${dog.contact.address.city},+${dog.contact.address.state}/`
-                      )
-                    }
-                    color={"grey"}
-                  />
-                </View> */}
-                {dog.name === 'Doggo' ? (
-                  <Text style={styles.name}>Woof! Please give me a name!</Text>
-                ) : (
-                  <Text style={styles.name}>
-                    Woof! My name is {titleCase(dog.name)}!
-                  </Text>
-                )}
-              </View>
-            );
-          })}
-        </ScrollView>
+    return (
+      <View>
+        <FlatList
+          style={{ height: '100%' }}
+          numColumns={2}
+          keyExtractor={({ item, key }) => key.toString()}
+          data={dogs}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Single Dog', item.dog);
+                this.view(item.dog);
+              }}
+            >
+              <Image source={{ uri: item.uri }} style={styles.image} />
+            </TouchableOpacity>
+          )}
+          bounces={false}
+          onEndReached={() => this.handleLoadMore()}
+          onEndReachedThreshold={0.2}
+          ListFooterComponent={this.renderFooter}
+        />
       </View>
     );
   }
@@ -159,12 +110,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAllDogs: () => {
-      dispatch(getAllDogs());
+    getAllDogs: page => {
+      dispatch(getAllDogs(page));
     },
     likedDog: dog => {
       dispatch(likedDog(dog));
-    }
+    },
   };
 };
 
@@ -172,47 +123,8 @@ const Dogs = connect(mapStateToProps, mapDispatchToProps)(AllDogs);
 export default Dogs;
 
 const styles = StyleSheet.create({
-  dogContainer: {
-    marginBottom: 20
-  },
   image: {
-    width: '100%',
-    height: 350
+    height: 205,
+    width: 205,
   },
-  name: {
-    fontSize: 18,
-    padding: 10
-  },
-  nameMain: {
-    fontSize: 22,
-    paddingTop: 3,
-    paddingBottom: 3,
-    paddingLeft: 10,
-    fontWeight: 'bold'
-  },
-  dogIcon: {
-    width: 30,
-    height: 30,
-    borderRadius: 50,
-    padding: 5
-  },
-  topHeader: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#147efb',
-    backgroundColor: 'white',
-    padding: 10
-  },
-  dogHeader: {
-    flexDirection: 'row',
-    padding: 5
-  },
-  dogFooter: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    padding: 5,
-    marginLeft: 0,
-    width: '30%'
-  }
 });
