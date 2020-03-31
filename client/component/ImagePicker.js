@@ -157,6 +157,7 @@ class ImagePick extends Component {
                 </View>
               </View>
             )}
+
           </View>
         </ScrollView>
       </View>
