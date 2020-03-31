@@ -31,13 +31,13 @@ function isLoggedIn({ navigation }) {
           let iconName;
 
           if (route.name === 'home') {
-            iconName = 'ios-paw';
+            iconName = 'ios-home';
           }
           if (route.name === 'upload') {
             iconName = 'md-photos';
           }
           if (route.name === 'favorites') {
-            iconName = 'ios-heart';
+            iconName = 'ios-paw';
           }
 
           return <Ionicons name={iconName} size={24} color={color} />;
@@ -134,10 +134,10 @@ class Root extends React.Component {
           />
 
           <Stack.Screen
-            name="Filtered Search"
+            name='Filtered Search'
             component={Request}
             options={({ navigation }) => ({
-              headerTitle: '',
+              headerTitle: ''
             })}
           />
         </Stack.Navigator>

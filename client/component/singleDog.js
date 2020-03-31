@@ -6,7 +6,7 @@ import {
   Image,
   Linking,
   Platform,
-  ScrollView,
+  ScrollView
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { likeDog, getLikedDogs } from '../store/likedDog';
@@ -21,7 +21,7 @@ class SingleDog extends Component {
   constructor() {
     super();
     this.state = {
-      likedPaw: false,
+      likedPaw: false
     };
     this.like = this.like.bind(this);
   }
@@ -80,7 +80,7 @@ class SingleDog extends Component {
           <View style={styles.dogFooter}>
             <TouchableOpacity onPress={() => this.like(dog)}>
               <Ionicons
-                name={'ios-heart'}
+                name={'ios-paw'}
                 size={30}
                 color={dogIsLiked() || this.state.likedPaw ? 'hotpink' : 'grey'}
               />
@@ -243,7 +243,7 @@ class SingleDog extends Component {
 const mapStateToProps = state => {
   return {
     status: state.likedDogs.likedStatus,
-    allLikedDogs: state.likedDogs.allLikedDogs,
+    allLikedDogs: state.likedDogs.allLikedDogs
   };
 };
 
@@ -252,7 +252,7 @@ const mapDispatchToProps = dispatch => {
     likeDog: dog => {
       dispatch(likeDog(dog));
     },
-    getLikedDogs: () => dispatch(getLikedDogs()),
+    getLikedDogs: () => dispatch(getLikedDogs())
   };
 };
 
@@ -262,44 +262,44 @@ export default Dog;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-start'
   },
   image: {
     width: '100%',
-    height: 350,
+    height: 350
   },
   bodyContainer: {
     flexDirection: 'column',
     alignItems: 'flex-start',
     left: 10,
     padding: 5,
-    paddingBottom: 20,
+    paddingBottom: 20
   },
   nameMain: {
     fontSize: 22,
     paddingTop: 3,
     paddingBottom: 3,
     paddingLeft: 10,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   bodyTextHeader: {
     padding: 2,
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   bodyText: {
     padding: 2,
-    fontSize: 18,
+    fontSize: 18
   },
   dogIcon: {
     width: 30,
     height: 30,
     borderRadius: 50,
-    padding: 5,
+    padding: 5
   },
   dogHeader: {
     flexDirection: 'row',
-    padding: 5,
+    padding: 5
   },
   dogFooter: {
     flexDirection: 'row',
@@ -307,6 +307,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     padding: 4,
     paddingBottom: 0,
-    width: '40%',
-  },
+    width: '40%'
+  }
 });
