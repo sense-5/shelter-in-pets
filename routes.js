@@ -12,6 +12,7 @@ import DogsByBreed from './client/component/dogsByBreed';
 import { Ionicons } from '@expo/vector-icons';
 import Profile from './client/component/profile';
 import HomeScreen from './client/screens/home';
+import { getLikedDogs } from './client/store/likedDog';
 
 import Dog from './client/component/singleDog';
 
@@ -51,7 +52,15 @@ function isLoggedIn({ navigation }) {
         Screen={() => <HomeScreen navigation={navigation} />}
       />
       <Tab.Screen name="upload" component={ImagePick} />
-      <Tab.Screen name="profile" component={Profile} />
+      <Tab.Screen
+        name="profile"
+        component={Profile}
+        onPress={() => {
+          {
+            getLikedDogs();
+          }
+        }}
+      />
     </Tab.Navigator>
   );
 }
@@ -128,6 +137,7 @@ class Root extends React.Component {
 }
 const mapStateToProps = state => {
   return {
+    allLikedDogs: state.likedDogs,
     user: state.user,
   };
 };
@@ -136,6 +146,7 @@ const mapDispatchToProps = dispatch => {
     logout: () => {
       dispatch(logout());
     },
+    getLikedDogs: () => dispatch(getLikedDogs()),
   };
 };
 
