@@ -8,7 +8,11 @@ import {
   Button,
   ActivityIndicator,
   RefreshControl,
+<<<<<<< HEAD
   FlatList
+=======
+  FlatList,
+>>>>>>> 8c5ec8c15c0e295de5f557b14390cb6158c5c174
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
@@ -21,16 +25,46 @@ const dogImg = require('../../assets/images/dog2.jpg');
 class Profile extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isLoading: true,
+      dogs: [],
+    };
+    this.handleLoadMore = this.handleLoadMore.bind(this);
   }
 
   async componentDidMount() {
-    await this.props.getLikedDogs();
+    await this.props.getLikedDogs(this.state.page);
+    this.setState({
+      dogs: this.props.allLikedDogs,
+    });
   }
 
+  async handleLoadMore() {
+    await this.props.getLikedDogs();
+    this.setState({
+      isLoading: false,
+      dogs: [...(this.state.dogs = this.props.allLikedDogs)],
+    });
+  }
+
+<<<<<<< HEAD
   render() {
     const { navigation } = this.props;
     const dogs = this.props.allLikedDogs;
     console.log('in profile:', dogs.allLikedDogs);
+=======
+  renderFooter = () => {
+    return (
+      <View>
+        <ActivityIndicator animating size="large" />
+      </View>
+    );
+  };
+
+  render() {
+    const { navigation } = this.props;
+    const dogs = this.state.dogs;
+>>>>>>> 8c5ec8c15c0e295de5f557b14390cb6158c5c174
 
     return (
       <View>
@@ -38,6 +72,7 @@ class Profile extends React.Component {
           <Text style={styles.topHeader}>Favorited Dogs</Text>
         </View>
         {dogs.length !== 0 ? (
+<<<<<<< HEAD
           <ScrollView>
             {dogs.map(dog => {
               const regex = new RegExp('[0-9]+');
@@ -87,6 +122,42 @@ class Profile extends React.Component {
               );
             })}
           </ScrollView>
+=======
+          <FlatList
+            style={{ height: '100%' }}
+            keyExtractor={item => item.id.toString()}
+            data={dogs}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('Single Dog', item);
+                }}
+              >
+                <Image
+                  source={{ uri: item.photos[0].full }}
+                  style={styles.dogIcon}
+                />
+                <Text style={styles.nameMain}>{titleCase(item.name)}</Text>
+
+                <Image
+                  source={{ uri: item.photos[0].full }}
+                  style={styles.image}
+                />
+                {item.name === 'Doggo' ? (
+                  <Text style={styles.name}>Woof! Please give me a name!</Text>
+                ) : (
+                  <Text style={styles.name}>
+                    Woof! My name is {titleCase(item.name)}!
+                  </Text>
+                )}
+              </TouchableOpacity>
+            )}
+            bounces={false}
+            onEndReached={() => this.handleLoadMore()}
+            onEndReachedThreshold={0.2}
+            ListFooterComponent={this.renderFooter}
+          />
+>>>>>>> 8c5ec8c15c0e295de5f557b14390cb6158c5c174
         ) : (
           <View style={styles.textContainer}>
             <Text style={styles.buttonText}>
