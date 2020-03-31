@@ -9,7 +9,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { likeDog } from '../store/likedDog';
+import { likeDog, getLikedDogs } from '../store/likedDog';
 import { connect } from 'react-redux';
 import { titleCase, redoPhoneNum, redoCity } from '../../utility/utils';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -27,9 +27,8 @@ class SingleDog extends Component {
   }
 
   async like(dog) {
-    // console.log('in like');
     await this.props.likeDog(dog);
-    // console.log('dog in like:', dog.id);
+    await this.props.getLikedDogs();
 
     this.setState({ likedPaw: !this.state.likedPaw });
   }
@@ -53,6 +52,16 @@ class SingleDog extends Component {
     const childrenFriendly = dog.environment.children;
     const catFriendly = dog.environment.cats;
     const goodWithOtherDogs = dog.environment.dogs;
+    const dogs = this.props.allLikedDogs;
+
+    function dogIsLiked() {
+      const likedDogs = dogs;
+      let idArray = likedDogs.map(dog => {
+        return dog.id;
+      });
+      return idArray.includes(dog.id);
+    }
+
     return (
       <View style={styles.container}>
         <ScrollView>
@@ -73,7 +82,7 @@ class SingleDog extends Component {
               <Ionicons
                 name={'ios-heart'}
                 size={30}
-                color={this.state.likedPaw ? 'hotpink' : 'grey'}
+                color={dogIsLiked() || this.state.likedPaw ? 'hotpink' : 'grey'}
               />
             </TouchableOpacity>
 
@@ -234,6 +243,7 @@ class SingleDog extends Component {
 const mapStateToProps = state => {
   return {
     status: state.likedDogs.likedStatus,
+    allLikedDogs: state.likedDogs.allLikedDogs,
   };
 };
 
@@ -242,6 +252,7 @@ const mapDispatchToProps = dispatch => {
     likeDog: dog => {
       dispatch(likeDog(dog));
     },
+    getLikedDogs: () => dispatch(getLikedDogs()),
   };
 };
 
