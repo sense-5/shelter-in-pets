@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, Image, Button, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  Button,
+  StyleSheet,
+  ScrollView
+} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { connect } from 'react-redux';
 import { getPickedImage, getAllBreeds } from '../store/imagePicker';
@@ -76,71 +83,82 @@ class ImagePick extends Component {
     const dogBreed = this.state.dogBreed;
     return (
       <View style={styles.container}>
-        {this.props.pickedImage.pickedImage ? (
-          <View style={styles.container1}>
-            <Image
-              style={styles.image}
-              source={{ uri: this.props.pickedImage.pickedImage }}
-            />
-            {dogBreed ? (
+        <View>
+          <Text style={styles.topHeader}>Upload to Search</Text>
+        </View>
+        <ScrollView>
+          <View>
+            {this.props.pickedImage.pickedImage ? (
+              <View style={styles.container1}>
+                <Image
+                  style={styles.image}
+                  source={{ uri: this.props.pickedImage.pickedImage }}
+                />
+                {dogBreed ? (
+                  <View>
+                    <Text style={styles.text3}>
+                      Are you looking for a {dogBreed}?
+                    </Text>
+                    <View style={styles.buttonContainer}>
+                      <TouchableOpacity
+                        style={styles.button}
+                        onPress={() => {
+                          this.props.navigation.navigate('Breed Options', {
+                            breeds,
+                            dogBreed
+                          });
+                        }}
+                      >
+                        <Text style={styles.buttonText}>Show me more!</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity style={styles.button}>
+                        <Text style={styles.buttonText}>I'm not sure...</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                ) : (
+                  <Text style={styles.text3}>Sorry we're not sure.</Text>
+                )}
+
+                <TouchableOpacity
+                  style={styles.button2}
+                  onPress={this.openImagePicker}
+                >
+                  <Text style={styles.buttonText}>
+                    I'll pick a different Image
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            ) : (
               <View>
-                <Text style={styles.text3}>
-                  Are you looking for a {dogBreed}?
-                </Text>
-                <View style={styles.buttonContainer}>
+                <View style={styles.container2}>
+                  <Text style={styles.text1}>Have a dream dog in mind? 🐾</Text>
+                  <Text style={styles.text1}>
+                    We can match your preferences
+                  </Text>
+                  <Text style={styles.text1}>when you upload a picture!</Text>
                   <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => {
-                      this.props.navigation.navigate('Breed Options', {
-                        breeds,
-                        dogBreed
-                      });
-                    }}
+                    style={styles.button2}
+                    onPress={this.openImagePicker}
                   >
-                    <Text style={styles.buttonText}>Show me more!</Text>
+                    <Text style={styles.buttonText}>Choose Picture</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>I'm not sure...</Text>
+                </View>
+                <View style={styles.container3}>
+                  <Text style={styles.text2}>No Picture? No Problem.</Text>
+                  <TouchableOpacity
+                    style={styles.button2}
+                    onPress={this.props.SEND_USER_TO_SEARCH_DOGS_FORM_PAGE}
+                  >
+                    <Text style={styles.buttonText}>
+                      Use Filtered Search Instead
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </View>
-            ) : (
-              <Text style={styles.text3}>Sorry we're not sure.</Text>
             )}
-
-            <TouchableOpacity
-              style={styles.button2}
-              onPress={this.openImagePicker}
-            >
-              <Text style={styles.buttonText}>I'll pick a different Image</Text>
-            </TouchableOpacity>
           </View>
-        ) : (
-          <View>
-            <View style={styles.container2}>
-              <Text style={styles.text1}>Have a dream dog in mind? 🐾</Text>
-              <Text style={styles.text1}>We can match your preferences</Text>
-              <Text style={styles.text1}>when you upload a picture!</Text>
-              <TouchableOpacity
-                style={styles.button2}
-                onPress={this.openImagePicker}
-              >
-                <Text style={styles.buttonText}>Choose Picture</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.container3}>
-              <Text style={styles.text2}>No Picture? No Problem.</Text>
-              <TouchableOpacity
-                style={styles.button2}
-                onPress={this.props.SEND_USER_TO_SEARCH_DOGS_FORM_PAGE}
-              >
-                <Text style={styles.buttonText}>
-                  Use Filtered Search Instead
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        )}
+        </ScrollView>
       </View>
     );
   }
@@ -152,9 +170,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start'
   },
+  topHeader: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    width: 420,
+    color: '#147efb',
+    backgroundColor: 'white',
+    padding: 10
+  },
   image: {
-    height: 350,
-    width: 400
+    height: 275,
+    width: 275
   },
   text1: {
     textAlign: 'center',

@@ -56,6 +56,9 @@ class AllDogs extends Component {
     console.log('this is props: ', this.props);
     return (
       <View>
+        <View>
+          <Text style={styles.topHeader}>Shelter-In-Pets</Text>
+        </View>
         <ScrollView>
           {this.props.allDogs.map(dog => {
             const regex = new RegExp('[0-9]+');
@@ -192,6 +195,14 @@ const styles = StyleSheet.create({
     height: 30,
     borderRadius: 50,
     padding: 5
+  },
+  topHeader: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#147efb',
+    backgroundColor: 'white',
+    padding: 10
   },
   dogHeader: {
     flexDirection: 'row',

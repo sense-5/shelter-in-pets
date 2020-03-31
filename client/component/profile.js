@@ -65,7 +65,7 @@ class Profile extends React.Component {
     return (
       <View style={styles.container}>
         <View>
-          <Text style={styles.topHeader}>Welcome to your Favorites Page</Text>
+          <Text style={styles.topHeader}>My Favorites</Text>
         </View>
         <ScrollView>
           {dogs.allLikedDogs.map(dog => {
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     padding: 5
   },
   topHeader: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#147efb',
