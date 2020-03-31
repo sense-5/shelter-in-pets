@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  FlatList,
+  ActivityIndicator,
+} from 'react-native';
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
@@ -12,7 +19,7 @@ class AllDogs extends Component {
   constructor() {
     super();
     this.state = {
-      isLoading: false,
+      isLoading: true,
       page: 1,
       dogs: [],
     };
@@ -27,18 +34,7 @@ class AllDogs extends Component {
       dogs: this.props.allDogs,
     });
   }
-  // async getDogsOnRefresh() {
-  //   this.setState({
-  //     isLoading: true,
-  //     page: 1,
-  //     bounces: true,
-  //   });
-  //   await this.props.getAllDogs(this.state.page);
-  //   this.setState({
-  //     isLoading: false,
-  //     dogs: this.props.allDogs,
-  //   });
-  // }
+
   async view(dog) {
     await axios.post(
       'http://localhost:3000/api/viewedDog',
@@ -61,17 +57,28 @@ class AllDogs extends Component {
     });
   }
 
+  renderFooter = () => {
+    return (
+      <View>
+        <ActivityIndicator animating size="large" />
+      </View>
+    );
+  };
+
   render() {
     const { navigation } = this.props;
 
     this.state.dogs = removeDuplicates(this.state.dogs);
+    console.log('this.state', this.state.dogs);
 
     return (
       <View style={styles.container}>
         <FlatList
           numColumns={2}
           keyExtractor={({ item, key }) => key.toString()}
-          data={this.state.dogs ? this.state.dogs : this.props.allDogs}
+          data={
+            this.state.dogs.length !== 0 ? this.state.dogs : this.props.allDogs
+          }
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() => {
@@ -84,6 +91,12 @@ class AllDogs extends Component {
           )}
           bounces={false}
           onEndReached={() => this.handleLoadMore()}
+          onEndReachedThreshold={0.1}
+          ListFooterComponent={this.renderFooter}
+          initialNumToRender={8}
+          onMomentumScrollBegin={() => {
+            this.onEndReachedCalledDuringMomentum = false;
+          }}
         />
       </View>
     );
