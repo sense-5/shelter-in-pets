@@ -36,14 +36,6 @@ class Request extends Component{
     }
   }//end constructor
 
-  componentDidMount(){
-    console.log('component mounted')
-  }
-
-  componentDidUpdate(){
-    console.log('hello update happened hi')
-  }
-
   render(){
     const age = this.state.age
     const size = this.state.size
@@ -316,7 +308,6 @@ class Request extends Component{
 
       </View>
       </ScrollView>
-      // scrollview for testing purps before formatting is fixed
     )
   }
 }
