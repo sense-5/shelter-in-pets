@@ -2,8 +2,8 @@
   "expoServerPort": 19000,
   "expoServerNgrokUrl": "https://xt-stj.anonymous.shelter-in-pets.exp.direct",
   "packagerNgrokUrl": "https://packager.xt-stj.anonymous.shelter-in-pets.exp.direct",
-  "ngrokPid": 15267,
+  "ngrokPid": 17365,
   "devToolsPort": 19002,
   "packagerPort": 19007,
-  "packagerPid": 15246
+  "packagerPid": 17355
 }

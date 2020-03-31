@@ -38,25 +38,6 @@ export const getLikedDogs = () => {
   };
 };
 
-export const getAllDogs = page => {
-  return async dispatch => {
-    try {
-      if (!page) {
-        page = 1;
-      }
-      const { data } = await axios.get(
-        // `https://shelter-in-pets-server.herokuapp.com/api/dogs/${page}`
-        `http://localhost:3000/api/dogs/${page}`
-      );
-      let dogImages = getDogImages(data.animals);
-
-      dispatch(gotAllDogs(dogImages));
-    } catch (error) {
-      console.error(error);
-    }
-  };
-};
-
 const initialState = {
   allLikedDogs: [],
   likedStatus: null,

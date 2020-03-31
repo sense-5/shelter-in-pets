@@ -104,6 +104,10 @@ class Profile extends React.Component {
               onPress={() => {
                 navigation.navigate('home');
               }}
+              bounces={false}
+              onEndReached={() => this.handleLoadMore()}
+              onEndReachedThreshold={0.2}
+              ListFooterComponent={this.renderFooter}
             />
           </View>
         )}
