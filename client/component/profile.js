@@ -65,9 +65,9 @@ class Profile extends React.Component {
 
     return (
       <View>
-        {dogs.allLikedDogs.length !== 0 ? (
+        {dogs.length !== 0 ? (
           <ScrollView>
-            {dogs.allLikedDogs.map(dog => {
+            {dogs.map(dog => {
               const regex = new RegExp('[0-9]+');
               if (regex.test(dog.name)) {
                 dog.name = 'Doggo';
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     // user: state.user,
-    allLikedDogs: state.likedDogs,
+    allLikedDogs: state.likedDogs.allLikedDogs,
   };
 };
 
