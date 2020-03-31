@@ -57,9 +57,10 @@ class Request extends Component{
     return(
       <ScrollView>
       <View style={styles.container}>
-        <View>
+        {/* <View style={styles.ageContainer}> */}
           {/* age */}
           <Text>Age:</Text>
+          <View style={styles.boxes}>
           <CheckBox title="puppy" checked={!age.puppy} onPress={()=>{
             this.setState({
               age: {
@@ -116,25 +117,29 @@ class Request extends Component{
             }
           }}/>
         </View>
+        {/* </View> */}
 
-        <View>
+        {/* <View> */}
           {/* size */}
           <Text>Size:</Text>
 
-          <CheckBox title="small" checked={!size.small} onPress={() => {
-            this.setState({
-              size: {
-                ...size,
-                small: !size.small
-              }
-            })//end set state
+          <View style={styles.boxes}>
+          <CheckBox title="small" checked={!size.small}
+            style={styles.option}
+            onPress={() => {
+              this.setState({
+                size: {
+                  ...size,
+                  small: !size.small
+                }
+              })//end set state
 
-            if(size.small) reqSize.push('small')
-            else {
-              const smallIdx = reqSize.indexOf('small')
-              reqSize.splice(smallIdx, 1)
-            }
-          }} />
+              if(size.small) reqSize.push('small')
+              else {
+                const smallIdx = reqSize.indexOf('small')
+                reqSize.splice(smallIdx, 1)
+              }
+            }} />
 
           <CheckBox title="medium" checked={!size.medium} onPress={()=> {
             this.setState({
@@ -180,13 +185,15 @@ class Request extends Component{
               reqSize.splice(xlargeIdx, 1)
             }
           }} />
-        </View>
+          </View>
+        {/* </View> */}
 
-        <View>
+        {/* <View> */}
           {/* coat */}
           <Text>Coat:</Text>
 
           {/* short */}
+          <View style={styles.boxes}>
           <CheckBox title="short" checked={!coat.short} onPress={()=> {
             this.setState({
               coat: {
@@ -267,6 +274,7 @@ class Request extends Component{
           }} />
 
         </View>
+        {/* </View> */}
 
           <Button title="Show me the doggos" onPress={()=>{
             this.props.fetchRequestedDogs(this.requestedAttributes)
@@ -285,7 +293,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
-  }
+  },
+  ageContainer: {
+    backgroundColor: 'yellow'
+  },
+  boxes: {
+    // backgroundColor: 'yellow',
+    width: '80%',
+    justifyContent: 'space-evenly',
+    alignSelf: 'center'
+  },
 })
 
 const mapDispatch = dispatch => ({
