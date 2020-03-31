@@ -1,12 +1,12 @@
 function titleCase(str) {
-  str = str.toLowerCase().split(" ");
+  str = str.toLowerCase().split(' ');
   for (let i = 0; i < str.length; i++) {
     str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
   }
-  str = str.join(" ");
-  let resultStr = "";
+  str = str.join(' ');
+  let resultStr = '';
   for (let j = 0; j < str.length; j++) {
-    if (str[j - 1] === "/" || str[j - 1] === "-" || str[j - 1] === "(") {
+    if (str[j - 1] === '/' || str[j - 1] === '-' || str[j - 1] === '(') {
       let letter = str[j];
       let newletter = letter.toUpperCase();
       resultStr += newletter;
@@ -17,19 +17,18 @@ function titleCase(str) {
   return resultStr;
 }
 
-
 function redoPhoneNum(string) {
   if (string === null) {
-    return "000000000";
+    return '000000000';
   } else {
-    let final = "";
+    let final = '';
     for (let i = 0; i < string.length; i++) {
       let letter = string[i];
       if (
-        letter !== "(" &&
-        letter !== ")" &&
-        letter !== " " &&
-        letter !== "-"
+        letter !== '(' &&
+        letter !== ')' &&
+        letter !== ' ' &&
+        letter !== '-'
       ) {
         final += letter;
       }
@@ -39,13 +38,13 @@ function redoPhoneNum(string) {
 }
 
 function redoCity(string) {
-  let final = "";
+  let final = '';
   for (let i = 0; i < string.length; i++) {
     let letter = string[i];
-    if (letter !== " ") {
+    if (letter !== ' ') {
       final += letter;
     } else {
-      final += "+";
+      final += '+';
     }
   }
   return final;
@@ -59,6 +58,24 @@ function upperCase(str) {
   return strArr.join(' ');
 }
 
-module.exports = { titleCase, upperCase, redoPhoneNum, redoCity };
+function removeDuplicates(arr) {
+  const result = arr.reduce((acc, current) => {
+    const duplicates = acc.find(dog => {
+      return dog.key === current.key;
+    });
+    if (!duplicates) {
+      return acc.concat([current]);
+    } else {
+      return acc;
+    }
+  }, []);
+  return result;
+}
 
-
+module.exports = {
+  titleCase,
+  upperCase,
+  redoPhoneNum,
+  redoCity,
+  removeDuplicates,
+};
