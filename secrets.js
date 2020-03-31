@@ -1,3 +1,0 @@
-process.env.PETFINDER_KEY = 'aN22OVtdbP64UmviY5v7hUtq5eTU7Ms1SrhwFzmSAmtTugRujh'
-
-process.env.PETFINDER_SECRET = '2JLd423GZKoE6eHeOGrOBCcnHICvQ38O6Tzv5xSp'
