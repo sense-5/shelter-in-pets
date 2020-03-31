@@ -65,7 +65,7 @@ class Profile extends React.Component {
     return (
       <View style={styles.container}>
         <View>
-          <Text style={styles.topHeader}>My Favorites</Text>
+          <Text style={styles.topHeader}>My Favorites Page</Text>
         </View>
         <ScrollView>
           {dogs.allLikedDogs.map(dog => {

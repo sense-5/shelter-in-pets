@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
-    width: 420,
+    width: 1000,
     color: '#147efb',
     backgroundColor: 'white',
     padding: 10
