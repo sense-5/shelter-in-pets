@@ -72,8 +72,6 @@ class ImagePick extends Component {
   }
 
   render() {
-    console.log('image picker props ', this.props)
-
     const breeds = this.state.allBreeds;
     const dogBreed = this.state.dogBreed;
     return (
