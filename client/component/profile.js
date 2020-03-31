@@ -8,11 +8,7 @@ import {
   Button,
   ActivityIndicator,
   RefreshControl,
-<<<<<<< HEAD
   FlatList
-=======
-  FlatList,
->>>>>>> 8c5ec8c15c0e295de5f557b14390cb6158c5c174
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
@@ -27,7 +23,7 @@ class Profile extends React.Component {
     super(props);
     this.state = {
       isLoading: true,
-      dogs: [],
+      dogs: []
     };
     this.handleLoadMore = this.handleLoadMore.bind(this);
   }
@@ -35,7 +31,7 @@ class Profile extends React.Component {
   async componentDidMount() {
     await this.props.getLikedDogs(this.state.page);
     this.setState({
-      dogs: this.props.allLikedDogs,
+      dogs: this.props.allLikedDogs
     });
   }
 
@@ -43,20 +39,14 @@ class Profile extends React.Component {
     await this.props.getLikedDogs();
     this.setState({
       isLoading: false,
-      dogs: [...(this.state.dogs = this.props.allLikedDogs)],
+      dogs: [...(this.state.dogs = this.props.allLikedDogs)]
     });
   }
 
-<<<<<<< HEAD
-  render() {
-    const { navigation } = this.props;
-    const dogs = this.props.allLikedDogs;
-    console.log('in profile:', dogs.allLikedDogs);
-=======
   renderFooter = () => {
     return (
       <View>
-        <ActivityIndicator animating size="large" />
+        <ActivityIndicator animating size='large' />
       </View>
     );
   };
@@ -64,7 +54,6 @@ class Profile extends React.Component {
   render() {
     const { navigation } = this.props;
     const dogs = this.state.dogs;
->>>>>>> 8c5ec8c15c0e295de5f557b14390cb6158c5c174
 
     return (
       <View>
@@ -72,57 +61,6 @@ class Profile extends React.Component {
           <Text style={styles.topHeader}>Favorited Dogs</Text>
         </View>
         {dogs.length !== 0 ? (
-<<<<<<< HEAD
-          <ScrollView>
-            {dogs.map(dog => {
-              const regex = new RegExp('[0-9]+');
-              if (regex.test(dog.name)) {
-                dog.name = 'Doggo';
-              }
-
-              return (
-                <View key={dog.id} style={styles.dogContainer}>
-                  <View style={styles.dogHeader}>
-                    {dog.photos[0] ? (
-                      <Image
-                        source={{ uri: dog.photos[0].full }}
-                        style={styles.dogIcon}
-                      />
-                    ) : (
-                      <Image source={dogImg} style={styles.dogIcon} />
-                    )}
-
-                    <Text style={styles.nameMain}>{titleCase(dog.name)}</Text>
-                  </View>
-
-                  <TouchableOpacity
-                    onPress={() => {
-                      navigation.navigate('Single Dog', dog);
-                    }}
-                  >
-                    {dog.photos[0] ? (
-                      <Image
-                        source={{ uri: dog.photos[0].full }}
-                        style={styles.image}
-                      />
-                    ) : (
-                      <Image source={dogImg} style={styles.image} />
-                    )}
-                  </TouchableOpacity>
-                  {dog.name === 'Doggo' ? (
-                    <Text style={styles.name}>
-                      Woof! Please give me a name!
-                    </Text>
-                  ) : (
-                    <Text style={styles.name}>
-                      Woof! My name is {titleCase(dog.name)}!
-                    </Text>
-                  )}
-                </View>
-              );
-            })}
-          </ScrollView>
-=======
           <FlatList
             style={{ height: '100%' }}
             keyExtractor={item => item.id.toString()}
@@ -157,7 +95,6 @@ class Profile extends React.Component {
             onEndReachedThreshold={0.2}
             ListFooterComponent={this.renderFooter}
           />
->>>>>>> 8c5ec8c15c0e295de5f557b14390cb6158c5c174
         ) : (
           <View style={styles.textContainer}>
             <Text style={styles.buttonText}>
