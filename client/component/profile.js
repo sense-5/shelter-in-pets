@@ -41,6 +41,7 @@ class Profile extends React.Component {
   render() {
     const { navigation } = this.props;
     const dogs = this.props.allLikedDogs;
+    console.log('in profile:', dogs.allLikedDogs);
 
     // const [refreshing, setRefreshing] = React.useState(false);
     // const [listData, setListData] = React.useState(this.props.allLikedDogs);
@@ -64,60 +65,79 @@ class Profile extends React.Component {
 
     return (
       <View>
-        <ScrollView>
-          {dogs.allLikedDogs.map(dog => {
-            const regex = new RegExp('[0-9]+');
-            if (regex.test(dog.name)) {
-              dog.name = 'Doggo';
-            }
+        {dogs.allLikedDogs.length !== 0 ? (
+          <ScrollView>
+            {dogs.allLikedDogs.map(dog => {
+              const regex = new RegExp('[0-9]+');
+              if (regex.test(dog.name)) {
+                dog.name = 'Doggo';
+              }
 
-            return (
-              <View key={dog.id} style={styles.dogContainer}>
-                <View style={styles.dogHeader}>
-                  {dog.photos[0] ? (
-                    <Image
-                      source={{ uri: dog.photos[0].full }}
-                      style={styles.dogIcon}
-                    />
+              return (
+                <View key={dog.id} style={styles.dogContainer}>
+                  <View style={styles.dogHeader}>
+                    {dog.photos[0] ? (
+                      <Image
+                        source={{ uri: dog.photos[0].full }}
+                        style={styles.dogIcon}
+                      />
+                    ) : (
+                      <Image source={dogImg} style={styles.dogIcon} />
+                    )}
+
+                    <Text style={styles.nameMain}>{titleCase(dog.name)}</Text>
+                  </View>
+
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate('Single Dog', dog);
+                    }}
+                  >
+                    {dog.photos[0] ? (
+                      <Image
+                        source={{ uri: dog.photos[0].full }}
+                        style={styles.image}
+                      />
+                    ) : (
+                      <Image source={dogImg} style={styles.image} />
+                    )}
+                  </TouchableOpacity>
+                  {dog.name === 'Doggo' ? (
+                    <Text style={styles.name}>
+                      Woof! Please give me a name!
+                    </Text>
                   ) : (
-                    <Image source={dogImg} style={styles.dogIcon} />
+                    <Text style={styles.name}>
+                      Woof! My name is {titleCase(dog.name)}!
+                    </Text>
                   )}
-
-                  <Text style={styles.nameMain}>{titleCase(dog.name)}</Text>
                 </View>
-
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate('Single Dog', dog);
-                  }}
-                >
-                  {dog.photos[0] ? (
-                    <Image
-                      source={{ uri: dog.photos[0].full }}
-                      style={styles.image}
-                    />
-                  ) : (
-                    <Image source={dogImg} style={styles.image} />
-                  )}
-                </TouchableOpacity>
-                {dog.name === 'Doggo' ? (
-                  <Text style={styles.name}>Woof! Please give me a name!</Text>
-                ) : (
-                  <Text style={styles.name}>
-                    Woof! My name is {titleCase(dog.name)}!
-                  </Text>
-                )}
-              </View>
-            );
-          })}
-          {/* <RefreshControl refreshing={refreshing} onRefresh={onRefresh} /> */}
-        </ScrollView>
+              );
+            })}
+            {/* <RefreshControl refreshing={refreshing} onRefresh={onRefresh} /> */}
+          </ScrollView>
+        ) : (
+          <View style={styles.textContainer}>
+            <Button
+              title="Like Some Dogs"
+              onPress={() => {
+                navigation.navigate('home');
+              }}
+            />
+          </View>
+        )}
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  textContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    marginTop: 200,
+  },
   dogContainer: {
     marginBottom: 20,
   },
