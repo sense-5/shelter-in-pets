@@ -25,4 +25,18 @@ function upperCase(str) {
   return strArr.join(' ');
 }
 
-module.exports = { titleCase, upperCase };
+function removeDuplicates(arr) {
+  const result = arr.reduce((acc, current) => {
+    const duplicates = acc.find(dog => {
+      return dog.key === current.key;
+    });
+    if (!duplicates) {
+      return acc.concat([current]);
+    } else {
+      return acc;
+    }
+  }, []);
+  return result;
+}
+
+module.exports = { titleCase, upperCase, removeDuplicates };

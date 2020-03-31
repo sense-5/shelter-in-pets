@@ -85,8 +85,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   image: {
-    height: 210,
-    width: 210,
+    height: 205,
+    width: 205,
   },
   dogImage: {
     height: 400,

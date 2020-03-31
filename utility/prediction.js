@@ -119,15 +119,16 @@ function getBreedOptions(breeds, dogBreed) {
 
 function getDogImages(dogs) {
   let result = [];
+
   //filter out dogs without images
   dogs = dogs.filter(dog => {
     return dog.photos.length !== 0;
   });
-  result = dogs.map((dog, idx) => {
+  result = dogs.map(dog => {
     return {
       uri: dog.photos[0].full,
       dog: dog,
-      key: idx,
+      key: dog.id,
     };
   });
   return result;

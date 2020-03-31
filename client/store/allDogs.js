@@ -21,14 +21,19 @@ const initalState = {
 };
 
 // action thunk
-export const getAllDogs = () => {
+export const getAllDogs = page => {
   return async dispatch => {
     try {
+      if (!page) {
+        page = 1;
+      }
       const { data } = await axios.get(
-        // 'https://shelter-in-pets-server.herokuapp.com/api/dogs'
-        'http://localhost:3000/api/dogs'
+        // `https://shelter-in-pets-server.herokuapp.com/api/dogs/${page}`
+        `http://localhost:3000/api/dogs/${page}`
       );
-      dispatch(gotAllDogs(data.animals));
+      let dogImages = getDogImages(data.animals);
+
+      dispatch(gotAllDogs(dogImages));
     } catch (error) {
       console.error(error);
     }
