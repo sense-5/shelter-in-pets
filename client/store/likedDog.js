@@ -26,9 +26,31 @@ export const likeDog = dog => async dispatch => {
 export const getLikedDogs = () => {
   return async dispatch => {
     try {
-      const { data } = await axios.get('http://localhost:3000/api/likedDog');
-      // console.log('get liked dogs thuck:', data);
+      const { data } = await axios.get(
+        'http://localhost:3000/api/likedDog/'
+        //'https://shelter-in-pets-server.herokuapp.com/api/likedDog/'
+      );
+
       dispatch(gotLikedDogs(data));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+export const getAllDogs = page => {
+  return async dispatch => {
+    try {
+      if (!page) {
+        page = 1;
+      }
+      const { data } = await axios.get(
+        // `https://shelter-in-pets-server.herokuapp.com/api/dogs/${page}`
+        `http://localhost:3000/api/dogs/${page}`
+      );
+      let dogImages = getDogImages(data.animals);
+
+      dispatch(gotAllDogs(dogImages));
     } catch (error) {
       console.error(error);
     }
