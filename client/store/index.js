@@ -5,11 +5,10 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import user from './user';
 import dogs from './allDogs';
 import pickedImage from './imagePicker';
-import dog from './likedDog';
-
+import likedDogs from './likedDog';
 import requestedAttributes from './requestedAttributes'
 
-const reducer = combineReducers({ user, dogs, pickedImage, dog, requestedAttributes });
+const reducer = combineReducers({ user, dogs, pickedImage, likedDogs, requestedAttributes });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
