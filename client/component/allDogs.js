@@ -7,18 +7,17 @@ import {
   Image,
   Linking,
   Button,
-  ActivityIndicator
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { connect } from "react-redux";
-import { getAllDogs } from "../store/allDogs";
-import { likedDog } from "../store/likedDog";
-import { titleCase, redoPhoneNum, redoCity } from "../../utility/utils";
-import axios from "axios";
+  ActivityIndicator,
+} from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { connect } from 'react-redux';
+import { getAllDogs } from '../store/allDogs';
+import { likedDog } from '../store/likedDog';
+import { titleCase } from '../../utility/utils';
+import axios from 'axios';
 
-const dogImg = require("../../assets/images/dog2.jpg");
-let count = 1;
+
 class AllDogs extends Component {
   constructor() {
     super();
@@ -35,16 +34,12 @@ class AllDogs extends Component {
   }
 
   async like(dog) {
-    console.log("in like handler AD");
+
     await this.props.likedDog(dog);
     // this.setState({ likedPaw: !this.state.likedPaw });
   }
 
   async view(dog) {
-    if (count > 0) {
-      console.log("in view handler AD", count);
-      count++;
-    }
 
     await axios.post(
       "http://localhost:3000/api/viewedDog",

@@ -1,14 +1,20 @@
-import React, { Component } from "react";
-import { View, Text, Image, Button, StyleSheet } from "react-native";
-import * as ImagePicker from "expo-image-picker";
-import { connect } from "react-redux";
-import { getPickedImage, getAllBreeds } from "../store/imagePicker";
-import Clarifai from "clarifai";
-import { breedPrediction } from "../../utility/prediction";
+
+
+
+import React, { Component } from 'react';
+import { View, Text, Image, Button, StyleSheet } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
+import { connect } from 'react-redux';
+import { getPickedImage, getAllBreeds } from '../store/imagePicker';
+import Clarifai from 'clarifai';
+import { breedPrediction } from '../../utility/prediction';
+import { upperCase } from '../../utility/utils';
 // import { TapGestureHandler } from 'react-native-gesture-handler';
 
-import { CLARIFAI_KEY } from "react-native-dotenv";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { CLARIFAI_KEY } from 'react-native-dotenv';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { NavigationContext } from 'react-navigation';
+
 
 const app = new Clarifai.App({
   apiKey: `${CLARIFAI_KEY}`
@@ -53,7 +59,8 @@ class ImagePick extends Component {
         const result = breedPrediction(concepts, this.state.allBreeds);
 
         if (result.length !== 0) {
-          const dogBreed = result[0];
+          let dogBreed = result[0];
+          dogBreed = upperCase(dogBreed);
           this.setState({
             dogBreed
           });
@@ -69,6 +76,8 @@ class ImagePick extends Component {
   }
 
   render() {
+    const breeds = this.state.allBreeds;
+    const dogBreed = this.state.dogBreed;
     return (
       <View style={styles.container}>
         {this.props.pickedImage.pickedImage ? (
@@ -77,21 +86,31 @@ class ImagePick extends Component {
               style={styles.image}
               source={{ uri: this.props.pickedImage.pickedImage }}
             />
-            {this.state.dogBreed ? (
-              <Text style={styles.text1}>
-                Are you looking for a {this.state.dogBreed}?
-              </Text>
+            {dogBreed ? (
+              <View>
+                <Text style={styles.text1}>
+                  Are you looking for a {dogBreed}?
+                </Text>
+                <View style={styles.buttonContainer}>
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => {
+                      this.props.navigation.navigate('Breed Options', {
+                        breeds,
+                        dogBreed,
+                      });
+                    }}
+                  >
+                    <Text style={styles.buttonText}>Yes! Show me more...</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.button}>
+                    <Text style={styles.buttonText}>I'm not sure...?</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
             ) : (
               <Text style={styles.text1}>Sorry we're not sure.</Text>
             )}
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>Yes! Show me more...</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>I'm not sure...?</Text>
-              </TouchableOpacity>
-            </View>
 
             <Button
               title="Wait, I'll pick a different image!"

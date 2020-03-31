@@ -1,8 +1,8 @@
 {
   "hostType": "lan",
   "lanType": "ip",
-  "urlRandomness": "jv-uhg",
   "dev": true,
   "minify": false,
+  "urlRandomness": "tc-cug",
   "https": false
 }

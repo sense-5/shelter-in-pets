@@ -17,6 +17,7 @@ function titleCase(str) {
   return resultStr;
 }
 
+
 function redoPhoneNum(string) {
   if (string === null) {
     return "000000000";
@@ -50,4 +51,14 @@ function redoCity(string) {
   return final;
 }
 
-module.exports = { titleCase, redoPhoneNum, redoCity };
+function upperCase(str) {
+  let strArr = str.split(' ');
+  for (let i = 0; i < strArr.length; i++) {
+    strArr[i] = strArr[i][0].toUpperCase() + strArr[i].slice(1);
+  }
+  return strArr.join(' ');
+}
+
+module.exports = { titleCase, upperCase, redoPhoneNum, redoCity };
+
+

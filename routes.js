@@ -1,16 +1,22 @@
-import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer, StackActions } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import * as React from "react";
-import { connect } from "react-redux";
-import { logout } from "./client/store/user";
-import { Text, View, Button } from "react-native";
-import ImagePick from "./client/component/ImagePicker";
-import Signup from "./client/screens/signup";
 
-import { Ionicons } from "@expo/vector-icons";
-import Profile from "./client/component/profile";
-import HomeScreen from "./client/screens/home";
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import * as React from 'react';
+import { connect } from 'react-redux';
+import { logout } from './client/store/user';
+import { Text, View, Button } from 'react-native';
+import ImagePick from './client/component/ImagePicker';
+import Signup from './client/screens/signup';
+import BreedOptions from './client/component/breedOptions';
+import DogsByBreed from './client/component/dogsByBreed';
+import { Ionicons } from '@expo/vector-icons';
+import Profile from './client/component/profile';
+import Request from './client/component/requestForm'
+
+import HomeScreen from './client/screens/home';
+import { getLikedDogs } from './client/store/likedDog';
+
 
 import Dog from "./client/component/singleDog";
 
@@ -50,7 +56,15 @@ function isLoggedIn({ navigation }) {
         Screen={() => <HomeScreen navigation={navigation} />}
       />
       <Tab.Screen name="upload" component={ImagePick} />
-      <Tab.Screen name="profile" component={Profile} />
+      <Tab.Screen
+        name="profile"
+        component={Profile}
+        onPress={() => {
+          {
+            getLikedDogs();
+          }
+        }}
+      />
     </Tab.Navigator>
   );
 }
@@ -104,6 +118,22 @@ class Root extends React.Component {
               headerTitle: ""
             })}
           />
+
+          <Stack.Screen
+            name="Breed Options"
+            component={BreedOptions}
+            options={({ navigation }) => ({
+              headerTitle: '',
+            })}
+          />
+
+          <Stack.Screen
+            name="Dogs By Breed"
+            component={DogsByBreed}
+            options={({ navigation }) => ({
+              headerTitle: '',
+            })}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );
@@ -111,14 +141,20 @@ class Root extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    user: state.user
+
+
+    allLikedDogs: state.likedDogs,
+    user: state.user,
+
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     logout: () => {
       dispatch(logout());
-    }
+    },
+    getLikedDogs: () => dispatch(getLikedDogs()),
+
   };
 };
 
