@@ -8,16 +8,14 @@ import {
   Button,
   ActivityIndicator,
   RefreshControl,
-  FlatList,
+  FlatList
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import { titleCase } from '../../utility/utils';
 import { getLikedDogs } from '../store/likedDog';
 import axios from 'axios';
 
-import { getMe } from '../store/user';
 const dogImg = require('../../assets/images/dog2.jpg');
 
 class Profile extends React.Component {
@@ -25,7 +23,7 @@ class Profile extends React.Component {
     super(props);
     this.state = {
       isLoading: true,
-      dogs: [],
+      dogs: []
     };
     this.handleLoadMore = this.handleLoadMore.bind(this);
   }
@@ -33,7 +31,7 @@ class Profile extends React.Component {
   async componentDidMount() {
     await this.props.getLikedDogs(this.state.page);
     this.setState({
-      dogs: this.props.allLikedDogs,
+      dogs: this.props.allLikedDogs
     });
   }
 
@@ -41,14 +39,14 @@ class Profile extends React.Component {
     await this.props.getLikedDogs();
     this.setState({
       isLoading: false,
-      dogs: [...(this.state.dogs = this.props.allLikedDogs)],
+      dogs: [...(this.state.dogs = this.props.allLikedDogs)]
     });
   }
 
   renderFooter = () => {
     return (
       <View>
-        <ActivityIndicator animating size="large" />
+        <ActivityIndicator animating size='large' />
       </View>
     );
   };
@@ -60,7 +58,7 @@ class Profile extends React.Component {
     return (
       <View>
         <View>
-          <Text style={styles.topHeader}>My Favorites Page</Text>
+          <Text style={styles.topHeader}>Favorited Dogs</Text>
         </View>
         {dogs.length !== 0 ? (
           <FlatList
@@ -99,12 +97,17 @@ class Profile extends React.Component {
           />
         ) : (
           <View style={styles.textContainer}>
-            <Button
-              title="Like Some Dogs"
+            <Text style={styles.buttonText}>
+              You have not favorited any dogs yet
+            </Text>
+            <TouchableOpacity
+              style={styles.button2}
               onPress={() => {
                 navigation.navigate('home');
               }}
-            />
+            >
+              <Text style={styles.buttonText}>Browse All Dogs</Text>
+            </TouchableOpacity>
           </View>
         )}
       </View>
@@ -114,39 +117,39 @@ class Profile extends React.Component {
 
 const styles = StyleSheet.create({
   textContainer: {
-    flex: 1,
+    //flex: 1,
     alignItems: 'center',
-    justifyContent: 'flex-start',
-    marginTop: 200,
+    //justifyContent: 'flex-start',
+    marginTop: 200
   },
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-start'
   },
   dogContainer: {
-    marginBottom: 20,
+    marginBottom: 20
   },
   image: {
     height: 350,
-    width: '100%',
+    width: '100%'
   },
   name: {
     fontSize: 18,
     paddingTop: 10,
-    paddingLeft: 10,
+    paddingLeft: 10
   },
   nameMain: {
     fontSize: 22,
     paddingTop: 3,
     paddingBottom: 3,
     paddingLeft: 10,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   dogIcon: {
     width: 30,
     height: 30,
     borderRadius: 50,
-    padding: 5,
+    padding: 5
   },
   topHeader: {
     fontSize: 22,
@@ -154,32 +157,46 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#147efb',
     backgroundColor: 'white',
-    padding: 10,
+    padding: 10
   },
   dogHeader: {
     flexDirection: 'row',
-    padding: 5,
+    padding: 5
   },
   dogFooter: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     padding: 5,
     marginLeft: 0,
-    width: '25%',
+    width: '25%'
   },
+  button2: {
+    backgroundColor: 'white',
+    borderColor: '#147efb',
+    borderWidth: 2,
+    borderRadius: 10,
+    padding: 10,
+    margin: 20,
+    width: 300
+  },
+  buttonText: {
+    color: '#147efb',
+    textAlign: 'center',
+    fontSize: 18
+  }
 });
 
 const mapStateToProps = state => {
   return {
     // user: state.user,
-    allLikedDogs: state.likedDogs.allLikedDogs,
+    allLikedDogs: state.likedDogs.allLikedDogs
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     // getMe: () => dispatch(getMe()),
-    getLikedDogs: () => dispatch(getLikedDogs()),
+    getLikedDogs: () => dispatch(getLikedDogs())
   };
 };
 

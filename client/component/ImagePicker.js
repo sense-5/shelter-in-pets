@@ -101,7 +101,7 @@ class ImagePick extends Component {
                     </Text>
                     <View style={styles.buttonContainer}>
                       <TouchableOpacity
-                        style={styles.button}
+                        style={styles.button2}
                         onPress={() => {
                           this.props.navigation.navigate('Breed Options', {
                             breeds,
@@ -109,24 +109,30 @@ class ImagePick extends Component {
                           });
                         }}
                       >
-                        <Text style={styles.buttonText}>Show me more!</Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText}>I'm not sure...</Text>
+                        <Text style={styles.buttonText}>
+                          Yes! Show me more!
+                        </Text>
                       </TouchableOpacity>
                     </View>
                   </View>
                 ) : (
-                  <Text style={styles.text3}>Sorry we're not sure.</Text>
+                  <View>
+                    <Text style={styles.text3}>Sorry we're not sure.</Text>
+                  </View>
                 )}
-
                 <TouchableOpacity
                   style={styles.button2}
                   onPress={this.openImagePicker}
                 >
-                  <Text style={styles.buttonText}>
-                    I'll pick a different Image
-                  </Text>
+                  <Text style={styles.buttonText}>Choose Different Image</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.button2}
+                  onPress={() =>
+                    this.props.navigation.navigate('Filtered Search')
+                  }
+                >
+                  <Text style={styles.buttonText}>Try Filtered Search</Text>
                 </TouchableOpacity>
               </View>
             ) : (
@@ -148,16 +154,15 @@ class ImagePick extends Component {
                   <Text style={styles.text2}>No Picture? No Problem.</Text>
                   <TouchableOpacity
                     style={styles.button2}
-                    onPress={this.props.navigation.navigate('Filtered Search')}
+                    onPress={() =>
+                      this.props.navigation.navigate('Filtered Search')
+                    }
                   >
-                    <Text style={styles.buttonText}>
-                      Use Filtered Search Instead
-                    </Text>
+                    <Text style={styles.buttonText}>Try Filtered Search</Text>
                   </TouchableOpacity>
                 </View>
               </View>
             )}
-
           </View>
         </ScrollView>
       </View>
@@ -195,7 +200,7 @@ const styles = StyleSheet.create({
   },
   text3: {
     textAlign: 'center',
-    fontSize: 22,
+    fontSize: 21,
     padding: 5,
     marginTop: 10,
     color: '#147efb',
@@ -232,15 +237,6 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 20,
     width: 300
-  },
-  button: {
-    backgroundColor: 'white',
-    borderColor: '#147efb',
-    borderWidth: 2,
-    borderRadius: 10,
-    padding: 10,
-    margin: 20,
-    width: 150
   },
   buttonText: {
     color: '#147efb',
