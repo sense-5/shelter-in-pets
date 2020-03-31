@@ -112,7 +112,6 @@ class ImagePick extends Component {
               title="Wait, I'll pick a different image!"
               onPress={this.openImagePicker}
             />
-
           </View>
         ) : (
           <View>
