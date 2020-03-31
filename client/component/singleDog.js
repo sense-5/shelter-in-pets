@@ -1,32 +1,29 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Linking } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { likedDog } from '../store/likedDog';
+import { likeDog } from '../store/likedDog';
 import { connect } from 'react-redux';
 import { titleCase } from '../../utility/utils';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import axios from 'axios';
 
 const dogImg = require('../../assets/images/dog2.jpg');
-
-// let count = 1;
 
 class SingleDog extends Component {
   constructor() {
     super();
-    // this.state = {
-    //   likedPaw: false,
-    // };
+    this.state = {
+      likedPaw: false,
+    };
     this.like = this.like.bind(this);
   }
 
   async like(dog) {
-    // if (count > 0) {
-    //   console.log('in like handler SD', count);
-    //   count++;
-    // }
+    // console.log('in like');
+    await this.props.likeDog(dog);
+    // console.log('dog in like:', dog.id);
 
-    await this.props.likedDog(dog);
-    // this.setState({ likedPaw: !this.state.likedPaw });
+    this.setState({ likedPaw: !this.state.likedPaw });
   }
 
   render() {
@@ -58,7 +55,7 @@ class SingleDog extends Component {
             <Ionicons
               name={'ios-paw'}
               size={30}
-              color={status ? 'hotpink' : 'grey'} //#fb1d1d good red color for eventual toggle
+              color={this.state.likedPaw ? 'hotpink' : 'grey'}
             />
           </TouchableOpacity>
 
@@ -201,14 +198,14 @@ class SingleDog extends Component {
 
 const mapStateToProps = state => {
   return {
-    status: state.dog.likedStatus,
+    status: state.likedDogs.likedStatus,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    likedDog: dog => {
-      dispatch(likedDog(dog));
+    likeDog: dog => {
+      dispatch(likeDog(dog));
     },
   };
 };
