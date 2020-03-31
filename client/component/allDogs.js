@@ -4,15 +4,9 @@ import {
   Text,
   StyleSheet,
   Image,
-<<<<<<< HEAD
   FlatList,
   ActivityIndicator,
   Dimensions,
-=======
-  Linking,
-  Button,
-  ActivityIndicator
->>>>>>> master
 } from 'react-native';
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -22,11 +16,6 @@ import { likedDog } from '../store/likedDog';
 import { removeDuplicates } from '../../utility/utils';
 import axios from 'axios';
 
-<<<<<<< HEAD
-=======
-const dogImg = require('../../assets/images/dog2.jpg');
-
->>>>>>> master
 class AllDogs extends Component {
   constructor() {
     super();
@@ -41,19 +30,10 @@ class AllDogs extends Component {
   }
 
   async componentDidMount() {
-<<<<<<< HEAD
     await this.props.getAllDogs(this.state.page);
     this.setState({
       dogs: this.props.allDogs,
     });
-=======
-    await this.props.getAllDogs();
-  }
-
-  async like(dog) {
-    await this.props.likedDog(dog);
-    // this.setState({ likedPaw: !this.state.likedPaw });
->>>>>>> master
   }
 
   async view(dog) {
@@ -67,7 +47,6 @@ class AllDogs extends Component {
     );
   }
 
-<<<<<<< HEAD
   async handleLoadMore() {
     this.setState({
       page: this.state.page + 1,
@@ -86,67 +65,6 @@ class AllDogs extends Component {
       </View>
     );
   };
-=======
-  render() {
-    const { navigation } = this.props;
-    // const { likedPaw } = this.state;
-    console.log('this is props: ', this.props);
-    return (
-      <View>
-        <View>
-          <Text style={styles.topHeader}>Shelter-In-Pets</Text>
-        </View>
-        <ScrollView>
-          {this.props.allDogs.map(dog => {
-            const regex = new RegExp('[0-9]+');
-            if (regex.test(dog.name)) {
-              dog.name = 'Doggo';
-            }
-
-            return (
-              <View key={dog.id} style={styles.dogContainer}>
-                <View style={styles.dogHeader}>
-                  {dog.photos[0] ? (
-                    <Image
-                      source={{ uri: dog.photos[0].full }}
-                      style={styles.dogIcon}
-                    />
-                  ) : (
-                    <Image source={dogImg} style={styles.dogIcon} />
-                  )}
-
-                  <Text style={styles.nameMain}>{titleCase(dog.name)}</Text>
-                </View>
-
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate('Single Dog', dog);
-                    this.view(dog);
-                  }}
-                >
-                  {dog.photos[0] ? (
-                    <Image
-                      source={{ uri: dog.photos[0].full }}
-                      style={styles.image}
-                    />
-                  ) : (
-                    <Image source={dogImg} style={styles.image} />
-                  )}
-                </TouchableOpacity>
-                {/* <View style={styles.dogFooter}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      this.like(dog);
-                    }}
-                  >
-                    <Ionicons
-                      name={"ios-paw"}
-                      color={"grey"}
-                      // replace after debugging like : likedPaw ? 'hotpink' : 'grey'
-                      size={30}
-                    />
-                  </TouchableOpacity>
->>>>>>> master
 
   render() {
     const { navigation } = this.props;
@@ -159,7 +77,6 @@ class AllDogs extends Component {
       dogs = this.state.dogs;
     }
 
-<<<<<<< HEAD
     return (
       <View>
         <FlatList
@@ -182,30 +99,6 @@ class AllDogs extends Component {
           onEndReachedThreshold={0.2}
           ListFooterComponent={this.renderFooter}
         />
-=======
-                  <Ionicons
-                    name={"ios-pin"}
-                    size={30}
-                    onPress={() =>
-                      Linking.openURL(
-                        `http://www.google.com/maps/place/${dog.contact.address.city},+${dog.contact.address.state}/`
-                      )
-                    }
-                    color={"grey"}
-                  />
-                </View> */}
-                {dog.name === 'Doggo' ? (
-                  <Text style={styles.name}>Woof! Please give me a name!</Text>
-                ) : (
-                  <Text style={styles.name}>
-                    Woof! My name is {titleCase(dog.name)}!
-                  </Text>
-                )}
-              </View>
-            );
-          })}
-        </ScrollView>
->>>>>>> master
       </View>
     );
   }
@@ -231,49 +124,7 @@ export default Dogs;
 
 const styles = StyleSheet.create({
   image: {
-<<<<<<< HEAD
     height: 205,
     width: 205,
   },
-=======
-    width: '100%',
-    height: 350
-  },
-  name: {
-    fontSize: 18,
-    padding: 10
-  },
-  nameMain: {
-    fontSize: 22,
-    paddingTop: 3,
-    paddingBottom: 3,
-    paddingLeft: 10,
-    fontWeight: 'bold'
-  },
-  dogIcon: {
-    width: 30,
-    height: 30,
-    borderRadius: 50,
-    padding: 5
-  },
-  topHeader: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#147efb',
-    backgroundColor: 'white',
-    padding: 10
-  },
-  dogHeader: {
-    flexDirection: 'row',
-    padding: 5
-  },
-  dogFooter: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    padding: 5,
-    marginLeft: 0,
-    width: '30%'
-  }
->>>>>>> master
 });
