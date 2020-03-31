@@ -1,3 +1,6 @@
+
+
+
 import React, { Component } from 'react';
 import { View, Text, Image, Button, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
@@ -12,16 +15,17 @@ import { CLARIFAI_KEY } from 'react-native-dotenv';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { NavigationContext } from 'react-navigation';
 
+
 const app = new Clarifai.App({
-  apiKey: `${CLARIFAI_KEY}`,
+  apiKey: `${CLARIFAI_KEY}`
 });
 
 class ImagePick extends Component {
   constructor() {
     super();
     this.state = {
-      dogBreed: '',
-      allBreeds: [],
+      dogBreed: "",
+      allBreeds: []
     };
     this.openImagePicker = this.openImagePicker.bind(this);
   }
@@ -29,28 +33,28 @@ class ImagePick extends Component {
   async componentDidMount() {
     await this.props.getAllBreeds();
     this.setState({
-      allBreeds: this.props.breeds,
+      allBreeds: this.props.breeds
     });
     process.nextTick = setImmediate;
   }
 
   async openImagePicker() {
     let pickerResult = await ImagePicker.launchImageLibraryAsync({
-      base64: true,
+      base64: true
     });
 
     await this.props.getPickedImage(pickerResult);
 
     const generalModel = await app.models.initModel({
       id: Clarifai.GENERAL_MODEL,
-      version: 'aa7f35c01e0642fda5cf400f543e7c40',
+      version: "aa7f35c01e0642fda5cf400f543e7c40"
     });
 
     try {
       if (generalModel) {
         const prediction = await generalModel.predict(pickerResult.base64);
 
-        const concepts = prediction['outputs'][0]['data']['concepts'];
+        const concepts = prediction["outputs"][0]["data"]["concepts"];
         console.log(concepts);
         const result = breedPrediction(concepts, this.state.allBreeds);
 
@@ -58,11 +62,11 @@ class ImagePick extends Component {
           let dogBreed = result[0];
           dogBreed = upperCase(dogBreed);
           this.setState({
-            dogBreed,
+            dogBreed
           });
         } else {
           this.setState({
-            dogBreed: null,
+            dogBreed: null
           });
         }
       }
@@ -138,66 +142,66 @@ class ImagePick extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
+    alignItems: "center",
+    justifyContent: "flex-start"
   },
   image: {
     height: 350,
-    width: 400,
+    width: 400
   },
   text1: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 18,
-    marginTop: 20,
+    marginTop: 20
   },
   text2: {
-    textAlign: 'center',
-    fontSize: 18,
+    textAlign: "center",
+    fontSize: 18
   },
   container1: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center"
   },
   container2: {
     flex: 1,
-    alignItems: 'center',
-    marginTop: 250,
+    alignItems: "center",
+    marginTop: 250
   },
   container3: {
     flex: 1,
-    alignItems: 'center',
-    marginTop: 250,
+    alignItems: "center",
+    marginTop: 250
   },
   buttonContainer: {
-    justifyContent: 'space-between',
-    flexDirection: 'row',
+    justifyContent: "space-between",
+    flexDirection: "row"
   },
   button: {
-    backgroundColor: '#F4CBF0',
-    borderColor: '#6E13DB',
+    backgroundColor: "#F4CBF0",
+    borderColor: "#6E13DB",
     borderWidth: 2,
     borderRadius: 10,
     padding: 10,
     margin: 20,
-    width: 150,
+    width: 150
   },
   buttonText: {
-    color: 'black',
-    textAlign: 'center',
+    color: "black",
+    textAlign: "center",
     fontSize: 18,
-    fontWeight: 'bold',
-  },
+    fontWeight: "bold"
+  }
 });
 
 const mapState = state => ({
   pickedImage: state.pickedImage,
-  breeds: state.pickedImage.breeds,
+  breeds: state.pickedImage.breeds
 });
 
 const mapDispatch = dispatch => {
   return {
     getPickedImage: img => dispatch(getPickedImage(img.uri)),
-    getAllBreeds: () => dispatch(getAllBreeds()),
+    getAllBreeds: () => dispatch(getAllBreeds())
   };
 };
 

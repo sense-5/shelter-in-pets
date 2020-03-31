@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {
   View,
@@ -20,6 +21,7 @@ import axios from 'axios';
 
 import { getMe } from '../store/user';
 const dogImg = require('../../assets/images/dog2.jpg');
+
 
 class Profile extends React.Component {
   constructor(props) {
@@ -118,6 +120,7 @@ class Profile extends React.Component {
 }
 
 const styles = StyleSheet.create({
+
   dogContainer: {
     marginBottom: 20,
   },
@@ -153,19 +156,25 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     width: '25%',
   },
+
 });
 
 const mapStateToProps = state => {
   return {
-    // user: state.user,
+
+
     allLikedDogs: state.likedDogs,
+
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
+
+
     // getMe: () => dispatch(getMe()),
     getLikedDogs: () => dispatch(getLikedDogs()),
+
   };
 };
 

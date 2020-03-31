@@ -17,6 +17,39 @@ function titleCase(str) {
   return resultStr;
 }
 
+function redoPhoneNum(string) {
+  if (string === null) {
+    return '000000000';
+  } else {
+    let final = '';
+    for (let i = 0; i < string.length; i++) {
+      let letter = string[i];
+      if (
+        letter !== '(' &&
+        letter !== ')' &&
+        letter !== ' ' &&
+        letter !== '-'
+      ) {
+        final += letter;
+      }
+    }
+    return final;
+  }
+}
+
+function redoCity(string) {
+  let final = '';
+  for (let i = 0; i < string.length; i++) {
+    let letter = string[i];
+    if (letter !== ' ') {
+      final += letter;
+    } else {
+      final += '+';
+    }
+  }
+  return final;
+}
+
 function upperCase(str) {
   let strArr = str.split(' ');
   for (let i = 0; i < strArr.length; i++) {
@@ -39,4 +72,10 @@ function removeDuplicates(arr) {
   return result;
 }
 
-module.exports = { titleCase, upperCase, removeDuplicates };
+module.exports = {
+  titleCase,
+  upperCase,
+  redoPhoneNum,
+  redoCity,
+  removeDuplicates,
+};
