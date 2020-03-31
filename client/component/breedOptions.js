@@ -8,7 +8,7 @@ export default class BreedOptions extends React.Component {
   constructor() {
     super();
     this.state = {
-      breedOptions: [],
+      breedOptions: []
     };
   }
 
@@ -16,7 +16,7 @@ export default class BreedOptions extends React.Component {
     let { breeds } = this.props.route.params;
     const { dogBreed } = this.props.route.params;
     this.setState({
-      breedOptions: getBreedOptions(breeds, dogBreed),
+      breedOptions: getBreedOptions(breeds, dogBreed)
     });
   }
 
@@ -24,7 +24,7 @@ export default class BreedOptions extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.topText}>Just to be sure...</Text>
-        <Text style={styles.topText}>
+        <Text style={styles.topText2}>
           Are you looking for any of these pups?
         </Text>
         <FlatList
@@ -51,29 +51,35 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignContent: 'center',
-    marginTop: '10%',
+    marginTop: '5%'
   },
 
   button: {
     justifyContent: 'center',
-    padding: 2,
+    padding: 2
   },
   topText: {
-    color: 'black',
+    color: '#147efb',
     fontWeight: 'bold',
     padding: 10,
-
+    fontSize: 20,
+    textAlign: 'center'
+  },
+  topText2: {
+    color: '#147efb',
+    fontWeight: 'bold',
     fontSize: 20,
     textAlign: 'center',
+    paddingBottom: 25
   },
   text: {
-    backgroundColor: '#514D59',
+    backgroundColor: '#147efb', //'#514D59'
     textAlign: 'center',
     padding: 10,
     fontSize: 20,
     fontWeight: 'bold',
     color: 'white',
     width: '100%',
-    alignSelf: 'center',
-  },
+    alignSelf: 'center'
+  }
 });
