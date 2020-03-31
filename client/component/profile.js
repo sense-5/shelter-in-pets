@@ -65,6 +65,9 @@ class Profile extends React.Component {
 
     return (
       <View>
+        <View>
+          <Text style={styles.topHeader}>My Favorites Page</Text>
+        </View>
         {dogs.length !== 0 ? (
           <ScrollView>
             {dogs.map(dog => {
@@ -138,6 +141,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     marginTop: 200,
   },
+  container: {
+    flex: 1,
+    justifyContent: 'flex-start',
+  },
   dogContainer: {
     marginBottom: 20,
   },
@@ -155,12 +162,21 @@ const styles = StyleSheet.create({
     paddingTop: 3,
     paddingBottom: 3,
     paddingLeft: 10,
+    fontWeight: 'bold',
   },
   dogIcon: {
     width: 30,
     height: 30,
     borderRadius: 50,
     padding: 5,
+  },
+  topHeader: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#147efb',
+    backgroundColor: 'white',
+    padding: 10,
   },
   dogHeader: {
     flexDirection: 'row',

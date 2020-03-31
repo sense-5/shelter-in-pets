@@ -5,8 +5,9 @@ import {
   StyleSheet,
   ScrollView,
   Image,
+  Linking,
   Button,
-  ActivityIndicator,
+  ActivityIndicator
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -44,7 +45,7 @@ class AllDogs extends Component {
       // 'https://shelter-in-pets-server.herokuapp.com/api/viewedDogs',
       {
         petFinderId: dog.id,
-        breed: dog.breeds.primary,
+        breed: dog.breeds.primary
       }
     );
   }
@@ -52,9 +53,12 @@ class AllDogs extends Component {
   render() {
     const { navigation } = this.props;
     // const { likedPaw } = this.state;
-
+    console.log('this is props: ', this.props);
     return (
       <View>
+        <View>
+          <Text style={styles.topHeader}>Shelter-In-Pets</Text>
+        </View>
         <ScrollView>
           {this.props.allDogs.map(dog => {
             const regex = new RegExp('[0-9]+');
@@ -92,6 +96,47 @@ class AllDogs extends Component {
                     <Image source={dogImg} style={styles.image} />
                   )}
                 </TouchableOpacity>
+                {/* <View style={styles.dogFooter}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      this.like(dog);
+                    }}
+                  >
+                    <Ionicons
+                      name={"ios-paw"}
+                      color={"grey"}
+                      // replace after debugging like : likedPaw ? 'hotpink' : 'grey'
+                      size={30}
+                    />
+                  </TouchableOpacity>
+
+                  <Ionicons
+                    name={"ios-mail"}
+                    size={30}
+                    onPress={() =>
+                      Linking.openURL(`mailto:${dog.contact.email}`)
+                    }
+                    color={"grey"}
+                  />
+
+                  <Ionicons
+                    name={"ios-call"}
+                    size={30}
+                    onPress={() => Linking.openURL(`tel:${phone}`)}
+                    color={"grey"}
+                  />
+
+                  <Ionicons
+                    name={"ios-pin"}
+                    size={30}
+                    onPress={() =>
+                      Linking.openURL(
+                        `http://www.google.com/maps/place/${dog.contact.address.city},+${dog.contact.address.state}/`
+                      )
+                    }
+                    color={"grey"}
+                  />
+                </View> */}
                 {dog.name === 'Doggo' ? (
                   <Text style={styles.name}>Woof! Please give me a name!</Text>
                 ) : (
@@ -99,28 +144,6 @@ class AllDogs extends Component {
                     Woof! My name is {titleCase(dog.name)}!
                   </Text>
                 )}
-
-                <View style={styles.dogFooter}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      this.like(dog);
-                    }}
-                  >
-                    <Ionicons
-                      name={'ios-paw'}
-                      color={'grey'}
-                      // replace after debugging like : likedPaw ? 'pink' :
-                      //#fb1d1d good red color for eventual toggle
-                      size={30}
-                    />
-                  </TouchableOpacity>
-
-                  <Ionicons
-                    name={'ios-mail'}
-                    size={30}
-                    onPress={this.likeSwitch}
-                  />
-                </View>
               </View>
             );
           })}
@@ -141,7 +164,7 @@ const mapDispatchToProps = dispatch => {
     },
     likedDog: dog => {
       dispatch(likedDog(dog));
-    },
+    }
   };
 };
 
@@ -150,38 +173,46 @@ export default Dogs;
 
 const styles = StyleSheet.create({
   dogContainer: {
-    marginBottom: 20,
+    marginBottom: 20
   },
   image: {
-    height: 350,
     width: '100%',
+    height: 350
   },
   name: {
     fontSize: 18,
-    paddingTop: 10,
-    paddingLeft: 10,
+    padding: 10
   },
   nameMain: {
     fontSize: 22,
     paddingTop: 3,
     paddingBottom: 3,
     paddingLeft: 10,
+    fontWeight: 'bold'
   },
   dogIcon: {
     width: 30,
     height: 30,
     borderRadius: 50,
-    padding: 5,
+    padding: 5
+  },
+  topHeader: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#147efb',
+    backgroundColor: 'white',
+    padding: 10
   },
   dogHeader: {
     flexDirection: 'row',
-    padding: 5,
+    padding: 5
   },
   dogFooter: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     padding: 5,
     marginLeft: 0,
-    width: '25%',
-  },
+    width: '30%'
+  }
 });

@@ -1,10 +1,1 @@
-{
-  "expoServerPort": 19000,
-  "expoServerNgrokUrl": "https://tc-cug.anonymous.shelter-in-pets.exp.direct",
-  "packagerNgrokUrl": "https://packager.tc-cug.anonymous.shelter-in-pets.exp.direct",
-  "ngrokPid": 13921,
-  "devToolsPort": 19002,
-  "packagerPort": 19006,
-  "packagerPid": 13904,
-  "webpackServerPort": null
-}
+{}
