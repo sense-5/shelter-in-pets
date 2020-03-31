@@ -132,6 +132,14 @@ class Root extends React.Component {
               headerTitle: '',
             })}
           />
+
+          <Stack.Screen
+            name="Filtered Search"
+            component={Request}
+            options={({ navigation }) => ({
+              headerTitle: '',
+            })}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );

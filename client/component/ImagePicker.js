@@ -72,6 +72,8 @@ class ImagePick extends Component {
   }
 
   render() {
+    console.log('image picker props ', this.props)
+
     const breeds = this.state.allBreeds;
     const dogBreed = this.state.dogBreed;
     return (
@@ -125,7 +127,9 @@ class ImagePick extends Component {
               <Text style={styles.text2}>No Picture? No Problem.</Text>
               <Button
                 title="Use Filtered Search Instead"
-                onPress={this.props.SEND_USER_TO_SEARCH_DOGS_FORM_PAGE}
+                onPress={() => {
+                  this.props.navigation.navigate('Filtered Search')
+                }}
               />
             </View>
           </View>
