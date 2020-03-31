@@ -13,7 +13,7 @@ export const likeDog = dog => async dispatch => {
       //   'https://shelter-in-pets-server.herokuapp.com/api/likedDogs',
       {
         petFinderId: dog.id,
-        breed: dog.breeds.primary,
+        breed: dog.breeds.primary
       }
     );
 
@@ -38,28 +38,28 @@ export const getLikedDogs = () => {
   };
 };
 
-export const getAllDogs = page => {
-  return async dispatch => {
-    try {
-      if (!page) {
-        page = 1;
-      }
-      const { data } = await axios.get(
-        // `https://shelter-in-pets-server.herokuapp.com/api/dogs/${page}`
-        `http://localhost:3000/api/dogs/${page}`
-      );
-      let dogImages = getDogImages(data.animals);
+// export const getAllDogs = page => {
+//   return async dispatch => {
+//     try {
+//       if (!page) {
+//         page = 1;
+//       }
+//       const { data } = await axios.get(
+//         // `https://shelter-in-pets-server.herokuapp.com/api/dogs/${page}`
+//         `http://localhost:3000/api/dogs/${page}`
+//       );
+//       let dogImages = getDogImages(data.animals);
 
-      dispatch(gotAllDogs(dogImages));
-    } catch (error) {
-      console.error(error);
-    }
-  };
-};
+//       dispatch(gotAllDogs(dogImages));
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   };
+// };
 
 const initialState = {
   allLikedDogs: [],
-  likedStatus: null,
+  likedStatus: null
 };
 
 const likedDogs = (state = initialState, action) => {
@@ -67,7 +67,7 @@ const likedDogs = (state = initialState, action) => {
     case LIKE_DOG:
       return {
         ...state,
-        likedStatus: action.status,
+        likedStatus: action.status
       };
     case GET_LIKED_DOGS:
       return { ...state, allLikedDogs: action.dogs };
