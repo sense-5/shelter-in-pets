@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   View,
@@ -10,7 +9,7 @@ import {
   ActivityIndicator,
   RefreshControl,
   FlatList,
-  Toast,
+  Toast
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -21,7 +20,6 @@ import axios from 'axios';
 
 import { getMe } from '../store/user';
 const dogImg = require('../../assets/images/dog2.jpg');
-
 
 class Profile extends React.Component {
   constructor(props) {
@@ -65,7 +63,10 @@ class Profile extends React.Component {
     // }, [refreshing]);
 
     return (
-      <View>
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.topHeader}>Welcome to your Favorites Page</Text>
+        </View>
         <ScrollView>
           {dogs.allLikedDogs.map(dog => {
             const regex = new RegExp('[0-9]+');
@@ -120,61 +121,66 @@ class Profile extends React.Component {
 }
 
 const styles = StyleSheet.create({
-
+  container: {
+    flex: 1,
+    justifyContent: 'flex-start'
+  },
   dogContainer: {
-    marginBottom: 20,
+    marginBottom: 20
   },
   image: {
     height: 350,
-    width: '100%',
+    width: '100%'
   },
   name: {
     fontSize: 18,
     paddingTop: 10,
-    paddingLeft: 10,
+    paddingLeft: 10
   },
   nameMain: {
     fontSize: 22,
     paddingTop: 3,
     paddingBottom: 3,
     paddingLeft: 10,
+    fontWeight: 'bold'
   },
   dogIcon: {
     width: 30,
     height: 30,
     borderRadius: 50,
-    padding: 5,
+    padding: 5
+  },
+  topHeader: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#147efb',
+    backgroundColor: 'white',
+    padding: 10
   },
   dogHeader: {
     flexDirection: 'row',
-    padding: 5,
+    padding: 5
   },
   dogFooter: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     padding: 5,
     marginLeft: 0,
-    width: '25%',
-  },
-
+    width: '25%'
+  }
 });
 
 const mapStateToProps = state => {
   return {
-
-
-    allLikedDogs: state.likedDogs,
-
+    allLikedDogs: state.likedDogs
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-
-
     // getMe: () => dispatch(getMe()),
-    getLikedDogs: () => dispatch(getLikedDogs()),
-
+    getLikedDogs: () => dispatch(getLikedDogs())
   };
 };
 
