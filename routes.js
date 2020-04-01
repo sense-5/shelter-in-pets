@@ -10,7 +10,7 @@ import Signup from './client/screens/signup';
 import BreedOptions from './client/component/breedOptions';
 import DogsByBreed from './client/component/dogsByBreed';
 import { Ionicons } from '@expo/vector-icons';
-import LikedDogs from './client/component/profile';
+import LikedDogs from './client/component/likedDogs';
 import Request from './client/component/requestForm';
 import SearchResults from './client/component/searchResults';
 import HomeScreen from './client/screens/home';

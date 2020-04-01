@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   image: {
-    height: 350,
+    height: 300,
     width: '100%',
   },
   name: {
