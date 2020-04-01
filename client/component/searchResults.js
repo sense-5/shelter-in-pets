@@ -45,8 +45,8 @@ class SearchResults extends Component {
 
 const styles = StyleSheet.create({
   image: {
-    height: 205,
-    width: 205
+    height: 207,
+    width: 207
   },
   container: {
     flex: 1,
