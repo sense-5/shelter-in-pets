@@ -10,15 +10,17 @@ import Signup from './client/screens/signup';
 import BreedOptions from './client/component/breedOptions';
 import DogsByBreed from './client/component/dogsByBreed';
 import { Ionicons } from '@expo/vector-icons';
-import ProfileDog from './client/component/ProfileSingleDog';
 import LikedDogs from './client/component/likedDogs';
 import Request from './client/component/requestForm';
 import SearchResults from './client/component/searchResults';
 import HomeScreen from './client/screens/home';
+import { getLikedDogs } from './client/store/likedDog';
 
 import Dog from './client/component/singleDog';
 
 import Login from './client/screens/login';
+
+import ProfileDog from './client/component/ProfileSingleDog';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();

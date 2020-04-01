@@ -33,6 +33,7 @@ class ProfileSingleDog extends Component {
   }
 
   render() {
+    console.log('in profile of single dog');
     const likedStatus = this.props.likedStatus;
     console.log('status:', likedStatus);
     const dog = this.props.route.params;

@@ -31,6 +31,7 @@ class SingleDog extends Component {
   }
 
   render() {
+    console.log('in single dog');
     const likedStatus = this.props.likedStatus;
     const dog = this.props.route.params || this.props.item;
     const location = dog.contact.address;
