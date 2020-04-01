@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Button,
   Image,
-  Keyboard,
+  Keyboard
 } from 'react-native';
 import { loginAuth } from '../store/user';
 import { connect } from 'react-redux';
@@ -18,7 +18,7 @@ class LoginScreen extends React.Component {
     super();
     this.state = {
       email: '',
-      password: '',
+      password: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
@@ -26,7 +26,7 @@ class LoginScreen extends React.Component {
 
   handleChange(name, value) {
     this.setState({
-      [name]: value,
+      [name]: value
     });
   }
 
@@ -42,7 +42,7 @@ class LoginScreen extends React.Component {
       await this.props.loginAuth(email, password, navigation);
       this.setState({
         email: '',
-        password: '',
+        password: ''
       });
     }
   }
@@ -54,15 +54,15 @@ class LoginScreen extends React.Component {
       <View>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
           <View style={styles.container}>
+            <Text style={styles.welcomeText}>Shelter In Pets</Text>
+            <Image source={logo} style={styles.logo} />
+            <Text style={styles.welcomeText2}>Welcome back!</Text>
             <View style={styles.formWrapper}>
-              <Image source={logo} style={styles.logo} />
-              <Text style={styles.welcomeText}>Welcome back!</Text>
-
               <View style={styles.formRow}>
                 <TextInput
                   style={styles.textInput}
-                  placeholder="Enter email address"
-                  placeholderTextColor="#333"
+                  placeholder='Enter email address'
+                  placeholderTextColor='#333'
                   value={email}
                   onChangeText={value => this.handleChange('email', value)}
                 />
@@ -71,8 +71,8 @@ class LoginScreen extends React.Component {
               <View style={styles.formRow}>
                 <TextInput
                   style={styles.textInput}
-                  placeholder="Enter password"
-                  placeholderTextColor="#333"
+                  placeholder='Enter password'
+                  placeholderTextColor='#333'
                   secureTextEntry={true}
                   value={password}
                   onChangeText={value => this.handleChange('password', value)}
@@ -89,7 +89,7 @@ class LoginScreen extends React.Component {
             <Text style={styles.loginText}>Login</Text>
           </TouchableOpacity>
           <Button
-            title="Not a user?"
+            title='Not a user?'
             onPress={() => this.props.navigation.navigate('signup')}
           />
         </View>
@@ -100,7 +100,7 @@ class LoginScreen extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user,
+    user: state.user
   };
 };
 
@@ -108,7 +108,7 @@ const mapDispatchToProps = dispatch => {
   return {
     loginAuth: (email, password, navigation) => {
       dispatch(loginAuth(email, password, navigation));
-    },
+    }
   };
 };
 
@@ -117,35 +117,43 @@ export default Login;
 
 const styles = StyleSheet.create({
   container: {
-    height: '60%',
+    //height: '15%',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   logo: {
     height: 100,
     width: 100,
-    marginTop: 470,
+    marginTop: 20,
     marginBottom: 20,
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   formWrapper: {
-    width: '80%',
+    width: '80%'
   },
   formRow: {
-    marginBottom: 10,
+    marginBottom: 10
   },
   textInput: {
     backgroundColor: '#ddd',
     height: 40,
     paddingHorizontal: 10,
-    color: '#333',
+    color: '#333'
   },
   welcomeText: {
     textAlign: 'center',
     color: '#147efb',
+    marginTop: 50,
+    marginBottom: 5,
+    fontSize: 24,
+    fontWeight: 'bold'
+  },
+  welcomeText2: {
+    textAlign: 'center',
+    color: '#147efb',
     marginBottom: 30,
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   loginButton: {
     backgroundColor: 'white',
@@ -154,14 +162,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     margin: 20,
-    marginTop: 130,
+    marginTop: 360,
     width: 150,
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   loginText: {
     textAlign: 'center',
     color: '#147efb',
     fontSize: 18,
-    fontWeight: 'bold',
-  },
+    fontWeight: 'bold'
+  }
 });

@@ -58,7 +58,7 @@ class Profile extends React.Component {
     return (
       <View>
         <View>
-          <Text style={styles.topHeader}>Favorited Dogs</Text>
+          <Text style={styles.topHeader}>My Favorite Dogs</Text>
         </View>
         {dogs.length !== 0 ? (
           <FlatList
