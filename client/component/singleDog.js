@@ -34,7 +34,7 @@ class SingleDog extends Component {
 
   render() {
     const { status } = this.props;
-    const dog = this.props.route.params;
+    const dog = this.props.route.params || this.props.item;
     const location = dog.contact.address;
     const city = redoCity(dog.contact.address.city);
     const phone = redoPhoneNum(dog.contact.phone);
