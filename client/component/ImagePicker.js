@@ -58,7 +58,6 @@ class ImagePick extends Component {
         const prediction = await generalModel.predict(pickerResult.base64);
 
         const concepts = prediction['outputs'][0]['data']['concepts'];
-        console.log(concepts);
 
         const result = breedPrediction(concepts, this.state.allBreeds);
 
@@ -187,8 +186,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   image: {
-    height: 275,
-    width: 275,
+    height: 350,
+    width: 420,
   },
   text1: {
     textAlign: 'center',
@@ -201,7 +200,7 @@ const styles = StyleSheet.create({
   },
   text3: {
     textAlign: 'center',
-    fontSize: 21,
+    fontSize: 18,
     padding: 5,
     marginTop: 10,
     color: '#147efb',

@@ -27,7 +27,6 @@ class SingleDog extends Component {
 
   async like(dog) {
     await this.props.likeDog(dog);
-    await this.props.getLikedDogsIds();
     this.setState({ likedPaw: !this.state.likedPaw });
   }
 
@@ -241,6 +240,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(likeDog(dog));
     },
     getLikedDogsIds: () => dispatch(getLikedDogsIds()),
+    getLikedDogs: () => dispatch(getLikedDogs()),
   };
 };
 

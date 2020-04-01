@@ -10,11 +10,10 @@ import Signup from './client/screens/signup';
 import BreedOptions from './client/component/breedOptions';
 import DogsByBreed from './client/component/dogsByBreed';
 import { Ionicons } from '@expo/vector-icons';
-import LikedDogs from './client/component/profile';
 import ProfileDog from './client/component/ProfileSingleDog';
+import LikedDogs from './client/component/likedDogs';
 import Request from './client/component/requestForm';
-import SearchResults from './client/component/searchResults'
-
+import SearchResults from './client/component/searchResults';
 import HomeScreen from './client/screens/home';
 
 import Dog from './client/component/singleDog';
@@ -55,7 +54,7 @@ function isLoggedIn({ navigation }) {
         Screen={() => <HomeScreen navigation={navigation} />}
       />
       <Tab.Screen name="upload" component={ImagePick} />
-      <Tab.Screen name="favorites" component={LikedDogs} />
+      {/* <Tab.Screen name="featured" component={} /> */}
     </Tab.Navigator>
   );
 }
@@ -93,6 +92,15 @@ class Root extends React.Component {
                   }}
                   title="Logout"
                   color="#147efb"
+                />
+              ),
+              headerRight: () => (
+                <Button
+                  onPress={async () => {
+                    await this.props.getLikedDogs();
+                    navigation.navigate('favorites', this.props.allLikedDogs);
+                  }}
+                  title="Favorites"
                 />
               ),
             })}
@@ -143,6 +151,14 @@ class Root extends React.Component {
           />
 
           <Stack.Screen
+            name="favorites"
+            component={LikedDogs}
+            options={({ navigation }) => ({
+              headerTitle: '',
+            })}
+          />
+
+          <Stack.Screen
             name="Search Results"
             component={SearchResults}
             options={({ navigation }) => ({
@@ -156,6 +172,7 @@ class Root extends React.Component {
 }
 const mapStateToProps = state => {
   return {
+    allLikedDogs: state.likedDogs,
     user: state.user,
   };
 };
@@ -164,6 +181,7 @@ const mapDispatchToProps = dispatch => {
     logout: () => {
       dispatch(logout());
     },
+    getLikedDogs: () => dispatch(getLikedDogs()),
   };
 };
 

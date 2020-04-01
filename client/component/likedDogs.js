@@ -1,72 +1,25 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Image,
-  Button,
-  ActivityIndicator,
-  RefreshControl,
-  FlatList,
-} from 'react-native';
+import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { connect } from 'react-redux';
+
 import { titleCase } from '../../utility/utils';
-import { getLikedDogs } from '../store/likedDog';
-import axios from 'axios';
 
-const dogImg = require('../../assets/images/dog2.jpg');
-
-class Profile extends React.Component {
+export default class LikedDogs extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isLoading: true,
-      dogs: [],
-    };
-    this.handleLoadMore = this.handleLoadMore.bind(this);
-    this.apiCall = this.apiCall.bind(this);
   }
-
-  async componentDidMount() {
-    await this.props.getLikedDogs(this.state.page);
-    this.setState({
-      dogs: this.props.allLikedDogs,
-    });
-  }
-
-  async apiCall() {
-    await this.props.getLikedDogs(this.state.page);
-    this.setState({
-      dogs: this.props.allLikedDogs,
-    });
-  }
-
-  async handleLoadMore() {
-    await this.props.getLikedDogs();
-    this.setState({
-      isLoading: false,
-      dogs: [...(this.state.dogs = this.props.allLikedDogs)],
-    });
-  }
-
-  renderFooter = () => {
-    return (
-      <View>
-        <ActivityIndicator animating size="large" />
-      </View>
-    );
-  };
 
   render() {
+    let dogs;
     const { navigation } = this.props;
-    const dogs = this.state.dogs;
+    if (this.props.route.params.allLikedDogs) {
+      dogs = this.props.route.params.allLikedDogs;
+    }
 
     return (
       <View>
         <View>
-          <Text style={styles.topHeader}>Favorited Dogs</Text>
+          <Text style={styles.topHeader}>My Favorite Dogs</Text>
         </View>
         {dogs.length !== 0 ? (
           <FlatList
@@ -79,12 +32,13 @@ class Profile extends React.Component {
                   navigation.navigate('Profile Dog', item);
                 }}
               >
-                <Image
-                  source={{ uri: item.photos[0].full }}
-                  style={styles.dogIcon}
-                />
-                <Text style={styles.nameMain}>{titleCase(item.name)}</Text>
-
+                <View style={styles.dogHeader}>
+                  <Image
+                    source={{ uri: item.photos[0].full }}
+                    style={styles.dogIcon}
+                  />
+                  <Text style={styles.nameMain}>{titleCase(item.name)}</Text>
+                </View>
                 <Image
                   source={{ uri: item.photos[0].full }}
                   style={styles.image}
@@ -99,9 +53,6 @@ class Profile extends React.Component {
               </TouchableOpacity>
             )}
             bounces={false}
-            onEndReached={() => this.handleLoadMore()}
-            onEndReachedThreshold={0.2}
-            ListFooterComponent={this.renderFooter}
           />
         ) : (
           <View style={styles.textContainer}>
@@ -149,13 +100,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   image: {
-    height: 350,
+    height: 300,
     width: '100%',
   },
   name: {
     fontSize: 18,
     paddingTop: 10,
     paddingLeft: 10,
+    paddingBottom: 20,
   },
   nameMain: {
     fontSize: 22,
@@ -163,6 +115,10 @@ const styles = StyleSheet.create({
     paddingBottom: 3,
     paddingLeft: 10,
     fontWeight: 'bold',
+  },
+  dogHeader: {
+    flexDirection: 'row',
+    padding: 5,
   },
   dogIcon: {
     width: 30,
@@ -204,21 +160,3 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
-
-const mapStateToProps = state => {
-  return {
-    // user: state.user,
-    allLikedDogs: state.likedDogs.allLikedDogs,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    // getMe: () => dispatch(getMe()),
-    getLikedDogs: () => dispatch(getLikedDogs()),
-  };
-};
-
-const LikedDogs = connect(mapStateToProps, mapDispatchToProps)(Profile);
-
-export default LikedDogs;
