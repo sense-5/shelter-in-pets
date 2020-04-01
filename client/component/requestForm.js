@@ -357,6 +357,7 @@ class Request extends Component {
               style={styles.button2}
               onPress={() => {
                 this.props.fetchRequestedDogs(this.requestedAttributes);
+                this.props.navigation.navigate('Search Results')
               }}
             >
               <Text style={styles.button}>Show dogs</Text>

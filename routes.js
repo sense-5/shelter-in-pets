@@ -12,6 +12,7 @@ import DogsByBreed from './client/component/dogsByBreed';
 import { Ionicons } from '@expo/vector-icons';
 import LikedDogs from './client/component/profile';
 import Request from './client/component/requestForm';
+import SearchResults from './client/component/searchResults'
 
 import HomeScreen from './client/screens/home';
 import { getLikedDogs } from './client/store/likedDog';
@@ -138,6 +139,14 @@ class Root extends React.Component {
             component={Request}
             options={({ navigation }) => ({
               headerTitle: ''
+            })}
+          />
+
+          <Stack.Screen
+            name="Search Results"
+            component={SearchResults}
+            options={({ navigation }) => ({
+              headerTitle: '',
             })}
           />
         </Stack.Navigator>
