@@ -59,6 +59,7 @@ class ImagePick extends Component {
 
         const concepts = prediction['outputs'][0]['data']['concepts'];
         console.log(concepts);
+
         const result = breedPrediction(concepts, this.state.allBreeds);
 
         if (result.length !== 0) {

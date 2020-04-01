@@ -39,7 +39,7 @@ class AllDogs extends Component {
   async view(dog) {
     await axios.post(
       'http://localhost:3000/api/viewedDog',
-      // 'https://shelter-in-pets-server.herokuapp.com/api/viewedDogs',
+      // 'https://shelter-in-pets-server.herokuapp.com/api/viewedDog',
       {
         petFinderId: dog.id,
         breed: dog.breeds.primary

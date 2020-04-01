@@ -13,8 +13,8 @@ const getByBreed = dogs => ({
   dogs,
 });
 
-// inital state
-const initalState = {
+// initial state
+const initialState = {
   allDogs: [],
   selectedDog: {},
   dogsByBreed: [],
@@ -44,7 +44,7 @@ export const getDogsByBreed = breed => {
   return async dispatch => {
     try {
       const { data } = await axios.get(
-        // `https://shelter-in-pets-server.herokuapp.com/api/dogs/type/${breed}`,
+        // `https://shelter-in-pets-server.herokuapp.com/api/dogs/type/${breed}`
         `http://localhost:3000/api/dogs/type/${breed}`
       );
 
@@ -57,7 +57,7 @@ export const getDogsByBreed = breed => {
 };
 
 // Reducer
-const dogs = (state = initalState, action) => {
+const dogs = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_DOGS:
       return { ...state, allDogs: action.allDogs };

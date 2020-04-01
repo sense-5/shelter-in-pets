@@ -10,10 +10,10 @@ export const likeDog = dog => async dispatch => {
   try {
     const { data } = await axios.post(
       'http://localhost:3000/api/likedDog',
-      //   'https://shelter-in-pets-server.herokuapp.com/api/likedDogs',
+      // 'https://shelter-in-pets-server.herokuapp.com/api/likedDog',
       {
         petFinderId: dog.id,
-        breed: dog.breeds.primary
+        breed: dog.breeds.primary,
       }
     );
 
@@ -27,8 +27,8 @@ export const getLikedDogs = () => {
   return async dispatch => {
     try {
       const { data } = await axios.get(
-        'http://localhost:3000/api/likedDog/'
-        //'https://shelter-in-pets-server.herokuapp.com/api/likedDog/'
+        'http://localhost:3000/api/likedDog'
+        // 'https://shelter-in-pets-server.herokuapp.com/api/likedDog/'
       );
 
       dispatch(gotLikedDogs(data));
@@ -38,11 +38,9 @@ export const getLikedDogs = () => {
   };
 };
 
-
-
 const initialState = {
   allLikedDogs: [],
-  likedStatus: null
+  likedStatus: null,
 };
 
 const likedDogs = (state = initialState, action) => {
@@ -50,7 +48,7 @@ const likedDogs = (state = initialState, action) => {
     case LIKE_DOG:
       return {
         ...state,
-        likedStatus: action.status
+        likedStatus: action.status,
       };
     case GET_LIKED_DOGS:
       return { ...state, allLikedDogs: action.dogs };

@@ -1,9 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, FlatList } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  FlatList,
+  ActivityIndicator,
+} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import { getDogsByBreed } from '../store/allDogs';
-import { titleCase } from '../../utility/utils';
 
 import axios from 'axios';
 
@@ -12,18 +18,24 @@ const dogImg = require('../../assets/images/dog2.jpg');
 class DogsByBreed extends React.Component {
   constructor() {
     super();
+    this.state = {
+      loading: true,
+    };
     this.view = this.view.bind(this);
   }
 
   async componentDidMount() {
     const breed = this.props.route.params.toLowerCase();
     await this.props.getDogsByBreed(breed);
+    this.setState({
+      loading: false,
+    });
   }
 
   async view(dog) {
     await axios.post(
       'http://localhost:3000/api/viewedDog',
-      // 'https://shelter-in-pets-server.herokuapp.com/api/viewedDogs',
+      // 'https://shelter-in-pets-server.herokuapp.com/api/viewedDog',
       {
         petFinderId: dog.id,
         breed: dog.breeds.primary
@@ -33,7 +45,17 @@ class DogsByBreed extends React.Component {
 
   render() {
     const { navigation } = this.props;
-    console.log('dog images', this.props.dogs);
+    if (this.state.loading) {
+      return (
+        <View>
+          <ActivityIndicator
+            animating
+            size="large"
+            style={{ flex: 1, marginTop: '50%' }}
+          />
+        </View>
+      );
+    }
     return (
       <View style={styles.container}>
         {this.props.dogs.length !== 0 ? (
