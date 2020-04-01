@@ -32,7 +32,7 @@ export const loginAuth = (email, password, navigation) => async dispatch => {
       'http://localhost:3000/auth/login',
       {
         email,
-        password,
+        password
       }
     );
     if (data.id) {
@@ -59,7 +59,7 @@ export const signupAuth = (
       {
         email,
         password,
-        zipcode,
+        zipcode
       }
     );
     if (data.id) {
