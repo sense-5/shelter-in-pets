@@ -59,25 +59,14 @@ export default class LikedDogs extends React.Component {
             <Text style={styles.buttonText}>
               You have not favorited any dogs yet
             </Text>
-            <FlatList
-              style={{ height: '100%' }}
-              keyExtractor={({ item, key }) => key.toString()}
-              data={dogs}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={styles.button2}
-                  onPress={() => {
-                    navigation.navigate('home', item);
-                  }}
-                >
-                  <Text style={styles.buttonText}>Browse All Dogs</Text>
-                </TouchableOpacity>
-              )}
-              bounces={false}
-              onEndReached={() => this.handleLoadMore()}
-              onEndReachedThreshold={0.2}
-              ListFooterComponent={this.renderFooter}
-            />
+            <TouchableOpacity
+              style={styles.button2}
+              onPress={() => {
+                navigation.navigate('home');
+              }}
+            >
+              <Text style={styles.buttonText}>Browse All Dogs</Text>
+            </TouchableOpacity>
           </View>
         )}
       </View>

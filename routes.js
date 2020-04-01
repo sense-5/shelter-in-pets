@@ -117,6 +117,15 @@ class Root extends React.Component {
             component={Dog}
             options={({ navigation }) => ({
               headerTitle: '',
+              headerRight: () => (
+                <Button
+                  onPress={async () => {
+                    await this.props.getLikedDogs();
+                    navigation.navigate('favorites', this.props.allLikedDogs);
+                  }}
+                  title="Favorites"
+                />
+              ),
             })}
           />
 
@@ -125,6 +134,15 @@ class Root extends React.Component {
             component={ProfileDog}
             options={({ navigation }) => ({
               headerTitle: '',
+              headerRight: () => (
+                <Button
+                  onPress={async () => {
+                    await this.props.getLikedDogs();
+                    navigation.navigate('favorites', this.props.allLikedDogs);
+                  }}
+                  title="Favorites"
+                />
+              ),
             })}
           />
 
