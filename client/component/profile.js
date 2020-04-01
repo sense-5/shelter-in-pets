@@ -1,64 +1,25 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Image,
-  Button,
-  ActivityIndicator,
-  RefreshControl,
-  FlatList
-} from 'react-native';
+import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { connect } from 'react-redux';
+
 import { titleCase } from '../../utility/utils';
-import { getLikedDogs } from '../store/likedDog';
-import axios from 'axios';
 
-const dogImg = require('../../assets/images/dog2.jpg');
-
-class Profile extends React.Component {
+export default class LikedDogs extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isLoading: true,
-      dogs: []
-    };
-    this.handleLoadMore = this.handleLoadMore.bind(this);
   }
-
-  async componentDidMount() {
-    await this.props.getLikedDogs(this.state.page);
-    this.setState({
-      dogs: this.props.allLikedDogs
-    });
-  }
-
-  async handleLoadMore() {
-    await this.props.getLikedDogs();
-    this.setState({
-      isLoading: false,
-      dogs: [...(this.state.dogs = this.props.allLikedDogs)]
-    });
-  }
-
-  renderFooter = () => {
-    return (
-      <View>
-        <ActivityIndicator animating size='large' />
-      </View>
-    );
-  };
 
   render() {
+    let dogs;
     const { navigation } = this.props;
-    const dogs = this.state.dogs;
+    if (this.props.route.params.allLikedDogs) {
+      dogs = this.props.route.params.allLikedDogs;
+    }
 
     return (
       <View>
         <View>
-          <Text style={styles.topHeader}>Favorited Dogs</Text>
+          <Text style={styles.topHeader}>My Favorites</Text>
         </View>
         {dogs.length !== 0 ? (
           <FlatList
@@ -91,9 +52,6 @@ class Profile extends React.Component {
               </TouchableOpacity>
             )}
             bounces={false}
-            onEndReached={() => this.handleLoadMore()}
-            onEndReachedThreshold={0.2}
-            ListFooterComponent={this.renderFooter}
           />
         ) : (
           <View style={styles.textContainer}>
@@ -120,36 +78,36 @@ const styles = StyleSheet.create({
     //flex: 1,
     alignItems: 'center',
     //justifyContent: 'flex-start',
-    marginTop: 200
+    marginTop: 200,
   },
   container: {
     flex: 1,
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
   },
   dogContainer: {
-    marginBottom: 20
+    marginBottom: 20,
   },
   image: {
     height: 350,
-    width: '100%'
+    width: '100%',
   },
   name: {
     fontSize: 18,
     paddingTop: 10,
-    paddingLeft: 10
+    paddingLeft: 10,
   },
   nameMain: {
     fontSize: 22,
     paddingTop: 3,
     paddingBottom: 3,
     paddingLeft: 10,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   dogIcon: {
     width: 30,
     height: 30,
     borderRadius: 50,
-    padding: 5
+    padding: 5,
   },
   topHeader: {
     fontSize: 22,
@@ -157,18 +115,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#147efb',
     backgroundColor: 'white',
-    padding: 10
+    padding: 10,
   },
   dogHeader: {
     flexDirection: 'row',
-    padding: 5
+    padding: 5,
   },
   dogFooter: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     padding: 5,
     marginLeft: 0,
-    width: '25%'
+    width: '25%',
   },
   button2: {
     backgroundColor: 'white',
@@ -177,29 +135,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     margin: 20,
-    width: 300
+    width: 300,
   },
   buttonText: {
     color: '#147efb',
     textAlign: 'center',
-    fontSize: 18
-  }
+    fontSize: 18,
+  },
 });
-
-const mapStateToProps = state => {
-  return {
-    // user: state.user,
-    allLikedDogs: state.likedDogs.allLikedDogs
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    // getMe: () => dispatch(getMe()),
-    getLikedDogs: () => dispatch(getLikedDogs())
-  };
-};
-
-const LikedDogs = connect(mapStateToProps, mapDispatchToProps)(Profile);
-
-export default LikedDogs;
