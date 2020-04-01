@@ -16,11 +16,11 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const dogImg = require('../../assets/images/dog2.jpg');
 
-class SingleDog extends Component {
+class ProfileSingleDog extends Component {
   constructor() {
     super();
     this.state = {
-      likedPaw: false,
+      likedPaw: true,
     };
     this.like = this.like.bind(this);
   }
@@ -28,6 +28,7 @@ class SingleDog extends Component {
   async like(dog) {
     await this.props.likeDog(dog);
     await this.props.getLikedDogsIds();
+
     this.setState({ likedPaw: !this.state.likedPaw });
   }
 
@@ -70,7 +71,7 @@ class SingleDog extends Component {
               <Ionicons
                 name={'ios-paw'}
                 size={30}
-                color={this.state.likedPaw && likedStatus ? 'hotpink' : 'grey'}
+                color={likedStatus || this.state.likedPaw ? 'hotpink' : 'grey'}
               />
             </TouchableOpacity>
 
@@ -245,8 +246,11 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const Dog = connect(mapStateToProps, mapDispatchToProps)(SingleDog);
-export default Dog;
+const ProfileDog = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProfileSingleDog);
+export default ProfileDog;
 
 const styles = StyleSheet.create({
   container: {

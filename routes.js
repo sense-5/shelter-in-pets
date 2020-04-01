@@ -11,6 +11,7 @@ import BreedOptions from './client/component/breedOptions';
 import DogsByBreed from './client/component/dogsByBreed';
 import { Ionicons } from '@expo/vector-icons';
 import LikedDogs from './client/component/profile';
+import ProfileDog from './client/component/ProfileSingleDog';
 import Request from './client/component/requestForm';
 
 import HomeScreen from './client/screens/home';
@@ -18,8 +19,6 @@ import HomeScreen from './client/screens/home';
 import Dog from './client/component/singleDog';
 
 import Login from './client/screens/login';
-
-import Profile from './client/component/profile';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -55,7 +54,7 @@ function isLoggedIn({ navigation }) {
         Screen={() => <HomeScreen navigation={navigation} />}
       />
       <Tab.Screen name="upload" component={ImagePick} />
-      <Tab.Screen name="favorites" component={Profile} />
+      <Tab.Screen name="favorites" component={LikedDogs} />
     </Tab.Navigator>
   );
 }
@@ -105,6 +104,14 @@ class Root extends React.Component {
           <Stack.Screen
             name="Single Dog"
             component={Dog}
+            options={({ navigation }) => ({
+              headerTitle: '',
+            })}
+          />
+
+          <Stack.Screen
+            name="Profile Dog"
+            component={ProfileDog}
             options={({ navigation }) => ({
               headerTitle: '',
             })}

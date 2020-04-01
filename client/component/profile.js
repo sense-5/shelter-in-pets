@@ -26,9 +26,17 @@ class Profile extends React.Component {
       dogs: [],
     };
     this.handleLoadMore = this.handleLoadMore.bind(this);
+    this.apiCall = this.apiCall.bind(this);
   }
 
   async componentDidMount() {
+    await this.props.getLikedDogs(this.state.page);
+    this.setState({
+      dogs: this.props.allLikedDogs,
+    });
+  }
+
+  async apiCall() {
     await this.props.getLikedDogs(this.state.page);
     this.setState({
       dogs: this.props.allLikedDogs,
@@ -68,7 +76,7 @@ class Profile extends React.Component {
             renderItem={({ item }) => (
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate('Single Dog', item);
+                  navigation.navigate('Profile Dog', item);
                 }}
               >
                 <Image
@@ -100,14 +108,25 @@ class Profile extends React.Component {
             <Text style={styles.buttonText}>
               You have not favorited any dogs yet
             </Text>
-            <TouchableOpacity
-              style={styles.button2}
-              onPress={() => {
-                navigation.navigate('home');
-              }}
-            >
-              <Text style={styles.buttonText}>Browse All Dogs</Text>
-            </TouchableOpacity>
+            <FlatList
+              style={{ height: '100%' }}
+              keyExtractor={({ item, key }) => key.toString()}
+              data={dogs}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  style={styles.button2}
+                  onPress={() => {
+                    navigation.navigate('home', item);
+                  }}
+                >
+                  <Text style={styles.buttonText}>Browse All Dogs</Text>
+                </TouchableOpacity>
+              )}
+              bounces={false}
+              onEndReached={() => this.handleLoadMore()}
+              onEndReachedThreshold={0.2}
+              ListFooterComponent={this.renderFooter}
+            />
           </View>
         )}
       </View>
