@@ -127,8 +127,8 @@ export default Dogs;
 
 const styles = StyleSheet.create({
   image: {
-    height: 205,
-    width: 205
+    height: 207,
+    width: 207
   },
   topHeader: {
     fontSize: 22,

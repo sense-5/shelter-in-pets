@@ -71,12 +71,13 @@ class Profile extends React.Component {
                   navigation.navigate('Single Dog', item);
                 }}
               >
-                <Image
-                  source={{ uri: item.photos[0].full }}
-                  style={styles.dogIcon}
-                />
-                <Text style={styles.nameMain}>{titleCase(item.name)}</Text>
-
+                <View style={styles.dogHeader}>
+                  <Image
+                    source={{ uri: item.photos[0].full }}
+                    style={styles.dogIcon}
+                  />
+                  <Text style={styles.nameMain}>{titleCase(item.name)}</Text>
+                </View>
                 <Image
                   source={{ uri: item.photos[0].full }}
                   style={styles.image}
@@ -136,7 +137,8 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 18,
     paddingTop: 10,
-    paddingLeft: 10
+    paddingLeft: 10,
+    paddingBottom: 20
   },
   nameMain: {
     fontSize: 22,
@@ -144,6 +146,10 @@ const styles = StyleSheet.create({
     paddingBottom: 3,
     paddingLeft: 10,
     fontWeight: 'bold'
+  },
+  dogHeader: {
+    flexDirection: 'row',
+    padding: 5
   },
   dogIcon: {
     width: 30,
