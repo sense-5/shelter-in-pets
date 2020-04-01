@@ -12,13 +12,12 @@ export const likeDog = dog => async dispatch => {
   try {
     const { data } = await axios.post(
       'http://localhost:3000/api/likedDog',
-      //   'https://shelter-in-pets-server.herokuapp.com/api/likedDogs',
+      // 'https://shelter-in-pets-server.herokuapp.com/api/likedDog',
       {
         petFinderId: dog.id,
         breed: dog.breeds.primary,
       }
     );
-    console.log('like dog response:', data.liked);
     dispatch(LikedDog(data.liked));
   } catch (error) {
     console.error(error);
@@ -29,8 +28,8 @@ export const getLikedDogs = () => {
   return async dispatch => {
     try {
       const { data } = await axios.get(
-        'http://localhost:3000/api/likedDog/'
-        //'https://shelter-in-pets-server.herokuapp.com/api/likedDog/'
+        'http://localhost:3000/api/likedDog'
+        // 'https://shelter-in-pets-server.herokuapp.com/api/likedDog/'
       );
 
       dispatch(gotLikedDogs(data));

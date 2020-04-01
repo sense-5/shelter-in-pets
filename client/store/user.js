@@ -15,7 +15,7 @@ const defaultUser = {};
 export const getMe = () => async dispatch => {
   try {
     const { data } = await axios.get(
-      // 'https://shelter-in-pets-server.herokuapp.com/api/users',
+      // 'https://shelter-in-pets-server.herokuapp.com/api/users'
       'http://localhost:3000/api/users'
     );
     dispatch(getUser(data));

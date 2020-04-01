@@ -6,10 +6,12 @@ import {
   TextInput,
   TouchableOpacity,
   Button,
-  Image
+  Image,
+  Keyboard,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { signupAuth } from '../store/user';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 class SignupScreen extends React.Component {
   constructor() {
@@ -18,7 +20,7 @@ class SignupScreen extends React.Component {
       email: '',
       password: '',
       zipcode: '',
-      error: null
+      error: null,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSignup = this.handleSignup.bind(this);
@@ -26,7 +28,7 @@ class SignupScreen extends React.Component {
 
   handleChange(name, value) {
     this.setState({
-      [name]: value
+      [name]: value,
     });
   }
 
@@ -42,7 +44,7 @@ class SignupScreen extends React.Component {
       this.setState({
         email: '',
         password: '',
-        zipcode: ''
+        zipcode: '',
       });
     }
   }
@@ -51,38 +53,44 @@ class SignupScreen extends React.Component {
     const { email, password, zipcode } = this.state;
     const logo = require('../../assets/images/shelter-in-pets-logo.jpg');
     return (
-      <View style={styles.container}>
-        <View style={styles.formWrapper}>
-          <Image source={logo} style={styles.logo} />
-          <Text style={styles.welcomeText}>Create an Account</Text>
-          <View style={styles.formRow}>
-            <TextInput
-              style={styles.textInput}
-              placeholder='Enter email address'
-              placeholderTextColor='#333'
-              value={email}
-              onChangeText={value => this.handleChange('email', value)}
-            />
-          </View>
-          <View style={styles.formRow}>
-            <TextInput
-              style={styles.textInput}
-              placeholder='Enter password'
-              placeholderTextColor='#333'
-              secureTextEntry={true}
-              value={password}
-              onChangeText={value => this.handleChange('password', value)}
-            />
-          </View>
-          <View style={styles.formRow}>
-            <TextInput
-              style={styles.textInput}
-              placeholder='Enter zipcode (optional)'
-              placeholderTextColor='#333'
-              value={zipcode}
-              onChangeText={value => this.handleChange('zipcode', value)}
-            />
-          </View>
+      <View>
+          <View style={styles.container}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+            <View style={styles.formWrapper}>
+              <Image source={logo} style={styles.logo} />
+              <Text style={styles.welcomeText}>Create an Account</Text>
+              <View style={styles.formRow}>
+                <TextInput
+                  style={styles.textInput}
+                  placeholder="Enter email address"
+                  placeholderTextColor="#333"
+                  value={email}
+                  onChangeText={value => this.handleChange('email', value)}
+                />
+              </View>
+              <View style={styles.formRow}>
+                <TextInput
+                  style={styles.textInput}
+                  placeholder="Enter password"
+                  placeholderTextColor="#333"
+                  secureTextEntry={true}
+                  value={password}
+                  onChangeText={value => this.handleChange('password', value)}
+                />
+              </View>
+              <View style={styles.formRow}>
+                <TextInput
+                  style={styles.textInput}
+                  placeholder="Enter zipcode (optional)"
+                  placeholderTextColor="#333"
+                  value={zipcode}
+                  onChangeText={value => this.handleChange('zipcode', value)}
+                />
+              </View>
+            </View>
+        </TouchableWithoutFeedback>
+
+        <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.signupButton}
             onPress={() => this.handleSignup()}
@@ -90,10 +98,14 @@ class SignupScreen extends React.Component {
             <Text style={styles.signupText}>Sign Up</Text>
           </TouchableOpacity>
           <Button
-            title='Already a user?'
+            title="Already a user?"
             onPress={() => this.props.navigation.navigate('login')}
           />
         </View>
+
+          </View>
+
+
       </View>
     );
   }
@@ -101,7 +113,7 @@ class SignupScreen extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
   };
 };
 
@@ -109,7 +121,7 @@ const mapDispatchToProps = dispatch => {
   return {
     signupAuth: (email, password, zipcode, navigation) => {
       dispatch(signupAuth(email, password, zipcode, navigation));
-    }
+    },
   };
 };
 
@@ -120,33 +132,39 @@ export default Signup;
 const styles = StyleSheet.create({
   container: {
     height: '100%',
+    width: '100%',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginTop: '50%'
   },
   logo: {
     height: 100,
     width: 100,
     marginBottom: 20,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   formWrapper: {
-    width: '80%'
+    width: '100%',
   },
   formRow: {
-    marginBottom: 10
+    marginBottom: 10,
   },
   textInput: {
     backgroundColor: '#ddd',
     height: 40,
     paddingHorizontal: 10,
-    color: '#333'
+    color: '#333',
   },
   welcomeText: {
     textAlign: 'center',
     color: '#147efb',
     marginBottom: 30,
     fontSize: 24,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+  },
+  buttonContainer: {
+    flex: 1,
+    height: '100%',
   },
   signupButton: {
     backgroundColor: 'white',
@@ -155,13 +173,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     margin: 20,
+
     width: 150,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   signupText: {
     textAlign: 'center',
     color: '#147efb',
     fontSize: 18,
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+  },
 });

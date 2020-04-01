@@ -13,6 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import LikedDogs from './client/component/profile';
 import ProfileDog from './client/component/ProfileSingleDog';
 import Request from './client/component/requestForm';
+import SearchResults from './client/component/searchResults'
 
 import HomeScreen from './client/screens/home';
 
@@ -136,6 +137,14 @@ class Root extends React.Component {
           <Stack.Screen
             name="Filtered Search"
             component={Request}
+            options={({ navigation }) => ({
+              headerTitle: '',
+            })}
+          />
+
+          <Stack.Screen
+            name="Search Results"
+            component={SearchResults}
             options={({ navigation }) => ({
               headerTitle: '',
             })}

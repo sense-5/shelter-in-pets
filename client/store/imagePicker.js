@@ -25,13 +25,13 @@ export const getBreeds = breeds => ({
 export const getAllBreeds = () => async dispatch => {
   try {
     let { data } = await axios.get(
-      // 'https://shelter-in-pets-server/api/dogs/allBreeds',
+      // 'https://shelter-in-pets-server.herokuapp.com/api/dogs/breeds'
       'http://localhost:3000/api/dogs/breeds'
     );
     data = data.map(breed => {
       return (breed.name = breed.name.toLowerCase());
     });
-  
+
     dispatch(getBreeds(data));
   } catch (error) {
     console.log(error);

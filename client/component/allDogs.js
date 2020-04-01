@@ -6,7 +6,7 @@ import {
   Image,
   FlatList,
   ActivityIndicator,
-  Dimensions
+  Dimensions,
 } from 'react-native';
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -22,7 +22,7 @@ class AllDogs extends Component {
     this.state = {
       isLoading: true,
       page: 1,
-      dogs: []
+      dogs: [],
     };
 
     this.view = this.view.bind(this);
@@ -32,36 +32,36 @@ class AllDogs extends Component {
   async componentDidMount() {
     await this.props.getAllDogs(this.state.page);
     this.setState({
-      dogs: this.props.allDogs
+      dogs: this.props.allDogs,
     });
   }
 
   async view(dog) {
     await axios.post(
       'http://localhost:3000/api/viewedDog',
-      // 'https://shelter-in-pets-server.herokuapp.com/api/viewedDogs',
+      // 'https://shelter-in-pets-server.herokuapp.com/api/viewedDog',
       {
         petFinderId: dog.id,
-        breed: dog.breeds.primary
+        breed: dog.breeds.primary,
       }
     );
   }
 
   async handleLoadMore() {
     this.setState({
-      page: this.state.page + 1
+      page: this.state.page + 1,
     });
     await this.props.getAllDogs(this.state.page);
     this.setState({
       isLoading: false,
-      dogs: [...this.state.dogs, ...this.props.allDogs]
+      dogs: [...this.state.dogs, ...this.props.allDogs],
     });
   }
 
   renderFooter = () => {
     return (
       <View>
-        <ActivityIndicator animating size='large' />
+        <ActivityIndicator animating size="large" />
       </View>
     );
   };
@@ -118,7 +118,7 @@ const mapDispatchToProps = dispatch => {
     },
     likedDog: dog => {
       dispatch(likedDog(dog));
-    }
+    },
   };
 };
 
@@ -128,7 +128,7 @@ export default Dogs;
 const styles = StyleSheet.create({
   image: {
     height: 205,
-    width: 205
+    width: 205,
   },
   topHeader: {
     fontSize: 22,
@@ -136,6 +136,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#147efb',
     backgroundColor: 'white',
-    padding: 10
-  }
+    padding: 10,
+  },
 });

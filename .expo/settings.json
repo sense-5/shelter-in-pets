@@ -3,6 +3,6 @@
   "lanType": "ip",
   "dev": true,
   "minify": false,
-  "urlRandomness": "ne-cda",
+  "urlRandomness": null,
   "https": false
 }
