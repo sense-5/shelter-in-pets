@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Button,
   Image,
-  Keyboard,
+  Keyboard
 } from 'react-native';
 import { connect } from 'react-redux';
 import { signupAuth } from '../store/user';
@@ -20,7 +20,7 @@ class SignupScreen extends React.Component {
       email: '',
       password: '',
       zipcode: '',
-      error: null,
+      error: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSignup = this.handleSignup.bind(this);
@@ -28,7 +28,7 @@ class SignupScreen extends React.Component {
 
   handleChange(name, value) {
     this.setState({
-      [name]: value,
+      [name]: value
     });
   }
 
@@ -44,7 +44,7 @@ class SignupScreen extends React.Component {
       this.setState({
         email: '',
         password: '',
-        zipcode: '',
+        zipcode: ''
       });
     }
   }
@@ -54,16 +54,17 @@ class SignupScreen extends React.Component {
     const logo = require('../../assets/images/shelter-in-pets-logo.jpg');
     return (
       <View>
-          <View style={styles.container}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+          <View style={styles.container}>
+            <Text style={styles.welcomeText}>Shelter In Pets</Text>
+            <Image source={logo} style={styles.logo} />
+            <Text style={styles.welcomeText2}>Create an Account</Text>
             <View style={styles.formWrapper}>
-              <Image source={logo} style={styles.logo} />
-              <Text style={styles.welcomeText}>Create an Account</Text>
               <View style={styles.formRow}>
                 <TextInput
                   style={styles.textInput}
-                  placeholder="Enter email address"
-                  placeholderTextColor="#333"
+                  placeholder='Enter email address'
+                  placeholderTextColor='#333'
                   value={email}
                   onChangeText={value => this.handleChange('email', value)}
                 />
@@ -71,26 +72,26 @@ class SignupScreen extends React.Component {
               <View style={styles.formRow}>
                 <TextInput
                   style={styles.textInput}
-                  placeholder="Enter password"
-                  placeholderTextColor="#333"
+                  placeholder='Enter password'
+                  placeholderTextColor='#333'
                   secureTextEntry={true}
                   value={password}
                   onChangeText={value => this.handleChange('password', value)}
                 />
               </View>
-              <View style={styles.formRow}>
+              <View style={styles.formRow2}>
                 <TextInput
                   style={styles.textInput}
-                  placeholder="Enter zipcode (optional)"
-                  placeholderTextColor="#333"
+                  placeholder='Enter zipcode (optional)'
+                  placeholderTextColor='#333'
                   value={zipcode}
                   onChangeText={value => this.handleChange('zipcode', value)}
                 />
               </View>
             </View>
+          </View>
         </TouchableWithoutFeedback>
-
-        <View style={styles.buttonContainer}>
+        <View>
           <TouchableOpacity
             style={styles.signupButton}
             onPress={() => this.handleSignup()}
@@ -98,14 +99,10 @@ class SignupScreen extends React.Component {
             <Text style={styles.signupText}>Sign Up</Text>
           </TouchableOpacity>
           <Button
-            title="Already a user?"
+            title='Already a user?'
             onPress={() => this.props.navigation.navigate('login')}
           />
         </View>
-
-          </View>
-
-
       </View>
     );
   }
@@ -113,7 +110,7 @@ class SignupScreen extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user,
+    user: state.user
   };
 };
 
@@ -121,50 +118,53 @@ const mapDispatchToProps = dispatch => {
   return {
     signupAuth: (email, password, zipcode, navigation) => {
       dispatch(signupAuth(email, password, zipcode, navigation));
-    },
+    }
   };
 };
 
 const Signup = connect(mapStateToProps, mapDispatchToProps)(SignupScreen);
 export default Signup;
 
-//Style
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
-    width: '100%',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: '50%'
+    justifyContent: 'center'
   },
   logo: {
     height: 100,
     width: 100,
     marginBottom: 20,
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   formWrapper: {
-    width: '100%',
+    width: '80%'
   },
   formRow: {
-    marginBottom: 10,
+    marginBottom: 10
+  },
+  formRow2: {
+    marginBottom: 25
   },
   textInput: {
     backgroundColor: '#ddd',
     height: 40,
     paddingHorizontal: 10,
-    color: '#333',
+    color: '#333'
   },
   welcomeText: {
     textAlign: 'center',
     color: '#147efb',
-    marginBottom: 30,
+    marginTop: 100,
+    marginBottom: 20,
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
-  buttonContainer: {
-    flex: 1,
-    height: '100%',
+  welcomeText2: {
+    textAlign: 'center',
+    color: '#147efb',
+    marginBottom: 20,
+    fontSize: 24,
+    fontWeight: 'bold'
   },
   signupButton: {
     backgroundColor: 'white',
@@ -172,15 +172,14 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 10,
     padding: 10,
-    margin: 20,
-
+    marginBottom: 10,
     width: 150,
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   signupText: {
     textAlign: 'center',
     color: '#147efb',
     fontSize: 18,
-    fontWeight: 'bold',
-  },
+    fontWeight: 'bold'
+  }
 });

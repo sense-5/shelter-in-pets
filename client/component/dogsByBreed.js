@@ -38,7 +38,7 @@ class DogsByBreed extends React.Component {
       // 'https://shelter-in-pets-server.herokuapp.com/api/viewedDog',
       {
         petFinderId: dog.id,
-        breed: dog.breeds.primary,
+        breed: dog.breeds.primary
       }
     );
   }
@@ -90,13 +90,13 @@ class DogsByBreed extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    dogs: state.dogs.dogsByBreed,
+    dogs: state.dogs.dogsByBreed
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getDogsByBreed: breed => dispatch(getDogsByBreed(breed)),
+    getDogsByBreed: breed => dispatch(getDogsByBreed(breed))
   };
 };
 
@@ -104,15 +104,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(DogsByBreed);
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   image: {
-    height: 205,
-    width: 205,
+    height: 207,
+    width: 207
   },
   dogImage: {
     height: 400,
-    width: '100%',
+    width: '100%'
   },
   text: {
     justifyContent: 'center',
@@ -120,6 +120,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     padding: 10,
     fontSize: 20,
-    textAlign: 'center',
-  },
+    textAlign: 'center'
+  }
 });
