@@ -1,5 +1,6 @@
 {
   "expoServerPort": 19000,
+<<<<<<< HEAD
   "expoServerNgrokUrl": null,
   "packagerNgrokUrl": null,
   "ngrokPid": null,
@@ -7,4 +8,12 @@
   "packagerPort": 19005,
   "packagerPid": 16505,
   "webpackServerPort": null
+=======
+  "expoServerNgrokUrl": "https://nv-dp6.anonymous.shelter-in-pets.exp.direct",
+  "packagerNgrokUrl": "https://packager.nv-dp6.anonymous.shelter-in-pets.exp.direct",
+  "ngrokPid": 97367,
+  "devToolsPort": 19002,
+  "packagerPort": 19003,
+  "packagerPid": 97120
+>>>>>>> master
 }

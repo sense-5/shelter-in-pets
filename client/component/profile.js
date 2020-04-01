@@ -8,119 +8,120 @@ import {
   Button,
   ActivityIndicator,
   RefreshControl,
-  FlatList,
-  Toast
+  FlatList
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import { titleCase } from '../../utility/utils';
 import { getLikedDogs } from '../store/likedDog';
 import axios from 'axios';
 
-import { getMe } from '../store/user';
 const dogImg = require('../../assets/images/dog2.jpg');
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isLoading: true,
+      dogs: []
+    };
+    this.handleLoadMore = this.handleLoadMore.bind(this);
   }
 
   async componentDidMount() {
-    await this.props.getLikedDogs();
+    await this.props.getLikedDogs(this.state.page);
+    this.setState({
+      dogs: this.props.allLikedDogs
+    });
   }
 
-  // async componentDidUpdate() {
-  //   console.log('in componentDidUpdate');
-  //   if (this.props.allLikedDogs) {
-  //     console.log('component did update has dogs');
-  //     await this.props.getLikedDogs();
-  //   }
-  // }
+  async handleLoadMore() {
+    await this.props.getLikedDogs();
+    this.setState({
+      isLoading: false,
+      dogs: [...(this.state.dogs = this.props.allLikedDogs)]
+    });
+  }
+
+  renderFooter = () => {
+    return (
+      <View>
+        <ActivityIndicator animating size='large' />
+      </View>
+    );
+  };
 
   render() {
     const { navigation } = this.props;
-    const dogs = this.props.allLikedDogs;
-
-    // const [refreshing, setRefreshing] = React.useState(false);
-    // const [listData, setListData] = React.useState(this.props.allLikedDogs);
-
-    // const onRefresh = React.useCallback(async () => {
-    //   setRefreshing(true);
-    //   if (listData.length < 10) {
-    //     try {
-    //       let response = await this.props.getLikedDogs();
-    //       let responseJson = await response.json();
-    //       setListData(responseJson.result.concat(this.props.allLikedDogs));
-    //       setRefreshing(false);
-    //     } catch (error) {
-    //       console.error(error);
-    //     }
-    //   } else {
-    //     Toast.show('No more new data available', Toast.SHORT);
-    //     setRefreshing(false);
-    //   }
-    // }, [refreshing]);
+    const dogs = this.state.dogs;
 
     return (
-      <View style={styles.container}>
+      <View>
         <View>
-          <Text style={styles.topHeader}>My Favorites Page</Text>
+          <Text style={styles.topHeader}>Favorited Dogs</Text>
         </View>
-        <ScrollView>
-          {dogs.allLikedDogs.map(dog => {
-            const regex = new RegExp('[0-9]+');
-            if (regex.test(dog.name)) {
-              dog.name = 'Doggo';
-            }
+        {dogs.length !== 0 ? (
+          <FlatList
+            style={{ height: '100%' }}
+            keyExtractor={item => item.id.toString()}
+            data={dogs}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('Single Dog', item);
+                }}
+              >
+                <Image
+                  source={{ uri: item.photos[0].full }}
+                  style={styles.dogIcon}
+                />
+                <Text style={styles.nameMain}>{titleCase(item.name)}</Text>
 
-            return (
-              <View key={dog.id} style={styles.dogContainer}>
-                <View style={styles.dogHeader}>
-                  {dog.photos[0] ? (
-                    <Image
-                      source={{ uri: dog.photos[0].full }}
-                      style={styles.dogIcon}
-                    />
-                  ) : (
-                    <Image source={dogImg} style={styles.dogIcon} />
-                  )}
-
-                  <Text style={styles.nameMain}>{titleCase(dog.name)}</Text>
-                </View>
-
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate('Single Dog', dog);
-                  }}
-                >
-                  {dog.photos[0] ? (
-                    <Image
-                      source={{ uri: dog.photos[0].full }}
-                      style={styles.image}
-                    />
-                  ) : (
-                    <Image source={dogImg} style={styles.image} />
-                  )}
-                </TouchableOpacity>
-                {dog.name === 'Doggo' ? (
+                <Image
+                  source={{ uri: item.photos[0].full }}
+                  style={styles.image}
+                />
+                {item.name === 'Doggo' ? (
                   <Text style={styles.name}>Woof! Please give me a name!</Text>
                 ) : (
                   <Text style={styles.name}>
-                    Woof! My name is {titleCase(dog.name)}!
+                    Woof! My name is {titleCase(item.name)}!
                   </Text>
                 )}
-              </View>
-            );
-          })}
-          {/* <RefreshControl refreshing={refreshing} onRefresh={onRefresh} /> */}
-        </ScrollView>
+              </TouchableOpacity>
+            )}
+            bounces={false}
+            onEndReached={() => this.handleLoadMore()}
+            onEndReachedThreshold={0.2}
+            ListFooterComponent={this.renderFooter}
+          />
+        ) : (
+          <View style={styles.textContainer}>
+            <Text style={styles.buttonText}>
+              You have not favorited any dogs yet
+            </Text>
+            <TouchableOpacity
+              style={styles.button2}
+              onPress={() => {
+                navigation.navigate('home');
+              }}
+            >
+              <Text style={styles.buttonText}>Browse All Dogs</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  textContainer: {
+    //flex: 1,
+    alignItems: 'center',
+    //justifyContent: 'flex-start',
+    marginTop: 200
+  },
   container: {
     flex: 1,
     justifyContent: 'flex-start'
@@ -168,12 +169,27 @@ const styles = StyleSheet.create({
     padding: 5,
     marginLeft: 0,
     width: '25%'
+  },
+  button2: {
+    backgroundColor: 'white',
+    borderColor: '#147efb',
+    borderWidth: 2,
+    borderRadius: 10,
+    padding: 10,
+    margin: 20,
+    width: 300
+  },
+  buttonText: {
+    color: '#147efb',
+    textAlign: 'center',
+    fontSize: 18
   }
 });
 
 const mapStateToProps = state => {
   return {
-    allLikedDogs: state.likedDogs
+    // user: state.user,
+    allLikedDogs: state.likedDogs.allLikedDogs
   };
 };
 

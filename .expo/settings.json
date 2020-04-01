@@ -3,6 +3,10 @@
   "lanType": "ip",
   "dev": true,
   "minify": false,
+<<<<<<< HEAD
   "urlRandomness": "bx-qqe",
+=======
+  "urlRandomness": "nv-dp6",
+>>>>>>> master
   "https": false
 }

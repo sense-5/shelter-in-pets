@@ -39,7 +39,7 @@ class AllDogs extends Component {
   async view(dog) {
     await axios.post(
       'http://localhost:3000/api/viewedDog',
-      // 'https://shelter-in-pets-server.herokuapp.com/api/viewedDogs',
+      // 'https://shelter-in-pets-server.herokuapp.com/api/viewedDog',
       {
         petFinderId: dog.id,
         breed: dog.breeds.primary,
@@ -79,6 +79,9 @@ class AllDogs extends Component {
 
     return (
       <View>
+        <View>
+          <Text style={styles.topHeader}>Shelter In Pets</Text>
+        </View>
         <FlatList
           style={{ height: '100%' }}
           numColumns={2}
@@ -126,5 +129,13 @@ const styles = StyleSheet.create({
   image: {
     height: 205,
     width: 205,
+  },
+  topHeader: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#147efb',
+    backgroundColor: 'white',
+    padding: 10,
   },
 });
