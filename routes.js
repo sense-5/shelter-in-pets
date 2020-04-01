@@ -20,6 +20,8 @@ import Dog from './client/component/singleDog';
 
 import Login from './client/screens/login';
 
+import ProfileDog from './client/component/ProfileSingleDog';
+
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
@@ -115,6 +117,32 @@ class Root extends React.Component {
             component={Dog}
             options={({ navigation }) => ({
               headerTitle: '',
+              headerRight: () => (
+                <Button
+                  onPress={async () => {
+                    await this.props.getLikedDogs();
+                    navigation.navigate('favorites', this.props.allLikedDogs);
+                  }}
+                  title="Favorites"
+                />
+              ),
+            })}
+          />
+
+          <Stack.Screen
+            name="Profile Dog"
+            component={ProfileDog}
+            options={({ navigation }) => ({
+              headerTitle: '',
+              headerRight: () => (
+                <Button
+                  onPress={async () => {
+                    await this.props.getLikedDogs();
+                    navigation.navigate('favorites', this.props.allLikedDogs);
+                  }}
+                  title="Favorites"
+                />
+              ),
             })}
           />
 

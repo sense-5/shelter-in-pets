@@ -16,23 +16,25 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const dogImg = require('../../assets/images/dog2.jpg');
 
-class SingleDog extends Component {
+class ProfileSingleDog extends Component {
   constructor() {
     super();
     this.state = {
-      likedPaw: false,
+      likedPaw: true,
     };
     this.like = this.like.bind(this);
   }
 
   async like(dog) {
     await this.props.likeDog(dog);
+    await this.props.getLikedDogsIds();
+
     this.setState({ likedPaw: !this.state.likedPaw });
   }
 
   render() {
     const likedStatus = this.props.likedStatus;
-    const dog = this.props.route.params || this.props.item;
+    const dog = this.props.route.params;
     const location = dog.contact.address;
     const city = redoCity(dog.contact.address.city);
     const phone = redoPhoneNum(dog.contact.phone);
@@ -68,7 +70,7 @@ class SingleDog extends Component {
               <Ionicons
                 name={'ios-paw'}
                 size={30}
-                color={this.state.likedPaw && likedStatus ? 'hotpink' : 'grey'}
+                color={likedStatus || this.state.likedPaw ? 'hotpink' : 'grey'}
               />
             </TouchableOpacity>
 
@@ -240,12 +242,14 @@ const mapDispatchToProps = dispatch => {
       dispatch(likeDog(dog));
     },
     getLikedDogsIds: () => dispatch(getLikedDogsIds()),
-    getLikedDogs: () => dispatch(getLikedDogs()),
   };
 };
 
-const Dog = connect(mapStateToProps, mapDispatchToProps)(SingleDog);
-export default Dog;
+const ProfileDog = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProfileSingleDog);
+export default ProfileDog;
 
 const styles = StyleSheet.create({
   container: {

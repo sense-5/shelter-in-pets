@@ -21,58 +21,54 @@ export default class LikedDogs extends React.Component {
         <View>
           <Text style={styles.topHeader}>My Favorite Dogs</Text>
         </View>
-        <View style={styles.container}>
-          {dogs.length !== 0 ? (
-            <FlatList
-              style={{ height: '100%' }}
-              keyExtractor={item => item.id.toString()}
-              data={dogs}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate('Single Dog', item);
-                  }}
-                >
-                  <View style={styles.dogHeader}>
-                    <Image
-                      source={{ uri: item.photos[0].full }}
-                      style={styles.dogIcon}
-                    />
-                    <Text style={styles.nameMain}>{titleCase(item.name)}</Text>
-                  </View>
-                  <Image
-                    source={{ uri: item.photos[0].full }}
-                    style={styles.image}
-                  />
-                  {item.name === 'Doggo' ? (
-                    <Text style={styles.name}>
-                      Woof! Please give me a name!
-                    </Text>
-                  ) : (
-                    <Text style={styles.name}>
-                      Woof! My name is {titleCase(item.name)}!
-                    </Text>
-                  )}
-                </TouchableOpacity>
-              )}
-              bounces={false}
-            />
-          ) : (
-            <View style={styles.textContainer}>
-              <Text style={styles.buttonText}>
-                You have not favorited any dogs yet
-              </Text>
+        {dogs.length !== 0 ? (
+          <FlatList
+            style={{ height: '100%' }}
+            keyExtractor={item => item.id.toString()}
+            data={dogs}
+            renderItem={({ item }) => (
               <TouchableOpacity
-                style={styles.button2}
                 onPress={() => {
-                  navigation.navigate('home');
+                  navigation.navigate('Profile Dog', item);
                 }}
               >
-                <Text style={styles.buttonText}>Browse All Dogs</Text>
+                <View style={styles.dogHeader}>
+                  <Image
+                    source={{ uri: item.photos[0].full }}
+                    style={styles.dogIcon}
+                  />
+                  <Text style={styles.nameMain}>{titleCase(item.name)}</Text>
+                </View>
+                <Image
+                  source={{ uri: item.photos[0].full }}
+                  style={styles.image}
+                />
+                {item.name === 'Doggo' ? (
+                  <Text style={styles.name}>Woof! Please give me a name!</Text>
+                ) : (
+                  <Text style={styles.name}>
+                    Woof! My name is {titleCase(item.name)}!
+                  </Text>
+                )}
               </TouchableOpacity>
-            </View>
-          )}
-        </View>
+            )}
+            bounces={false}
+          />
+        ) : (
+          <View style={styles.textContainer}>
+            <Text style={styles.buttonText}>
+              You have not favorited any dogs yet
+            </Text>
+            <TouchableOpacity
+              style={styles.button2}
+              onPress={() => {
+                navigation.navigate('home');
+              }}
+            >
+              <Text style={styles.buttonText}>Browse All Dogs</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     );
   }
@@ -80,41 +76,44 @@ export default class LikedDogs extends React.Component {
 
 const styles = StyleSheet.create({
   textContainer: {
+    //flex: 1,
     alignItems: 'center',
-    marginTop: 200
+    //justifyContent: 'flex-start',
+    marginTop: 200,
   },
   container: {
-    marginBottom: '7%'
+    flex: 1,
+    justifyContent: 'flex-start',
   },
   dogContainer: {
-    marginBottom: 20
+    marginBottom: 20,
   },
   image: {
     height: 300,
-    width: '100%'
+    width: '100%',
   },
   name: {
     fontSize: 18,
     paddingTop: 10,
     paddingLeft: 10,
-    paddingBottom: 20
+    paddingBottom: 20,
   },
   nameMain: {
     fontSize: 22,
     paddingTop: 3,
     paddingBottom: 3,
     paddingLeft: 10,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   dogHeader: {
     flexDirection: 'row',
-    padding: 5
+    padding: 5,
   },
   dogIcon: {
     width: 30,
     height: 30,
     borderRadius: 50,
-    padding: 5
+    padding: 5,
   },
   topHeader: {
     fontSize: 22,
@@ -122,18 +121,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#147efb',
     backgroundColor: 'white',
-    padding: 10
+    padding: 10,
   },
   dogHeader: {
     flexDirection: 'row',
-    padding: 5
+    padding: 5,
   },
   dogFooter: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     padding: 5,
     marginLeft: 0,
-    width: '25%'
+    width: '25%',
   },
   button2: {
     backgroundColor: 'white',
@@ -142,11 +141,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     margin: 20,
-    width: 300
+    width: 300,
   },
   buttonText: {
     color: '#147efb',
     textAlign: 'center',
-    fontSize: 18
-  }
+    fontSize: 18,
+  },
 });
