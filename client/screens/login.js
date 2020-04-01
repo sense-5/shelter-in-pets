@@ -68,7 +68,7 @@ class LoginScreen extends React.Component {
                 />
               </View>
 
-              <View style={styles.formRow}>
+              <View style={styles.formRow2}>
                 <TextInput
                   style={styles.textInput}
                   placeholder='Enter password'
@@ -117,14 +117,12 @@ export default Login;
 
 const styles = StyleSheet.create({
   container: {
-    //height: '15%',
     alignItems: 'center',
     justifyContent: 'center'
   },
   logo: {
     height: 100,
     width: 100,
-    marginTop: 20,
     marginBottom: 20,
     alignSelf: 'center'
   },
@@ -133,6 +131,9 @@ const styles = StyleSheet.create({
   },
   formRow: {
     marginBottom: 10
+  },
+  formRow2: {
+    marginBottom: 25
   },
   textInput: {
     backgroundColor: '#ddd',
@@ -143,15 +144,15 @@ const styles = StyleSheet.create({
   welcomeText: {
     textAlign: 'center',
     color: '#147efb',
-    marginTop: 50,
-    marginBottom: 5,
+    marginTop: 100,
+    marginBottom: 20,
     fontSize: 24,
     fontWeight: 'bold'
   },
   welcomeText2: {
     textAlign: 'center',
     color: '#147efb',
-    marginBottom: 30,
+    marginBottom: 20,
     fontSize: 24,
     fontWeight: 'bold'
   },
@@ -161,8 +162,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 10,
     padding: 10,
-    margin: 20,
-    marginTop: 360,
+    marginBottom: 10,
     width: 150,
     alignSelf: 'center'
   },
