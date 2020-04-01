@@ -54,8 +54,8 @@ class SignupScreen extends React.Component {
     const logo = require('../../assets/images/shelter-in-pets-logo.jpg');
     return (
       <View>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
           <View style={styles.container}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
             <View style={styles.formWrapper}>
               <Image source={logo} style={styles.logo} />
               <Text style={styles.welcomeText}>Create an Account</Text>
@@ -88,7 +88,6 @@ class SignupScreen extends React.Component {
                 />
               </View>
             </View>
-          </View>
         </TouchableWithoutFeedback>
 
         <View style={styles.buttonContainer}>
@@ -103,6 +102,10 @@ class SignupScreen extends React.Component {
             onPress={() => this.props.navigation.navigate('login')}
           />
         </View>
+
+          </View>
+
+
       </View>
     );
   }
@@ -129,8 +132,10 @@ export default Signup;
 const styles = StyleSheet.create({
   container: {
     height: '100%',
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: '50%'
   },
   logo: {
     height: 100,
@@ -139,7 +144,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   formWrapper: {
-    width: '80%',
+    width: '100%',
   },
   formRow: {
     marginBottom: 10,
