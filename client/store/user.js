@@ -15,8 +15,8 @@ const defaultUser = {};
 export const getMe = () => async dispatch => {
   try {
     const { data } = await axios.get(
-      // 'https://shelter-in-pets-server.herokuapp.com/api/users',
-      'http://localhost:3000/api/users'
+      'https://shelter-in-pets-server.herokuapp.com/api/users'
+      // 'http://localhost:3000/api/users'
     );
     dispatch(getUser(data));
   } catch (error) {
@@ -28,8 +28,8 @@ export const getMe = () => async dispatch => {
 export const loginAuth = (email, password, navigation) => async dispatch => {
   try {
     const { data } = await axios.post(
-      // 'https://shelter-in-pets-server.herokuapp.com/auth/login',
-      'http://localhost:3000/auth/login',
+      'https://shelter-in-pets-server.herokuapp.com/auth/login',
+      // 'http://localhost:3000/auth/login',
       {
         email,
         password,
