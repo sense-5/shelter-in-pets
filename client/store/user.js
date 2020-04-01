@@ -54,8 +54,8 @@ export const signupAuth = (
 ) => async dispatch => {
   try {
     const { data } = await axios.post(
-      'https://shelter-in-pets-server.herokuapp.com/auth/signup',
-      // 'http://localhost:3000/auth/signup',
+      // 'https://shelter-in-pets-server.herokuapp.com/auth/signup',
+      'http://localhost:3000/auth/signup',
       {
         email,
         password,
@@ -75,8 +75,8 @@ export const signupAuth = (
 export const logout = () => async dispatch => {
   try {
     await axios.post(
-      'https://shelter-in-pets-server.herokuapp.com/auth/logout'
-      // 'http://localhost:3000/auth/logout'
+      // 'https://shelter-in-pets-server.herokuapp.com/auth/logout'
+      'http://localhost:3000/auth/logout'
     );
     dispatch(removeUser());
   } catch (err) {
