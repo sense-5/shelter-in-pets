@@ -1,9 +1,9 @@
 {
-  "expoServerPort": 19000,
-  "expoServerNgrokUrl": "https://nv-dp6.anonymous.shelterinpets.exp.direct",
-  "packagerNgrokUrl": "https://packager.nv-dp6.anonymous.shelterinpets.exp.direct",
-  "ngrokPid": 25793,
+  "expoServerPort": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "devToolsPort": 19002,
-  "packagerPort": 19006,
-  "packagerPid": 25780
+  "packagerPort": null,
+  "packagerPid": null
 }
