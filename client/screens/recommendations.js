@@ -7,19 +7,32 @@ import {
   FlatList,
   ActivityIndicator,
   Dimensions,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import { getRecDogs } from '../store/recommendations';
+import axios from 'axios';
 
 export class Recommendations extends Component {
   constructor() {
     super();
+    this.view = this.view.bind(this);
   }
 
   async componentDidMount() {
     await this.props.getRecDogs();
+  }
+
+  async view(dog) {
+    await axios.post(
+      'http://localhost:3000/api/viewedDog',
+      // 'https://shelter-in-pets-server.herokuapp.com/api/viewedDog',
+      {
+        petFinderId: dog.id,
+        breed: dog.breeds.primary,
+      }
+    );
   }
 
   render() {
@@ -47,17 +60,18 @@ export class Recommendations extends Component {
                     <View key={idx}>
                       <View>
                         <TouchableOpacity
-                          onPress={() =>
+                          onPress={() => {
                             this.props.navigation.navigate(
                               'Single Dog',
                               dog.dog
-                            )
-                          }
+                            );
+                            this.view(dog.dog);
+                          }}
                         >
                           <Image
                             style={styles.img}
                             source={{
-                              uri: dog.uri
+                              uri: dog.uri,
                             }}
                           />
                         </TouchableOpacity>
@@ -78,7 +92,7 @@ export class Recommendations extends Component {
 const mapStateToProps = state => {
   return {
     recDogs: state.recDogs.recDogs,
-    defaultDogs: state.recDogs.defaultDogs
+    defaultDogs: state.recDogs.defaultDogs,
   };
 };
 
@@ -86,7 +100,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getRecDogs: () => {
       dispatch(getRecDogs());
-    }
+    },
   };
 };
 
@@ -97,12 +111,12 @@ const styles = StyleSheet.create({
   outerContainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
   },
   container: {
     flex: 1,
     backgroundColor: 'white',
-    paddingTop: '7%'
+    paddingTop: '7%',
   },
   text: {
     textAlign: 'center',
@@ -110,15 +124,15 @@ const styles = StyleSheet.create({
     padding: 5,
     marginBottom: 20,
     color: '#147efb',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   imgContainer: {
     height: '100%',
-    marginTop: 20
+    marginTop: 20,
   },
   img: {
     height: 450,
-    width: 450
+    width: 450,
   },
   topHeader: {
     fontSize: 22,
@@ -127,6 +141,6 @@ const styles = StyleSheet.create({
     width: 1000,
     color: '#147efb',
     backgroundColor: 'white',
-    padding: 10
-  }
+    padding: 10,
+  },
 });
