@@ -1,13 +1,4 @@
 {
-<<<<<<< HEAD
-  "expoServerPort": null,
-  "expoServerNgrokUrl": "https://br-bez.anonymous.shelter-in-pets.exp.direct",
-  "packagerNgrokUrl": "https://packager.br-bez.anonymous.shelter-in-pets.exp.direct",
-  "ngrokPid": 28079,
-  "devToolsPort": 19002,
-  "packagerPort": null,
-  "packagerPid": null
-=======
   "expoServerPort": 19000,
   "expoServerNgrokUrl": "https://cw-xfr.anonymous.shelter-in-pets.exp.direct",
   "packagerNgrokUrl": "https://packager.cw-xfr.anonymous.shelter-in-pets.exp.direct",
@@ -15,5 +6,4 @@
   "devToolsPort": 19002,
   "packagerPort": 19003,
   "packagerPid": 31971
->>>>>>> f9ea0d95e2a16624e2784443b2cc502a389da599
 }
