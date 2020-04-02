@@ -14,7 +14,6 @@ export const getRecDogs = () => {
   return async dispatch => {
     try {
       const { data } = await axios.get('http://localhost:3000/api/recs');
-      console.log('this is in recDogs thunk: ', data);
       if (data.default) {
         let defaultDogs = getDogImages(data.default.animals);
         dispatch(gotDefaultDogs(defaultDogs));
@@ -31,7 +30,7 @@ export const getRecDogs = () => {
 //default state
 const initialState = {
   recDogs: [],
-  defaultDogs: []
+  defaultDogs: [],
 };
 
 //reducer
@@ -40,12 +39,12 @@ const recDogs = (state = initialState, action) => {
     case GET_REC_DOGS:
       return {
         ...state,
-        recDogs: action.dogs
+        recDogs: action.dogs,
       };
     case GET_DEFAULT_DOGS:
       return {
         ...state,
-        defaultDogs: action.dogs
+        defaultDogs: action.dogs,
       };
     default:
       return state;
