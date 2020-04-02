@@ -39,6 +39,28 @@ export default class Recommendations extends Component {
           <Text style={styles.text}>Because you viewed breed.name</Text>
 
           <View style={styles.imgContainer}>
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+            >
+              {dogImg.map((dog, idx) => {
+                return (
+                  <View key={idx}>
+                    <View>
+                      <TouchableOpacity>
+                        <Image
+                          style={styles.img}
+                          source={{
+                            uri: dog.uri,
+                          }}
+                        />
+                        <Text style={styles.text}>Name</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                );
+              })}
+            </ScrollView>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={true}>
               {dogImg.map((dog, idx) => {
                 return (
@@ -51,6 +73,7 @@ export default class Recommendations extends Component {
                             uri: dog.uri,
                           }}
                         />
+                        <Text style={styles.text}>Name</Text>
                       </TouchableOpacity>
                     </View>
                   </View>
@@ -80,7 +103,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   img: {
-    height: 600,
+    height: 300,
     width: 450,
   },
 });
