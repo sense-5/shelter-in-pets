@@ -15,6 +15,7 @@ import Request from './client/component/requestForm';
 import SearchResults from './client/component/searchResults';
 import HomeScreen from './client/screens/home';
 import { getLikedDogs } from './client/store/likedDog';
+import Recommendations from './client/component/recommendations';
 
 import Dog from './client/component/singleDog';
 
@@ -56,7 +57,7 @@ function isLoggedIn({ navigation }) {
         Screen={() => <HomeScreen navigation={navigation} />}
       />
       <Tab.Screen name="upload" component={ImagePick} />
-      {/* <Tab.Screen name="featured" component={} /> */}
+      <Tab.Screen name="recommendations" component={Recommendations} />
     </Tab.Navigator>
   );
 }
