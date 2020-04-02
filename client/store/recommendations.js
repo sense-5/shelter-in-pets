@@ -13,10 +13,10 @@ const gotDefaultDogs = dogs => ({ type: GET_DEFAULT_DOGS, dogs });
 export const getRecDogs = () => {
   return async dispatch => {
     try {
-      const { data } = axios.get('http://localhost:3000/api/recs');
-      console.log('in getRecDogs thunk, this is our data: ', data);
-      if (data) {
-        let defaultDogs = getDogImages(data.animals);
+      const { data } = await axios.get('http://localhost:3000/api/recs');
+      console.log('this is in recDogs thunk: ', data);
+      if (data.default) {
+        let defaultDogs = getDogImages(data.default.animals);
         dispatch(gotDefaultDogs(defaultDogs));
       } else {
         let recDogs = getDogImages(data.animals);
