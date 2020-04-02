@@ -15,7 +15,7 @@ import Request from './client/component/requestForm';
 import SearchResults from './client/component/searchResults';
 import HomeScreen from './client/screens/home';
 import { getLikedDogs } from './client/store/likedDog';
-import Recommendations from './client/component/recommendations';
+import Recs from './client/screens/recommendations';
 
 import Dog from './client/component/singleDog';
 
@@ -39,25 +39,25 @@ function isLoggedIn({ navigation }) {
           if (route.name === 'upload') {
             iconName = 'md-photos';
           }
-          if (route.name === 'favorites') {
-            iconName = 'ios-paw';
+          if (route.name === 'recommendations') {
+            iconName = 'ios-ribbon';
           }
 
           return <Ionicons name={iconName} size={24} color={color} />;
-        },
+        }
       })}
       tabBarOptions={{
         activeTintColor: '#147efb',
-        inactiveTintColor: 'grey',
+        inactiveTintColor: 'grey'
       }}
     >
       <Tab.Screen
-        name="home"
+        name='home'
         component={HomeScreen}
         Screen={() => <HomeScreen navigation={navigation} />}
       />
-      <Tab.Screen name="upload" component={ImagePick} />
-      <Tab.Screen name="recommendations" component={Recommendations} />
+      <Tab.Screen name='upload' component={ImagePick} />
+      <Tab.Screen name='recommendations' component={Recs} />
     </Tab.Navigator>
   );
 }
@@ -75,14 +75,14 @@ class Root extends React.Component {
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator headerMode="screen">
+        <Stack.Navigator headerMode='screen'>
           <Stack.Screen
-            name="login"
+            name='login'
             component={Login}
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name="isLoggedIn"
+            name='isLoggedIn'
             component={isLoggedIn}
             options={({ navigation }) => ({
               headerTitle: '',
@@ -93,8 +93,8 @@ class Root extends React.Component {
                     this.handleLogout();
                     navigation.navigate('login');
                   }}
-                  title="Logout"
-                  color="#147efb"
+                  title='Logout'
+                  color='#147efb'
                 />
               ),
               headerRight: () => (
@@ -103,18 +103,18 @@ class Root extends React.Component {
                     await this.props.getLikedDogs();
                     navigation.navigate('favorites', this.props.allLikedDogs);
                   }}
-                  title="Favorites"
+                  title='Favorites'
                 />
-              ),
+              )
             })}
           />
           <Stack.Screen
-            name="signup"
+            name='signup'
             component={Signup}
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name="Single Dog"
+            name='Single Dog'
             component={Dog}
             options={({ navigation }) => ({
               headerTitle: '',
@@ -124,14 +124,14 @@ class Root extends React.Component {
                     await this.props.getLikedDogs();
                     navigation.navigate('favorites', this.props.allLikedDogs);
                   }}
-                  title="Favorites"
+                  title='Favorites'
                 />
-              ),
+              )
             })}
           />
 
           <Stack.Screen
-            name="Profile Dog"
+            name='Profile Dog'
             component={ProfileDog}
             options={({ navigation }) => ({
               headerTitle: '',
@@ -141,49 +141,49 @@ class Root extends React.Component {
                     await this.props.getLikedDogs();
                     navigation.navigate('favorites', this.props.allLikedDogs);
                   }}
-                  title="Favorites"
+                  title='Favorites'
                 />
-              ),
+              )
             })}
           />
 
           <Stack.Screen
-            name="Breed Options"
+            name='Breed Options'
             component={BreedOptions}
             options={({ navigation }) => ({
-              headerTitle: '',
+              headerTitle: ''
             })}
           />
 
           <Stack.Screen
-            name="Dogs By Breed"
+            name='Dogs By Breed'
             component={DogsByBreed}
             options={({ navigation }) => ({
-              headerTitle: '',
+              headerTitle: ''
             })}
           />
 
           <Stack.Screen
-            name="Filtered Search"
+            name='Filtered Search'
             component={Request}
             options={({ navigation }) => ({
-              headerTitle: '',
+              headerTitle: ''
             })}
           />
 
           <Stack.Screen
-            name="favorites"
+            name='favorites'
             component={LikedDogs}
             options={({ navigation }) => ({
-              headerTitle: '',
+              headerTitle: ''
             })}
           />
 
           <Stack.Screen
-            name="Search Results"
+            name='Search Results'
             component={SearchResults}
             options={({ navigation }) => ({
-              headerTitle: '',
+              headerTitle: ''
             })}
           />
         </Stack.Navigator>
@@ -194,7 +194,7 @@ class Root extends React.Component {
 const mapStateToProps = state => {
   return {
     allLikedDogs: state.likedDogs,
-    user: state.user,
+    user: state.user
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -202,7 +202,7 @@ const mapDispatchToProps = dispatch => {
     logout: () => {
       dispatch(logout());
     },
-    getLikedDogs: () => dispatch(getLikedDogs()),
+    getLikedDogs: () => dispatch(getLikedDogs())
   };
 };
 

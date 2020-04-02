@@ -6,9 +6,17 @@ import user from './user';
 import dogs from './allDogs';
 import pickedImage from './imagePicker';
 import likedDogs from './likedDog';
-import requestedAttributes from './requestedAttributes'
+import requestedAttributes from './requestedAttributes';
+import recDogs from './recommendations';
 
-const reducer = combineReducers({ user, dogs, pickedImage, likedDogs, requestedAttributes });
+const reducer = combineReducers({
+  user,
+  dogs,
+  pickedImage,
+  likedDogs,
+  requestedAttributes,
+  recDogs
+});
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
@@ -19,4 +27,5 @@ export * from './user';
 export * from './allDogs';
 export * from './imagePicker';
 export * from './likedDog';
-export * from './requestedAttributes'
+export * from './requestedAttributes';
+export * from './recommendations';
