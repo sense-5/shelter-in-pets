@@ -96,11 +96,7 @@ class ImagePick extends Component {
                 />
                 {dogBreed ? (
                   <View>
-                    <Text
-                      adjustsFontSizeToFit
-                      numberOfLines={1}
-                      style={styles.text3}
-                    >
+                    <Text style={styles.text3}>
                       Are you looking for a {dogBreed}?
                     </Text>
                     <View style={styles.buttonContainer}>
@@ -121,9 +117,7 @@ class ImagePick extends Component {
                   </View>
                 ) : (
                   <View>
-                    <Text style={styles.text3}>
-                      Sorry, we're not sure about this one...
-                    </Text>
+                    <Text style={styles.text3}>Sorry we're not sure.</Text>
                   </View>
                 )}
                 <TouchableOpacity
@@ -233,8 +227,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     justifyContent: 'space-between',
     flexDirection: 'row',
-    marginTop: 10,
-    alignSelf: 'center'
+    marginTop: 10
   },
   button2: {
     backgroundColor: 'white',

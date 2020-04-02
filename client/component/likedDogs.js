@@ -17,7 +17,7 @@ export default class LikedDogs extends React.Component {
     }
 
     return (
-      <View>
+      <View style={styles.container}>
         <View>
           <Text style={styles.topHeader}>My Favorite Dogs</Text>
         </View>
@@ -75,44 +75,43 @@ export default class LikedDogs extends React.Component {
 
 const styles = StyleSheet.create({
   textContainer: {
-    //flex: 1,
     alignItems: 'center',
-    //justifyContent: 'flex-start',
-    marginTop: 200,
+    marginTop: 200
   },
   container: {
     flex: 1,
     justifyContent: 'flex-start',
+    marginBottom: '3%'
   },
   dogContainer: {
-    marginBottom: 20,
+    marginBottom: 20
   },
   image: {
     height: 300,
-    width: '100%',
+    width: '100%'
   },
   name: {
     fontSize: 18,
     paddingTop: 10,
     paddingLeft: 10,
-    paddingBottom: 20,
+    paddingBottom: 20
   },
   nameMain: {
     fontSize: 22,
     paddingTop: 3,
     paddingBottom: 3,
     paddingLeft: 10,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   dogHeader: {
     flexDirection: 'row',
-    padding: 5,
+    padding: 5
   },
   dogIcon: {
     width: 30,
     height: 30,
     borderRadius: 50,
-    padding: 5,
+    padding: 5
   },
   topHeader: {
     fontSize: 22,
@@ -120,18 +119,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#147efb',
     backgroundColor: 'white',
-    padding: 10,
+    padding: 10
   },
   dogHeader: {
     flexDirection: 'row',
-    padding: 5,
+    padding: 5
   },
   dogFooter: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     padding: 5,
     marginLeft: 0,
-    width: '25%',
+    width: '25%'
   },
   button2: {
     backgroundColor: 'white',
@@ -140,11 +139,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     margin: 20,
-    width: 300,
+    width: 300
   },
   buttonText: {
     color: '#147efb',
     textAlign: 'center',
-    fontSize: 18,
-  },
+    fontSize: 18
+  }
 });
