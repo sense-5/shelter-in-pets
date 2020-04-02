@@ -52,7 +52,6 @@ export default class LikedDogs extends React.Component {
                 )}
               </TouchableOpacity>
             )}
-            bounces={false}
           />
         ) : (
           <View style={styles.textContainer}>
