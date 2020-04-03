@@ -1,4 +1,5 @@
 import axios from 'axios';
+import env from '../../environment';
 import { getDogImages } from '../../utility/prediction';
 
 //action types
@@ -13,7 +14,7 @@ const gotDefaultDogs = dogs => ({ type: GET_DEFAULT_DOGS, dogs });
 export const getRecDogs = () => {
   return async dispatch => {
     try {
-      const { data } = await axios.get('http://localhost:3000/api/recs');
+      const { data } = await axios.get(`${env.apiUrl}/api/recs`);
       if (data.default) {
         let defaultDogs = getDogImages(data.default.animals);
         dispatch(gotDefaultDogs(defaultDogs));
