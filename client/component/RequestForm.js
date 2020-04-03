@@ -3,9 +3,8 @@ import {
   View,
   Text,
   StyleSheet,
-  Button,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { CheckBox } from 'react-native-elements';
@@ -20,26 +19,26 @@ class Request extends Component {
         puppy: true,
         young: true,
         adult: true,
-        senior: true
+        senior: true,
       },
       size: {
         small: true,
         medium: true,
         large: true,
-        xlarge: true
+        xlarge: true,
       },
       coat: {
         short: true,
         medium: true,
         long: true,
         curly: true,
-        wire: true
-      }
+        wire: true,
+      },
     };
     this.requestedAttributes = {
       age: [],
       size: [],
-      coat: []
+      coat: [],
     };
   } //end constructor
 
@@ -63,7 +62,7 @@ class Request extends Component {
             <Text style={styles.category}>Age</Text>
             <View style={styles.boxes}>
               <CheckBox
-                title='puppy'
+                title="puppy"
                 checked={!age.puppy}
                 containerStyle={styles.checkbox}
                 checkedColor={'green'}
@@ -72,8 +71,8 @@ class Request extends Component {
                   this.setState({
                     age: {
                       ...age,
-                      puppy: !age.puppy
-                    }
+                      puppy: !age.puppy,
+                    },
                   }); //end set state
                   if (age.puppy) reqAge.push('baby');
                   else {
@@ -84,7 +83,7 @@ class Request extends Component {
               />
 
               <CheckBox
-                title='young'
+                title="young"
                 checked={!age.young}
                 containerStyle={styles.checkbox}
                 checkedColor={'green'}
@@ -93,8 +92,8 @@ class Request extends Component {
                   this.setState({
                     age: {
                       ...age,
-                      young: !age.young
-                    }
+                      young: !age.young,
+                    },
                   }); //end set state
                   if (age.young) reqAge.push('young');
                   else {
@@ -105,7 +104,7 @@ class Request extends Component {
               />
 
               <CheckBox
-                title='adult'
+                title="adult"
                 checked={!age.adult}
                 containerStyle={styles.checkbox}
                 checkedColor={'green'}
@@ -114,8 +113,8 @@ class Request extends Component {
                   this.setState({
                     age: {
                       ...age,
-                      adult: !age.adult
-                    }
+                      adult: !age.adult,
+                    },
                   }); //end set state
                   if (age.adult) reqAge.push('adult');
                   else {
@@ -126,7 +125,7 @@ class Request extends Component {
               />
 
               <CheckBox
-                title='senior'
+                title="senior"
                 checked={!age.senior}
                 containerStyle={styles.checkbox}
                 checkedColor={'green'}
@@ -135,8 +134,8 @@ class Request extends Component {
                   this.setState({
                     age: {
                       ...age,
-                      senior: !age.senior
-                    }
+                      senior: !age.senior,
+                    },
                   }); //end set state
                   if (age.senior) reqAge.push('senior');
                   else {
@@ -151,7 +150,7 @@ class Request extends Component {
             <Text style={styles.category}>Size</Text>
             <View style={styles.boxes}>
               <CheckBox
-                title='small'
+                title="small"
                 checked={!size.small}
                 containerStyle={styles.checkbox}
                 checkedColor={'green'}
@@ -160,8 +159,8 @@ class Request extends Component {
                   this.setState({
                     size: {
                       ...size,
-                      small: !size.small
-                    }
+                      small: !size.small,
+                    },
                   }); //end set state
 
                   if (size.small) reqSize.push('small');
@@ -173,7 +172,7 @@ class Request extends Component {
               />
 
               <CheckBox
-                title='medium'
+                title="medium"
                 checked={!size.medium}
                 containerStyle={styles.checkbox}
                 checkedColor={'green'}
@@ -182,8 +181,8 @@ class Request extends Component {
                   this.setState({
                     size: {
                       ...size,
-                      medium: !size.medium
-                    }
+                      medium: !size.medium,
+                    },
                   }); //end set state
 
                   if (size.medium) reqSize.push('medium');
@@ -195,7 +194,7 @@ class Request extends Component {
               />
 
               <CheckBox
-                title='large'
+                title="large"
                 checked={!size.large}
                 containerStyle={styles.checkbox}
                 checkedColor={'green'}
@@ -204,8 +203,8 @@ class Request extends Component {
                   this.setState({
                     size: {
                       ...size,
-                      large: !size.large
-                    }
+                      large: !size.large,
+                    },
                   }); //end set state
 
                   if (size.large) reqSize.push('large');
@@ -217,7 +216,7 @@ class Request extends Component {
               />
 
               <CheckBox
-                title='xlarge'
+                title="xlarge"
                 checked={!size.xlarge}
                 containerStyle={styles.checkbox}
                 checkedColor={'green'}
@@ -226,8 +225,8 @@ class Request extends Component {
                   this.setState({
                     size: {
                       ...size,
-                      xlarge: !size.xlarge
-                    }
+                      xlarge: !size.xlarge,
+                    },
                   }); //end set state
 
                   if (size.xlarge) reqSize.push('xlarge');
@@ -243,7 +242,7 @@ class Request extends Component {
             <Text style={styles.category}>Coat</Text>
             <View style={styles.boxes}>
               <CheckBox
-                title='short'
+                title="short"
                 checked={!coat.short}
                 containerStyle={styles.checkbox}
                 checkedColor={'green'}
@@ -252,8 +251,8 @@ class Request extends Component {
                   this.setState({
                     coat: {
                       ...coat,
-                      short: !coat.short
-                    }
+                      short: !coat.short,
+                    },
                   }); //end set state
 
                   if (coat.short) reqCoat.push('short');
@@ -265,7 +264,7 @@ class Request extends Component {
               />
 
               <CheckBox
-                title='medium'
+                title="medium"
                 checked={!coat.medium}
                 containerStyle={styles.checkbox}
                 checkedColor={'green'}
@@ -274,8 +273,8 @@ class Request extends Component {
                   this.setState({
                     coat: {
                       ...coat,
-                      medium: !coat.medium
-                    }
+                      medium: !coat.medium,
+                    },
                   }); //end set state
 
                   if (coat.medium) reqCoat.push('medium');
@@ -287,7 +286,7 @@ class Request extends Component {
               />
 
               <CheckBox
-                title='long'
+                title="long"
                 checked={!coat.long}
                 containerStyle={styles.checkbox}
                 checkedColor={'green'}
@@ -296,8 +295,8 @@ class Request extends Component {
                   this.setState({
                     coat: {
                       ...coat,
-                      long: !coat.long
-                    }
+                      long: !coat.long,
+                    },
                   }); //end set state
 
                   if (coat.long) reqCoat.push('long');
@@ -309,7 +308,7 @@ class Request extends Component {
               />
 
               <CheckBox
-                title='curly'
+                title="curly"
                 checked={!coat.curly}
                 containerStyle={styles.checkbox}
                 checkedColor={'green'}
@@ -318,8 +317,8 @@ class Request extends Component {
                   this.setState({
                     coat: {
                       ...coat,
-                      curly: !coat.curly
-                    }
+                      curly: !coat.curly,
+                    },
                   }); //end set state
 
                   if (coat.curly) reqCoat.push('curly');
@@ -331,7 +330,7 @@ class Request extends Component {
               />
 
               <CheckBox
-                title='wire'
+                title="wire"
                 checked={!coat.wire}
                 containerStyle={styles.checkbox}
                 checkedColor={'green'}
@@ -340,8 +339,8 @@ class Request extends Component {
                   this.setState({
                     coat: {
                       ...coat,
-                      wire: !coat.wire
-                    }
+                      wire: !coat.wire,
+                    },
                   }); //end set state
 
                   if (coat.wire) reqCoat.push('wire');
@@ -357,7 +356,7 @@ class Request extends Component {
               style={styles.button2}
               onPress={() => {
                 this.props.fetchRequestedDogs(this.requestedAttributes);
-                this.props.navigation.navigate('Search Results')
+                this.props.navigation.navigate('Search Results');
               }}
             >
               <Text style={styles.button}>Show dogs</Text>
@@ -374,7 +373,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 50
+    marginBottom: 50,
   },
   boxes: {
     width: '90%',
@@ -382,7 +381,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignContent: 'center',
     marginTop: 5,
-    marginBottom: 5
+    marginBottom: 5,
   },
   category: {
     backgroundColor: '#e0e0e0',
@@ -391,20 +390,20 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#147efb',
     width: '100%',
-    padding: 15
+    padding: 15,
   },
   checkbox: {
     backgroundColor: '#d5e5f5',
     width: '110%',
     padding: 15,
     alignSelf: 'center',
-    margin: 5
+    margin: 5,
   },
   button: {
     alignSelf: 'center',
     padding: 0,
     color: '#147efb',
-    fontSize: 18
+    fontSize: 18,
   },
   button2: {
     backgroundColor: 'white',
@@ -414,7 +413,7 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 20,
     width: 200,
-    marginBottom: 30
+    marginBottom: 30,
   },
   topHeader: {
     fontSize: 22,
@@ -422,12 +421,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#147efb',
     backgroundColor: 'white',
-    padding: 10
-  }
+    padding: 10,
+  },
 });
 
 const mapDispatch = dispatch => ({
-  fetchRequestedDogs: req => dispatch(fetchRequestedDogs(req))
+  fetchRequestedDogs: req => dispatch(fetchRequestedDogs(req)),
 });
 
 export default connect(null, mapDispatch)(Request);
