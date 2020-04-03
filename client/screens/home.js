@@ -1,6 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Button } from "react-native";
-import Dogs from "../component/allDogs";
+import { View, StyleSheet} from "react-native";
+import Dogs from "../component/AllDogs";
 
 export default class HomeScreen extends React.Component {
   constructor() {
@@ -10,11 +10,7 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View>
-        {/* <View style={styles.dashboardWrapper}> */}
-        {/* <Text style={styles.userText}>Hey User</Text> */}
         <Dogs navigation={this.props.navigation} />
-
-        {/* </View> */}
       </View>
     );
   }

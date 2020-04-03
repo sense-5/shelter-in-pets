@@ -3,7 +3,6 @@ import {
   View,
   Text,
   Image,
-  Button,
   StyleSheet,
   ScrollView
 } from 'react-native';
@@ -13,7 +12,6 @@ import { getPickedImage, getAllBreeds } from '../store/imagePicker';
 import Clarifai from 'clarifai';
 import { breedPrediction } from '../../utility/prediction';
 import { upperCase } from '../../utility/utils';
-// import { TapGestureHandler } from 'react-native-gesture-handler';
 
 import { CLARIFAI_KEY } from 'react-native-dotenv';
 import { TouchableOpacity } from 'react-native-gesture-handler';

@@ -5,22 +5,20 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { logout } from './client/store/user';
 import { Text, View, Button } from 'react-native';
-import ImagePick from './client/component/ImagePicker';
-import Signup from './client/screens/signup';
-import BreedOptions from './client/component/breedOptions';
-import DogsByBreed from './client/component/dogsByBreed';
 import { Ionicons } from '@expo/vector-icons';
-import LikedDogs from './client/component/likedDogs';
-import Request from './client/component/requestForm';
-import SearchResults from './client/component/searchResults';
-import HomeScreen from './client/screens/home';
 import { getLikedDogs } from './client/store/likedDog';
-import Recs from './client/screens/recommendations';
 
-import Dog from './client/component/singleDog';
-
-import Login from './client/screens/login';
-
+import ImagePick from './client/component/ImagePicker';
+import Signup from './client/screens/Signup';
+import BreedOptions from './client/component/BreedOptions';
+import DogsByBreed from './client/component/DogsByBreed';
+import LikedDogs from './client/component/LikedDogs';
+import Request from './client/component/RequestForm';
+import SearchResults from './client/component/SearchResults';
+import HomeScreen from './client/screens/Home';
+import Recs from './client/screens/Recommendations';
+import Dog from './client/component/SingleDog';
+import Login from './client/screens/Login';
 import ProfileDog from './client/component/ProfileSingleDog';
 
 const Tab = createBottomTabNavigator();

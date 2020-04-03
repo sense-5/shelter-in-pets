@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  Button,
   ScrollView,
   TouchableOpacity
 } from 'react-native';

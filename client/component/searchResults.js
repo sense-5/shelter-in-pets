@@ -8,7 +8,6 @@ import {
   ActivityIndicator
 } from 'react-native';
 import { connect } from 'react-redux';
-const defaultDog = require('../../assets/images/dog1.png');
 
 class SearchResults extends Component {
   constructor() {
