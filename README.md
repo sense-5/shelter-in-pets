@@ -10,7 +10,16 @@ Adopting a dog has never been more fun or easier!
 
 #### Note: This is the client side! You must clone the shelter-in-pets-server repo and follow the directions in the README.md https://github.com/sense-5/shelter-in-pets-server
 
+This app is developed for iOS. Android development is in the works...
+
 ```
+
+To install Expo CLI:
+
+npm install -g expo-cli
+
+```
+
 In one terminal:
 
 cd <directory you want to download to>
@@ -20,6 +29,8 @@ git clone https://github.com/sense-5/shelter-in-pets.git
 npm install
 
 expo start
+
 ```
 
-Go to http://localhost:19002/ to use Shelter in Pets
+Go to http://localhost:19002/ to use Shelter in Pets!
+```
