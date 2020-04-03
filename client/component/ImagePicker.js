@@ -5,7 +5,7 @@ import {
   Image,
   StyleSheet,
   ScrollView,
-  ActivityIndicator,
+  ActivityIndicator
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { connect } from 'react-redux';
@@ -17,7 +17,7 @@ import env from '../../environment';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const app = new Clarifai.App({
-  apiKey: `${env.apiKey}`,
+  apiKey: `${env.apiKey}`
 });
 
 class ImagePick extends Component {
@@ -26,7 +26,7 @@ class ImagePick extends Component {
     this.state = {
       dogBreed: '',
       allBreeds: [],
-      loading: true,
+      loading: true
     };
     this.openImagePicker = this.openImagePicker.bind(this);
   }
@@ -34,21 +34,21 @@ class ImagePick extends Component {
   async componentDidMount() {
     await this.props.getAllBreeds();
     this.setState({
-      allBreeds: this.props.breeds,
+      allBreeds: this.props.breeds
     });
     process.nextTick = setImmediate;
   }
 
   async openImagePicker() {
     let pickerResult = await ImagePicker.launchImageLibraryAsync({
-      base64: true,
+      base64: true
     });
 
     await this.props.getPickedImage(pickerResult);
 
     const generalModel = await app.models.initModel({
       id: Clarifai.GENERAL_MODEL,
-      version: 'aa7f35c01e0642fda5cf400f543e7c40',
+      version: 'aa7f35c01e0642fda5cf400f543e7c40'
     });
 
     try {
@@ -64,12 +64,12 @@ class ImagePick extends Component {
           dogBreed = upperCase(dogBreed);
           this.setState({
             dogBreed,
-            loading: false,
+            loading: false
           });
         } else {
           this.setState({
             dogBreed: null,
-            loading: false,
+            loading: false
           });
         }
       }
@@ -97,16 +97,18 @@ class ImagePick extends Component {
 
                 {dogBreed ? (
                   <View>
-                    <Text style={styles.text3}>
-                      Are you looking for a {dogBreed}?
-                    </Text>
+                    <View>
+                      <Text style={styles.text3}>
+                        Are you looking for a {dogBreed}?
+                      </Text>
+                    </View>
                     <View style={styles.buttonContainer}>
                       <TouchableOpacity
                         style={styles.button2}
                         onPress={() => {
                           this.props.navigation.navigate('Breed Options', {
                             breeds,
-                            dogBreed,
+                            dogBreed
                           });
                         }}
                       >
@@ -177,7 +179,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-start'
   },
   topHeader: {
     fontSize: 22,
@@ -186,20 +188,20 @@ const styles = StyleSheet.create({
     width: 1000,
     color: '#147efb',
     backgroundColor: 'white',
-    padding: 10,
+    padding: 10
   },
   image: {
     height: 350,
-    width: 420,
+    width: 420
   },
   text1: {
     textAlign: 'center',
     fontSize: 22,
-    padding: 5,
+    padding: 5
   },
   text2: {
     textAlign: 'center',
-    fontSize: 22,
+    fontSize: 22
   },
   text3: {
     textAlign: 'center',
@@ -207,30 +209,30 @@ const styles = StyleSheet.create({
     padding: 5,
     marginTop: 10,
     color: '#147efb',
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   container1: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   container2: {
     flex: 1,
     alignItems: 'center',
-    marginTop: '40%',
+    marginTop: '40%'
   },
   container3: {
     flex: 1,
     alignItems: 'center',
-    marginTop: '10%',
+    marginTop: '10%'
   },
   buttonContainer2: {
     justifyContent: 'space-between',
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   buttonContainer: {
     justifyContent: 'space-between',
-    flexDirection: 'row',
     marginTop: 10,
+    alignSelf: 'center'
   },
   button2: {
     backgroundColor: 'white',
@@ -239,24 +241,24 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     margin: 20,
-    width: 300,
+    width: 300
   },
   buttonText: {
     color: '#147efb',
     textAlign: 'center',
-    fontSize: 18,
-  },
+    fontSize: 18
+  }
 });
 
 const mapState = state => ({
   pickedImage: state.pickedImage,
-  breeds: state.pickedImage.breeds,
+  breeds: state.pickedImage.breeds
 });
 
 const mapDispatch = dispatch => {
   return {
     getPickedImage: img => dispatch(getPickedImage(img.uri)),
-    getAllBreeds: () => dispatch(getAllBreeds()),
+    getAllBreeds: () => dispatch(getAllBreeds())
   };
 };
 

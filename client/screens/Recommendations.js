@@ -19,7 +19,7 @@ export class Recommendations extends Component {
   async view(dog) {
     await axios.post(`${env.apiUrl}/api/viewedDog`, {
       petFinderId: dog.id,
-      breed: dog.breeds.primary,
+      breed: dog.breeds.primary
     });
   }
 
@@ -30,6 +30,7 @@ export class Recommendations extends Component {
     } else {
       dogs = this.props.recDogs;
     }
+    const logo = require('../../assets/images/logo.jpg');
     return (
       <View style={styles.outerContainer}>
         <View>
@@ -37,11 +38,10 @@ export class Recommendations extends Component {
         </View>
         <ScrollView scrollEventThrottle={16}>
           <View style={styles.container}>
-            <Text style={styles.text}>based on your recent activity 🐾</Text>
             <View style={styles.imgContainer}>
               <ScrollView
                 horizontal={true}
-                showsHorizontalScrollIndicator={false}
+                showsHorizontalScrollIndicator={true}
               >
                 {dogs.map((dog, idx) => {
                   return (
@@ -59,7 +59,7 @@ export class Recommendations extends Component {
                           <Image
                             style={styles.img}
                             source={{
-                              uri: dog.uri,
+                              uri: dog.uri
                             }}
                           />
                         </TouchableOpacity>
@@ -67,8 +67,12 @@ export class Recommendations extends Component {
                     </View>
                   );
                 })}
-                {/* <Bullets /> set up bullets */}
               </ScrollView>
+              <View style={styles.swipeFooter}>
+                <Text style={styles.arrows}>
+                  ◄{'  '}swipe{'  '}►
+                </Text>
+              </View>
             </View>
           </View>
         </ScrollView>
@@ -80,7 +84,7 @@ export class Recommendations extends Component {
 const mapStateToProps = state => {
   return {
     recDogs: state.recDogs.recDogs,
-    defaultDogs: state.recDogs.defaultDogs,
+    defaultDogs: state.recDogs.defaultDogs
   };
 };
 
@@ -88,7 +92,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getRecDogs: () => {
       dispatch(getRecDogs());
-    },
+    }
   };
 };
 
@@ -99,28 +103,17 @@ const styles = StyleSheet.create({
   outerContainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-start'
   },
   container: {
-    flex: 1,
-    backgroundColor: 'white',
-    paddingTop: '7%',
-  },
-  text: {
-    textAlign: 'center',
-    fontSize: 22,
-    padding: 5,
-    marginBottom: 20,
-    color: '#147efb',
-    fontWeight: 'bold',
+    flex: 1
   },
   imgContainer: {
-    height: '100%',
-    marginTop: 20,
+    height: '100%'
   },
   img: {
     height: 450,
-    width: 450,
+    width: 450
   },
   topHeader: {
     fontSize: 22,
@@ -129,6 +122,24 @@ const styles = StyleSheet.create({
     width: 1000,
     color: '#147efb',
     backgroundColor: 'white',
-    padding: 10,
+    padding: 10
   },
+  dogIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: 50,
+    padding: 5
+  },
+  swipeFooter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'center',
+    padding: 5,
+    marginBottom: 100
+  },
+  arrows: {
+    fontSize: 18,
+    color: 'grey',
+    fontWeight: 'bold'
+  }
 });
