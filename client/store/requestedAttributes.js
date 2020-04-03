@@ -17,7 +17,6 @@ export const gotRequestedDogs = dogs => ({
 });
 
 //THUNK
-//will accept attributes from state in an obj as param to send
 export const fetchRequestedDogs = req => {
   return async dispatch => {
     try {

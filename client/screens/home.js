@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import Dogs from '../component/allDogs';
+import React from "react";
+import { View, StyleSheet} from "react-native";
+import Dogs from "../component/AllDogs";
 
 export default class HomeScreen extends React.Component {
   constructor() {
