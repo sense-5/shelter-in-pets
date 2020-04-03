@@ -1,4 +1,5 @@
 import axios from 'axios';
+import env from '../../environment';
 
 const LIKE_DOG = 'LIKE_DOG';
 const GET_LIKED_DOGS = 'GET_LIKED_DOGS';
@@ -10,14 +11,10 @@ const gotLikedDogsId = ids => ({ type: GET_LIKED_DOGS_IDS, ids });
 
 export const likeDog = dog => async dispatch => {
   try {
-    const { data } = await axios.post(
-      'http://localhost:3000/api/likedDog',
-      // 'https://shelter-in-pets-server.herokuapp.com/api/likedDog',
-      {
-        petFinderId: dog.id,
-        breed: dog.breeds.primary,
-      }
-    );
+    const { data } = await axios.post(`${env.apiUrl}/api/likedDog`, {
+      petFinderId: dog.id,
+      breed: dog.breeds.primary,
+    });
     dispatch(LikedDog(data.liked));
   } catch (error) {
     console.error(error);
@@ -27,10 +24,7 @@ export const likeDog = dog => async dispatch => {
 export const getLikedDogs = () => {
   return async dispatch => {
     try {
-      const { data } = await axios.get(
-        'http://localhost:3000/api/likedDog'
-        // 'https://shelter-in-pets-server.herokuapp.com/api/likedDog/'
-      );
+      const { data } = await axios.get(`${env.apiUrl}/api/likedDog`);
 
       dispatch(gotLikedDogs(data));
     } catch (error) {
@@ -42,10 +36,7 @@ export const getLikedDogs = () => {
 export const getLikedDogsIds = () => {
   return async dispatch => {
     try {
-      const { data } = await axios.get(
-        'http://localhost:3000/api/likedDog/ids'
-        //'https://shelter-in-pets-server.herokuapp.com/api/likedDog/ids'
-      );
+      const { data } = await axios.get(`${env.apiUrl}/api/likedDog/ids`);
       dispatch(gotLikedDogsId(data));
     } catch (error) {
       console.error(error);

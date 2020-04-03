@@ -1,4 +1,5 @@
 import axios from 'axios';
+import env from '../../environment';
 
 //initial state
 const initialState = {
@@ -24,10 +25,7 @@ export const getBreeds = breeds => ({
 //thunk to get all dog breeds
 export const getAllBreeds = () => async dispatch => {
   try {
-    let { data } = await axios.get(
-      // 'https://shelter-in-pets-server.herokuapp.com/api/dogs/breeds'
-      'http://localhost:3000/api/dogs/breeds'
-    );
+    let { data } = await axios.get(`${env.apiUrl}/api/dogs/breeds`);
     data = data.map(breed => {
       return (breed.name = breed.name.toLowerCase());
     });

@@ -1,18 +1,10 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  FlatList,
-  ActivityIndicator,
-  Dimensions,
-  ScrollView,
-} from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import { getRecDogs } from '../store/recommendations';
 import axios from 'axios';
+import env from '../../environment';
 
 export class Recommendations extends Component {
   constructor() {
@@ -25,14 +17,10 @@ export class Recommendations extends Component {
   }
 
   async view(dog) {
-    await axios.post(
-      'http://localhost:3000/api/viewedDog',
-      // 'https://shelter-in-pets-server.herokuapp.com/api/viewedDog',
-      {
-        petFinderId: dog.id,
-        breed: dog.breeds.primary,
-      }
-    );
+    await axios.post(`${env.apiUrl}/api/viewedDog`, {
+      petFinderId: dog.id,
+      breed: dog.breeds.primary,
+    });
   }
 
   render() {

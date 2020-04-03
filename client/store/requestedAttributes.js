@@ -1,9 +1,10 @@
 import axios from 'axios';
+import env from '../../environment';
 import { getDogImages } from '../../utility/prediction';
 
 const initialState = {
   attributes: {},
-  requestedDogs: []
+  requestedDogs: [],
 };
 
 //action constant
@@ -12,7 +13,7 @@ const GOT_REQUESTED_DOGS = 'GOT_REQUESTED_DOGS';
 //action creator
 export const gotRequestedDogs = dogs => ({
   type: GOT_REQUESTED_DOGS,
-  dogs
+  dogs,
 });
 
 //THUNK
@@ -25,16 +26,13 @@ export const fetchRequestedDogs = req => {
       const coat = req.coat.length > 1 ? req.coat.join(',') : req.coat[0];
       //if any of these is empty query will still work giving all possibilities for that category
 
-      const { data } = await axios.get(
-        'http://localhost:3000/api/dogs/request',
-        {
-          params: {
-            age,
-            size,
-            coat
-          }
-        }
-      );
+      const { data } = await axios.get(`${env.apiUrl}/api/dogs/request`, {
+        params: {
+          age,
+          size,
+          coat,
+        },
+      });
       let dogImages = getDogImages(data.animals);
       dispatch(gotRequestedDogs(dogImages));
     } catch (error) {
@@ -49,7 +47,7 @@ const requestedAttributes = (state = initialState, action) => {
     case GOT_REQUESTED_DOGS:
       return {
         ...state,
-        requestedDogs: action.dogs
+        requestedDogs: action.dogs,
       };
     default:
       return state;

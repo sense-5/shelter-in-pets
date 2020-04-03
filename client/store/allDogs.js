@@ -1,4 +1,5 @@
 import axios from 'axios';
+import env from '../../environment';
 import { getDogImages } from '../../utility/prediction';
 
 // action type
@@ -27,10 +28,7 @@ export const getAllDogs = page => {
       if (!page) {
         page = 1;
       }
-      const { data } = await axios.get(
-        // `https://shelter-in-pets-server.herokuapp.com/api/dogs/${page}`
-        `http://localhost:3000/api/dogs/${page}`
-      );
+      const { data } = await axios.get(`${env.apiUrl}/api/dogs/${page}`);
       let dogImages = getDogImages(data.animals);
 
       dispatch(gotAllDogs(dogImages));
@@ -43,10 +41,7 @@ export const getAllDogs = page => {
 export const getDogsByBreed = breed => {
   return async dispatch => {
     try {
-      const { data } = await axios.get(
-        // `https://shelter-in-pets-server.herokuapp.com/api/dogs/type/${breed}`
-        `http://localhost:3000/api/dogs/type/${breed}`
-      );
+      const { data } = await axios.get(`${env.apiUrl}/api/dogs/type/${breed}`);
 
       let dogImages = getDogImages(data.animals);
       dispatch(getByBreed(dogImages));
