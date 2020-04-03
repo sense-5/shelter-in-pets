@@ -5,16 +5,14 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
-  ActivityIndicator
 } from 'react-native';
 import { connect } from 'react-redux';
-const defaultDog = require('../../assets/images/dog1.png');
 
 class SearchResults extends Component {
   constructor() {
     super();
     this.state = {
-      loading: true
+      loading: true,
     };
   }
   render() {
@@ -46,19 +44,19 @@ class SearchResults extends Component {
 const styles = StyleSheet.create({
   image: {
     height: 207,
-    width: 207
+    width: 207,
   },
   container: {
     flex: 1,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'yellow'
-  }
+    backgroundColor: 'yellow',
+  },
 });
 
 const mapState = state => ({
-  reqDogs: state.requestedAttributes.requestedDogs
+  reqDogs: state.requestedAttributes.requestedDogs,
 });
 
 export default connect(mapState, null)(SearchResults);

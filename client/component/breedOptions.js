@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import { connect } from 'react-redux';
 import { getBreedOptions } from '../../utility/prediction';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -8,7 +7,7 @@ export default class BreedOptions extends React.Component {
   constructor() {
     super();
     this.state = {
-      breedOptions: []
+      breedOptions: [],
     };
   }
 
@@ -16,7 +15,7 @@ export default class BreedOptions extends React.Component {
     let { breeds } = this.props.route.params;
     const { dogBreed } = this.props.route.params;
     this.setState({
-      breedOptions: getBreedOptions(breeds, dogBreed)
+      breedOptions: getBreedOptions(breeds, dogBreed),
     });
   }
 
@@ -56,15 +55,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignContent: 'center',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
     //marginBottom: 50
   },
 
   button: {
     justifyContent: 'center',
-    //marginTop: 5,
-    marginBottom: 5
-    //padding: 2,
+
+    marginBottom: 5,
   },
   topText: {
     color: '#147efb',
@@ -73,7 +71,7 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 20,
     textAlign: 'center',
-    marginBottom: 5
+    marginBottom: 5,
   },
   topHeader: {
     textAlign: 'center',
@@ -81,7 +79,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#147efb',
     backgroundColor: 'white',
-    padding: 10
+    padding: 10,
   },
   text: {
     backgroundColor: '#d5e5f5',
@@ -90,9 +88,9 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 20,
     width: '100%',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   flatlist: {
-    marginBottom: '20%'
-  }
+    marginBottom: '20%',
+  },
 });
