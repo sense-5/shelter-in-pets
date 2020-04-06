@@ -4,7 +4,7 @@ Shelter in Pets is a dog adoption app that helps a user find their perfect dog! 
 Users can serach for dogs by selecting specific dog attributes or by breed. The app uses Clarifai API to predict the breed of the dog when a user uploads a picture.
 When a user views a dog, they can see information about the dog, like the dog, contact the shelter via phone or email, and get the location of the shelter.
 The user can visit the dogs they have liked in "Favorites" and edit the list. The app makes recommendations of dogs to the user based on their view and like history.
-Adopting a dog has never been more fun or easier!
+Adopting a dog has never been more fun or easy!
 
 ## Getting Started
 
