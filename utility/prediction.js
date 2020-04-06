@@ -19,6 +19,7 @@ export const breedPrediction = (concepts, breeds) => {
     'lake',
     'hair',
     'mountain',
+    'sea',
   ];
   let breedsToIgnore = ['shepherd', 'retriever', 'sheepdog', 'spaniel'];
   //check if image uploaded has a dog

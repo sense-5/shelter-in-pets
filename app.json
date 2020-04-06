@@ -4,14 +4,11 @@
   "expo": {
     "name": "ShelterInPets",
     "slug": "ShelterInPets",
+    "description": "Shelter-in-Pets is a mobile application that streamlines a user’s search for adoptable dogs. It matches user-uploaded dog images to similar adoptable dogs, allows a user to conduct filtered searches based on desired traits, and even recommends adoptable dogs based on the user’s in-app activity.",
     "privacy": "unlisted",
     "sdkVersion": "36.0.0",
     "version": "1.0.0",
     "entryPoint": "node_modules/expo/AppEntry.js",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ]
+    "platforms": ["ios", "android", "web"]
   }
 }
