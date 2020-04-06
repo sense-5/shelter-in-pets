@@ -4,7 +4,9 @@
   "expo": {
     "name": "ShelterInPets",
     "slug": "ShelterInPets",
-    "description": "Shelter-in-Pets is a mobile application that streamlines a user’s search for adoptable dogs. It matches user-uploaded dog images to similar adoptable dogs, allows a user to conduct filtered searches based on desired traits, and even recommends adoptable dogs based on the user’s in-app activity.",
+    "description": "Shelter-in-Pets is a mobile application that streamlines a user’s search for adoptable dogs. It matches user-uploaded dog images to similar adoptable dogs, allows a user to conduct filtered searches based on desired traits, and even recommends adoptable dogs based on the user’s in-app activity.
+    Built by: Angela Vuong, Laura Armfield-Perez, Katherine Lee and Sonia Susanto.",
+    "githubUrl":"https://github.com/sense-5/shelter-in-pets"
     "privacy": "unlisted",
     "sdkVersion": "36.0.0",
     "version": "1.0.0",
