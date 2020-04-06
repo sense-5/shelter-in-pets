@@ -3,6 +3,10 @@
   "lanType": "ip",
   "dev": true,
   "minify": false,
+<<<<<<< HEAD
   "urlRandomness": "bq-zsc",
+=======
+  "urlRandomness": "8i-8sm",
+>>>>>>> 0103bc8e046d0970658b40ccb8f498d0a0c1c324
   "https": false
 }

@@ -17,6 +17,8 @@ export const breedPrediction = (concepts, breeds) => {
     'snow',
     'water',
     'lake',
+    'hair',
+    'mountain',
   ];
   let breedsToIgnore = ['shepherd', 'retriever', 'sheepdog', 'spaniel'];
   //check if image uploaded has a dog
@@ -31,9 +33,9 @@ export const breedPrediction = (concepts, breeds) => {
   }
 
   //for each predicted concept/breed, if it is not in the ignored list above, check if it matches a breed from petfinderAPI
-  concepts.forEach(concept => {
+  concepts.forEach((concept) => {
     if (!conceptsToIgnore.includes(concept.name.toLowerCase())) {
-      breeds.forEach(breed => {
+      breeds.forEach((breed) => {
         if (breed.includes(concept.name.toLowerCase())) {
           result.push(concept.name.toLowerCase());
         }
@@ -48,7 +50,7 @@ export const breedPrediction = (concepts, breeds) => {
 
   //get rid of general breed names
   if (result.length > 1) {
-    result = result.filter(breed => {
+    result = result.filter((breed) => {
       return !breedsToIgnore.includes(breed);
     });
   }
@@ -82,7 +84,7 @@ function getBreedOptions(breeds, dogBreed) {
     dogBreed = 'Husky';
   }
 
-  breeds.forEach(breed => {
+  breeds.forEach((breed) => {
     if (breed.includes(dogBreed.toLowerCase())) {
       result.push(upperCase(breed));
     }
@@ -103,7 +105,7 @@ function getBreedOptions(breeds, dogBreed) {
 
   //filter out dogs with / in their names
 
-  result = result.filter(breed => {
+  result = result.filter((breed) => {
     return !breed.includes('/');
   });
 
@@ -121,10 +123,10 @@ function getDogImages(dogs) {
   let result = [];
 
   //filter out dogs without images
-  dogs = dogs.filter(dog => {
+  dogs = dogs.filter((dog) => {
     return dog.photos.length !== 0;
   });
-  result = dogs.map(dog => {
+  result = dogs.map((dog) => {
     return {
       uri: dog.photos[0].full,
       dog: dog,
