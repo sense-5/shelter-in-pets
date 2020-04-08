@@ -74,15 +74,15 @@ Upload a picture of a dog you want to search for. Select a sub-breed.
 
 Click on a dog and you will see more information.
 
-<img src='https://github.com/sense-5/shelter-in-pets/blob/readme/assets/gif/browseAndSelect.gif' width='50%' height='50%' />
+<img src='https://github.com/sense-5/shelter-in-pets/blob/readme/assets/gif/browseAndSelect.gif' width='25%' height='25%' />
 
 Use the search by filter feature to selected your desired dog attributes.
 
-<img src='https://github.com/sense-5/shelter-in-pets/blob/readme/assets/gif/filterSearchAndLike.gif' width='50%' height='50%' />
+<img src='https://github.com/sense-5/shelter-in-pets/blob/readme/assets/gif/filterSearchAndLike.gif' width='25%' height='25%' />
 
 Like a dog and you will see it on your list of Favorite Dogs.
 
-<img src='https://github.com/sense-5/shelter-in-pets/blob/readme/assets/gif/likeAndFavorites.gif' width='50%' height='50%' />
+<img src='https://github.com/sense-5/shelter-in-pets/blob/readme/assets/gif/likeAndFavorites.gif' width='25%' height='25%' />
 
 Click on "recommendations" and you can swipe through dogs recommended to you base on your view and like history.
 
