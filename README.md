@@ -1,10 +1,6 @@
 # Shelter in Pets
 
-During the COVID-19 pandemic, it important that people follow social distancing protocols. This prevents many people from visiting shelters to adopt pets that needs a home. Shelter in Pets is a pet adoption app that helps a user find their perfect pet from the safety of their home. The user can browse real adoptable dogs through the Petfinder API.
-The app uses Clarifai API to predict the breed of the dog when a user uploads a picture. Users can also search for dogs by selecting specific dog attributes.
-When a user views a dog, they can see information about the dog, like the dog, contact the shelter via phone or email, and get the location of the shelter.
-The user can visit the dogs they have liked in "Favorites" and edit the list. The app makes recommendations of dogs to the user based on their view and like history.
-Adopting a dog has never been more fun or easy!
+During the COVID-19 pandemic, the various social distancing protocols are preventing many people from visiting shelters to adopt pets. Our app solves this problem by letting users search for adoptable dogs from the comfort and safety of their homes. It matches user-uploaded dog images to similar adoptable dogs, allows a user to conduct filtered searches based on desired traits, and even recommends adoptable dogs based on the user’s in-app activity.
 
 
 ## Table of Contents
