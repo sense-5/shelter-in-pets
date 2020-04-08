@@ -58,7 +58,7 @@ https://redux.js.org/
 
 - Redux is a JavaScript library that allows for state management.
 
-- Redux works with React Native and Node.js to build user interfaces by retrieving data from the database and manages state in the clinet side.
+- Redux works with React Native and Node.js to build user interfaces by retrieving data from the database and manages state in the client side.
 
 ### Expo
 
@@ -102,7 +102,7 @@ https://www.clarifai.com/
 
 ## Tutorial
 
-After logging in, you can start by scrolling through all the dogs avaiable for adoption. Upload a picture of a dog you want to search for. Select a sub-breed. Click on a dog and you will see more information.
+After logging in, you can start by scrolling through all the dogs available for adoption. Upload a picture of a dog you want to search for. Select a sub-breed. Click on a dog and you will see more information.
 
 <img src='https://github.com/sense-5/shelter-in-pets/blob/readme/assets/gif/browseAndSelect.gif' width='30%' height='30%' />
 
@@ -114,6 +114,6 @@ Like a dog and you will see it on your list of Favorite Dogs.
 
 <img src='https://github.com/sense-5/shelter-in-pets/blob/readme/assets/gif/likeAndFavorites.gif' width='30%' height='30%' />
 
-Click on "recommendations" and you can swipe through dogs recommended to you base on your view and like history.Once you have found your dog, you can contact the shelter via email, phone, or get the shelter location.
+Click on "recommendations" and you can swipe through dogs recommended to you base on your view and like history. Once you have found your dog, you can contact the shelter via email, phone, or get the shelter location.
 
 <img src='https://github.com/sense-5/shelter-in-pets/blob/readme/assets/gif/recAndFinalPick.gif' width='30%' height='30%' />
