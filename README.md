@@ -7,7 +7,7 @@ The user can visit the dogs they have liked in "Favorites" and edit the list. Th
 Adopting a dog has never been more fun or easy!
 
 
-- [Table of Contents](#Table-of-Contents)
+## Table of Contents
 - [Getting Started](#Getting-Started)
 - [Team](#Team)
   - [Kate Lee](#Kate-Lee)
