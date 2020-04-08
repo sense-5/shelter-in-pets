@@ -6,6 +6,22 @@ When a user views a dog, they can see information about the dog, like the dog, c
 The user can visit the dogs they have liked in "Favorites" and edit the list. The app makes recommendations of dogs to the user based on their view and like history.
 Adopting a dog has never been more fun or easy!
 
+
+- [Table of Contents](#Table-of-Contents)
+- [Getting Started](#Getting-Started)
+- [Team](#Team)	- [Team](#Team)
+  - [Kate Lee](#Kate-Lee)
+  - [Sonia Susanto](#Sonia-Susanto)
+  - [Angela Vuong](#Angela-Vuong)
+  - [Laura Armfield-Perez](#Laura Armfield-Perez)
+- [Tech Stack - Front End](#Tech-Stack---Front-End)
+  - [React Native](#React-Native)
+  - [Redux](#Redux)
+  - [Expo](#Expo)
+  - [Clarfai API](#Clarfai-API)	
+- [Tutorial](#Tutorial)
+
+
 ## Getting Started
 
 #### Note: This is the client side! You must clone the shelter-in-pets-server repo and follow the directions in the README.md https://github.com/sense-5/shelter-in-pets-server
