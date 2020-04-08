@@ -14,7 +14,7 @@ During the COVID-19 pandemic, the various social distancing protocols are preven
   - [React Native](#React-Native)
   - [Redux](#Redux)
   - [Expo](#Expo)
-  - [Clarfai API](#Clarfai-API)	
+  - [Clarifai API](#Clarifai-API)	
 - [Tutorial](#Tutorial)
 
 
@@ -66,7 +66,7 @@ https://expo.io/
 
 - Expo is an open-source platform for developing and publishing native apps for Android, iOS, and web browser. 
 
-### Clarfai API
+### Clarifai API
 
 https://www.clarifai.com/
 
