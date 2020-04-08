@@ -2,6 +2,8 @@
 
 During the COVID-19 pandemic, the various social distancing protocols are preventing many people from visiting shelters to adopt pets. Our app solves this problem by letting users search for adoptable dogs from the comfort and safety of their homes. It matches user-uploaded dog images to similar adoptable dogs, allows a user to conduct filtered searches based on desired traits, and even recommends adoptable dogs based on the user’s in-app activity.
 
+Visit [Shelter-In-Pets](https://expo.io/@shelterinpets/ShelterInPets?release-channel=prod) to try our app!
+
 
 ## Table of Contents
 - [Getting Started](#Getting-Started)
@@ -104,16 +106,16 @@ https://www.clarifai.com/
 
 After logging in, you can start by scrolling through all the dogs available for adoption. Upload a picture of a dog you want to search for. Select a sub-breed. Click on a dog and you will see more information.
 
-<img src='https://github.com/sense-5/shelter-in-pets/blob/readme/assets/gif/browseAndSelect.gif' width='30%' height='30%' />
+<img src='https://github.com/sense-5/shelter-in-pets/blob/master/assets/gif/browseAndSelect.gif' width='30%' height='30%' />
 
 Use the search by filter feature to selected your desired dog attributes.
 
-<img src='https://github.com/sense-5/shelter-in-pets/blob/readme/assets/gif/filterSearchAndLike.gif' width='30%' height='30%' />
+<img src='https://github.com/sense-5/shelter-in-pets/blob/master/assets/gif/filterSearchAndLike.gif' width='30%' height='30%' />
 
 Like a dog and you will see it on your list of Favorite Dogs.
 
-<img src='https://github.com/sense-5/shelter-in-pets/blob/readme/assets/gif/likeAndFavorites.gif' width='30%' height='30%' />
+<img src='https://github.com/sense-5/shelter-in-pets/blob/master/assets/gif/likeAndFavorites.gif' width='30%' height='30%' />
 
 Click on "recommendations" and you can swipe through dogs recommended to you base on your view and like history. Once you have found your dog, you can contact the shelter via email, phone, or get the shelter location.
 
-<img src='https://github.com/sense-5/shelter-in-pets/blob/readme/assets/gif/recAndFinalPick.gif' width='30%' height='30%' />
+<img src='https://github.com/sense-5/shelter-in-pets/blob/master/assets/gif/recAndFinalPick.gif' width='30%' height='30%' />
