@@ -22,9 +22,9 @@ During the COVID-19 pandemic, the various social distancing protocols are preven
 
 #### Note: This is the client side! You must clone the shelter-in-pets-server repo and follow the directions in the README.md https://github.com/sense-5/shelter-in-pets-server
 
-```
 To install Expo CLI:
 
+```
 npm install -g expo-cli
 ```
 
