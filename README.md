@@ -108,7 +108,7 @@ After logging in, you can start by scrolling through all the dogs available for 
 
 <img src='https://github.com/sense-5/shelter-in-pets/blob/master/assets/gif/browseAndSelect.gif' width='30%' height='30%' />
 
-Use the search by filter feature to selected your desired dog attributes.
+Use the filtered search feature to selected your desired dog attributes.
 
 <img src='https://github.com/sense-5/shelter-in-pets/blob/master/assets/gif/filterSearchAndLike.gif' width='30%' height='30%' />
 
