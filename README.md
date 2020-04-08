@@ -9,11 +9,11 @@ Adopting a dog has never been more fun or easy!
 
 - [Table of Contents](#Table-of-Contents)
 - [Getting Started](#Getting-Started)
-- [Team](#Team)	- [Team](#Team)
+- [Team](#Team)
   - [Kate Lee](#Kate-Lee)
   - [Sonia Susanto](#Sonia-Susanto)
   - [Angela Vuong](#Angela-Vuong)
-  - [Laura Armfield-Perez](#Laura Armfield-Perez)
+  - [Laura Armfield-Perez](#Laura-Armfield-Perez)
 - [Tech Stack - Front End](#Tech-Stack---Front-End)
   - [React Native](#React-Native)
   - [Redux](#Redux)
@@ -48,13 +48,35 @@ Go to http://localhost:19002/ to use Shelter in Pets!
 
 ## Tech Stack - Front End
 
-React-Native
+### React Native
 
-Redux
+https://react-native.org/
 
-Expo
+- React Native is a JavaScript library for building mobile applications.
 
-Clarfai API
+- React Native's framework that allows components to be built ontop of other components with their own state.
+
+### Redux
+
+https://redux.js.org/
+
+- Redux is a JavaScript library that allows for state management.
+
+- Redux works with React Native and Node.js to build user interfaces by retrieving data from the database and manages state in the clinet side.
+
+### Expo
+
+https://expo.io/
+
+- Expo is an open-source platform for developing and publishing native apps for Android, iOS, and web browser. 
+
+### Clarfai API
+
+https://www.clarifai.com/
+
+- Clarifai API is an image recognition service.
+
+- Clarifai's predict API is called by passing in an image input. It will respond with a list of concepts and their corresponding probability scores. The probability score is the likelihood that the concepts are present within the image. 
 
 ## Team
 
