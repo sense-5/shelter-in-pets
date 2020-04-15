@@ -2,7 +2,11 @@
 
 During the COVID-19 pandemic, the various social distancing protocols are preventing many people from visiting shelters to adopt pets. Our app solves this problem by letting users search for adoptable dogs from the comfort and safety of their homes. It matches user-uploaded dog images to similar adoptable dogs, allows a user to conduct filtered searches based on desired traits, and even recommends adoptable dogs based on the user’s in-app activity.
 
+For Android users:
 Visit [Shelter-In-Pets](https://expo.io/@shelterinpets/ShelterInPets?release-channel=prod) to try our app!
+
+For iPhone users:
+Please refer to instructions below on how you can try our app on your local machine.
 
 
 ## Table of Contents
