@@ -56,7 +56,7 @@ https://react-native.org/
 
 - React Native is a JavaScript library for building mobile applications.
 
-- React Native's framework that allows components to be built ontop of other components with their own state.
+- React Native's framework that allows components to be built on top of other components with their own state.
 
 ### Redux
 
